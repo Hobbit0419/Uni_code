@@ -42,19 +42,17 @@ def stickman(x, y, h):
     pen.right(90)
     pen.forward(sqrt((h/3)**2 + (h/6)**2))
 
-def balistic_arc(x, y, v0, theta, tmax, tstep):
+def balistic_arc(x, y, v0, theta, tstep):
      pen =  make_pen(x ,y)
      t = 0
      X = v0*cos(theta)*t
      Y = v0*sin(theta)*t - (9.82*t**2)/2
-     while t <= tmax:
+     while Y >= 0:
          X = v0*cos(theta)*t
          Y = v0*sin(theta)*t - (9.82*t**2)/2
          pen.goto(X, Y)
          t += tstep
 
-balistic_arc(0,0,50,pi/6,15,0.2)
-         
          
 turt.mainloop()
 
