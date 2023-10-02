@@ -1,6 +1,5 @@
 import turtle as turt
 
-
 #Flytta turtlen till en punkt x,y utan att rita
 def jump(x, y, turtle):
     turtle.penup()
@@ -38,28 +37,5 @@ def pentagram(x, y, side, colour):
         pen.left(180 - 36)
     pen.end_fill()
 
-#Skapar en turtle som ritar tricoloren med nedre vänstra hörnet i punkten x,y och höjden h
-#Bredden blir en funktion av höjden då de ska ha ett fast förhållande på 2:3
-def tricolore(x, y, h):
-    s = 0
-    for colour in ['blue', 'white', 'red']:
-        rectangle((x + (s*(h/2))), y, h/2 , h, colour)
-        s += 1
-
-#Koden nedan ritar bilden som uppgiften efterfrågar, den är också helt skalbar med avseende på tricolorens höjd. 
-h = 100
-s = h/2
-offset = 2*h/3
-
-tricolore(-(2*h)/3, -h/2, h)
-
-for i in range(10):
-    if i < 5:
-        pentagram(-(11*h/12) + i*s, h/2 + offset, s, 'yellow')
-    else:
-        pentagram(-(11*h/12) + (i-5)*s, -(h/2 + (offset - s)), s, 'yellow')
-
-
-
-#ser till att fönstret inte stängs direkt efter det är färdig ritat.
-turt.mainloop()
+def vietnamese_flag(x, y, height):
+    placeholder = 'ipsum'
