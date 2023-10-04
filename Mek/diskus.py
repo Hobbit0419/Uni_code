@@ -15,7 +15,7 @@ def jump(x, y, turtle):
 def make_pen(x, y):
     pen = turt.Turtle()
     jump(x, y, pen)
-    pen.hideturtle
+    pen.hideturtle()
     pen.speed(0)
     return pen
 
@@ -53,7 +53,7 @@ def balistic_arc(x, y, v0, theta, tstep):
          pen.goto(X, Y)
          t += tstep
 
-         
+
 turt.mainloop()
 
 

@@ -42,24 +42,24 @@ def pentagram(x, y, side, colour):
 #Bredden blir en funktion av höjden då de ska ha ett fast förhållande på 2:3
 def tricolore(x, y, h):
     s = 0
-    for colour in ['blue', 'white', 'red']:
+    for colour in ['green', 'white', 'orange']:
         rectangle((x + (s*(h/2))), y, h/2 , h, colour)
         s += 1
 
-#Koden nedan ritar bilden som uppgiften efterfrågar, den är också helt skalbar med avseende på tricolorens höjd. 
+#Koden nedan ritar bilden som uppgiften efterfrågar, den är också helt skalbar med avseende på tricolorens höjd, ritas alltid centrerad kring origo. 
 h = 100
+x = 32
+y = 32
 s = h/2
 offset = 2*h/3
 
-tricolore(-(2*h)/3, -h/2, h)
+tricolore(x-(2*h)/3, y-h/2, h)
 
 for i in range(10):
     if i < 5:
-        pentagram(-(11*h/12) + i*s, h/2 + offset, s, 'yellow')
+        pentagram(x-(11*h/12) + i*s, y + h/2 + offset, s, 'yellow')
     else:
-        pentagram(-(11*h/12) + (i-5)*s, -(h/2 + (offset - s)), s, 'yellow')
-
-
+        pentagram(x-(11*h/12) + (i-5)*s, y -(h/2 + (offset - s)), s, 'yellow')
 
 #ser till att fönstret inte stängs direkt efter det är färdig ritat.
 turt.mainloop()

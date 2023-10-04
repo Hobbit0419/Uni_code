@@ -9,6 +9,7 @@ def jump(x, y, turtle):
 #Skapar en turtle och flyttar den till punkten x,y utan att rita <=> skapar en turtle i punkten x,y
 def make_turtle(x, y):
     t = turt.Turtle()
+    t.hideturtle()
     jump(x, y, t)
     return t
 
@@ -17,6 +18,7 @@ def rectangle(x, y, width, height, colour):
     pen = make_turtle(x, y)
     pen.speed(0)
     pen.hideturtle()
+    pen.color(colour)
     pen.fillcolor(colour)
     pen.begin_fill()
     for length in [width, height, width, height]:
@@ -27,6 +29,7 @@ def rectangle(x, y, width, height, colour):
 #Skapar en turtle som ritar ett pentagram med den översta spetsen i punkten x,y och angiven sidlängd. En fyllnads färg kan också anges
 def pentagram(x, y, side, colour):
     pen = make_turtle(x, y)
+    pen.color(colour)
     pen.speed(0)
     pen.hideturtle()
     pen.setheading(270 - 36/2)
@@ -38,4 +41,8 @@ def pentagram(x, y, side, colour):
     pen.end_fill()
 
 def vietnamese_flag(x, y, height):
-    placeholder = 'ipsum'
+    rectangle(x, y, height, 2*height/3,'red')
+    pentagram(x + height/2, y + height/2,height/3, 'yellow')
+
+
+turt.mainloop()
