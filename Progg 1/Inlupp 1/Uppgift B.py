@@ -45,7 +45,7 @@ def vietnamese_flag(x = 0, y = 0, height = 100):
     rectangle(x, y, height, 2*height/3,'red')
     pentagram(x + height/2, y + height/2,height/3, 'yellow')
 
-vietnamese_flag()
+vietnamese_flag(-100,-100)
 
 #Jag har valt att lägga default värden i alla funktioner där det är relevant för att jag kunde det
 turt.mainloop()

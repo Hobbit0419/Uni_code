@@ -40,16 +40,14 @@ def move_random(t, xbound = 500, ybound = 500):
 #Funktionen skapar två turtles, ritar en ruta och flyttar turtles helt slumpmässigt inom rutan. 
 def two_turtles(colour1 = 'red', colour2 = 'green', background_colour = 'gray', xsize = 500, ysize = 500, cycles = 100):
     rectangle(-xsize/2, -ysize/2, xsize, ysize, background_colour)
-    green = make_turtle(randint(-250,250), randint(-250,250), colour2)
-    red = make_turtle(randint(-250,250), randint(-250,250), colour1)
+    green = make_turtle(randint(-xsize/2,xsize/2), randint(-ysize/2, ysize/2), colour2)
+    red = make_turtle(randint(-xsize/2,xsize/2), randint(-ysize/2, ysize/2), colour1)
     close_count = 0
 
     for i in range(cycles):
         if sqrt((red.ycor() - green.ycor())**2 + (red.xcor() - green.xcor())**2) < 50: #denna if sats kollar avståndet mellan turtles och skriver close om dem är närmre än 50 punkter har också en räknare som räknar antalet gånger detta händer
             close_count += 1
             red.write('close')
-            move_random(red, xsize, ysize)
-            move_random(green, xsize, ysize)
         else:
             move_random(red, xsize, ysize)
             move_random(green, xsize, ysize)
