@@ -1,12 +1,9 @@
 from random import randint
 
 def delete(my_list, number):
-    intermediate = []
     for n in my_list:
-        if n != number:
-            intermediate.append(n)
-    my_list.clear()
-    my_list.extend(intermediate)
+        if n == number:
+            my_list.pop(my_list.index(n))
 
 def rand_list(length, min, max):
     l = []
