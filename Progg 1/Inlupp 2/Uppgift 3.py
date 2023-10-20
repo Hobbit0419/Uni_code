@@ -23,4 +23,12 @@ def round_list(a_list, n_digits):
     output = []
     for i in a_list:
         output.append(round(i, n_digits))
+    return output
 
+test = [1,2,3,4,5,6,7,8,9]
+smooth_test = smooth(test, 1)
+round_test = round_list(smooth_test, 2)
+
+print(test)
+print(smooth_test)
+print(round_test)
