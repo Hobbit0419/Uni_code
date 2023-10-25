@@ -12,9 +12,9 @@ def rand_list(length, min, max):
     return l
 
 
-def empty_list(list, range):
+def empty_list(list, range): #Använder delete funktionen för att tömma en lista. 
     iteration_count = 0
-    while len(list) != 0:
+    while len(list) != 0: #kör denna loopen sålänge listan inte är tom
         delete(list, randint(range[0], range[1]))
         iteration_count += 1
     print(iteration_count)
