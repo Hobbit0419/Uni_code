@@ -22,7 +22,4 @@ def program_stats(input):
     for key in word_freq:
         print(f'{key} {word_freq[key]}')
         
-   
-    
 program_stats('bokstavsfrekvens.py')
-
