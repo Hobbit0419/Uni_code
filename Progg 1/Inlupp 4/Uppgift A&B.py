@@ -32,6 +32,6 @@ def data_illustrator(input_data):
         pp.plot(input_data['country code'] ,smooth_data, color = country[1])   
     pp.show() 
         
-CO2_data = csv_reader('Progg 1/Inlupp 4/CO2Emissions_filtered.csv')
+CO2_data = csv_reader('Uni_code/Inlupp 4/CO2Emissions_filtered.csv')
 
 data_illustrator(CO2_data)
