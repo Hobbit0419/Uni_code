@@ -1,3 +1,9 @@
+# Studentversion av filen.
+# Klassen Vehicle är helt klar och skall ej ändras
+# Klassen Lane är nästan klar, där skall...
+#     metoden number_in_lane uppdateras av dig!
+
+
 # Denna klass är helt färdig
 class Vehicle:
     """Representerar fordon i en trafiksimulering"""
@@ -60,29 +66,30 @@ class Lane:
     # returnera det fordonet
     def remove_first(self):
         v = self._the_lane[0]
-        self._the_lane[0] = None # Första pos sätts till ledig
+        self._the_lane[0] = None
         return v
 
     # DENNA METODS KROPP MÅSTE ÄNDRAS
     # Räknar och returnerar antalet fordon som finns i filen
     def number_in_lane(self):
-        return len(self._the_lane)
+        vehicle_amount = 0
+        for position in self._the_lane:  #Kollar om platsen är tom och om den inte är det så måste det finnas en bil där och då lägger vi till ett på räkne variabeln
+            if position != None:
+                vehicle_amount += 1
+        return vehicle_amount
+        
 
 
 def demo_lane():
     """För att demonstera klassen Lane"""
     a_lane = Lane(10)   # Skapa ett Lane-objekt med plats för 10 fordon
     print(a_lane)       # Skriv ut Lane-objektet (filen) för att se hur det ser ut
-    print('  Antal fordon i filen:', a_lane.number_in_lane())
-    t = 0               # tiden är initialt noll
-    v = Vehicle('N', t) # Skapa ett fordon med borntime 0 och destination N
-    a_lane.enter(v)     # Placera fordonet sist i filen
-    print(a_lane)       # Skriv ut Lane-objektet
-    print('  Antal fordon i filen:', a_lane.number_in_lane())
+    print('   Number in lane:', a_lane.number_in_lane())
+    
+    t = 0
+    v = Vehicle('W', t) # Skapa ett fordon med borntime 0 och destination W
+    a_lane.enter(v)     # Placera fordonet sist i filen, obs! ingen koll att ledigt
 
-    a_lane.step()       # Flytta fordonen ett steg framåt i filen
-    print(a_lane)       # Skriv ut Lane-objektet
-    print('  Number in lane:', a_lane.number_in_lane())
     # Simulera 20 tidssteg mha en loop
     while t <= 20:
         t += 1
@@ -90,15 +97,17 @@ def demo_lane():
         # Vid vartannat tidssteg gör följande...
         if t % 2 == 0:
             u = Vehicle('S', t) # Skapa ett fordon, borntime t och destination S
-            a_lane.enter(u)     # Placera fordonet sist i filen
-        a_lane.step()           # Flytta fordonen ett steg framåt i filen
+            print('  in: ', u)
+            a_lane.enter(u) # Placera fordonet sist i filen, obs! ingen koll att ledigt
         
-        # Vid vart 3:e tidssteg, gör följande ...
-        if t % 3 == 0:
+        # Annars gör följande ...
+        else:
             # Ta bort fordonet i första pos i filen och skriv ut det fordonet
             print('  out: ', a_lane.remove_first())
+        
+        print(a_lane)
+        a_lane.step()    # Flytta fordonen ett steg framåt i filen
         # Skriv ut hur många fordon det är totalt i filen
-        print(a_lane)           # Skriv ut Lane-objektet
         print('  Number in lane:', a_lane.number_in_lane())
 
 def main():
@@ -115,5 +124,4 @@ if __name__ == '__main__':  # If this file is the main program, you are running:
 # If this python file is demo_light() imported by another program, and they run that program, the
 # main function is not called
 
-
-demo_lane()
+main()
