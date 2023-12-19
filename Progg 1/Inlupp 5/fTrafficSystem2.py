@@ -7,7 +7,6 @@ from statistics import *
 
 
 class TrafficSystem2:
-    """Representerar ett trafik system"""
     # Konstruktorn
     def __init__(self):
         self.time = 0

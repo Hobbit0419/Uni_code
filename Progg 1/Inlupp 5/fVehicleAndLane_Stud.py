@@ -116,12 +116,5 @@ def main():
 
 if __name__ == '__main__':  # If this file is the main program, you are running:
     main()                  # Call the main function above
-    
-# When the Python interpreter reads a python file, it defines
-# the special variable __name__
-# If you are running your module as the main program,
-# the interpreter will assign the hard-coded string "__main__" to the __name__ variable
-# If this python file is demo_light() imported by another program, and they run that program, the
-# main function is not called
 
 main()
