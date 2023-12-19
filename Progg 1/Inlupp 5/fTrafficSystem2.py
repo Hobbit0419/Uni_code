@@ -7,6 +7,7 @@ from statistics import *
 
 
 class TrafficSystem2:
+
     # Konstruktorn
     def __init__(self):
         self.time = 0
@@ -95,11 +96,13 @@ class TrafficSystem2:
         if len(self.queue) > 0:
             self.queue_time += 1
 
+
     def number_in_system(self):
         vehicle_amount = self.lane.number_in_lane() + self.laneS.number_in_lane() + self.laneW.number_in_lane() + len(self.queue)
         return vehicle_amount
     
-    def print_statistics(self):  #Skapar en metod för att printa statestiken    
+
+    def print_statistics(self):  #Skapar en metod för att skriva ut statestiken    
 
         print('\n', f'Statistics after {self.time} timesteps:', '\n')
         print(f'Created vehicles:    {self.total_cars}')
@@ -127,5 +130,5 @@ def main():
     ts.snapshot()
     ts.print_statistics() 
     
-
-main()
+if __name__ == '__main__':
+    main()
