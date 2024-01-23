@@ -1,11 +1,6 @@
-# Studentversion av filen.
-# Givet är ett skal till klassen Light
-# och kod (funktionen demo_light) som testar klassen Light.
-# Fyll i det som saknas i klassen Light sÃ¥ att utskriften nedan fÃ¥s.
 
 class Light:
-    """Representerar ett trafikljus"""
-    """Se specifikation av klassen på kursens webbbsida"""
+
     def __init__(self,period, green_period): #konstruktör
         self.period = period # antalet tidssteg mellan två växlingar från grönt till rött och tillbaka
         self.green_period = green_period

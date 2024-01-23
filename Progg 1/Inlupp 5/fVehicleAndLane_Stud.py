@@ -1,10 +1,4 @@
-# Studentversion av filen.
-# Klassen Vehicle är helt klar och skall ej ändras
-# Klassen Lane är nästan klar, där skall...
-#     metoden number_in_lane uppdateras av dig!
 
-
-# Denna klass är helt färdig
 class Vehicle:
     """Representerar fordon i en trafiksimulering"""
 
@@ -69,7 +63,6 @@ class Lane:
         self._the_lane[0] = None
         return v
 
-    # DENNA METODS KROPP MÅSTE ÄNDRAS
     # Räknar och returnerar antalet fordon som finns i filen
     def number_in_lane(self):
         vehicle_amount = 0
@@ -114,7 +107,5 @@ def main():
     print('\nLane demonstration')
     demo_lane()
 
-if __name__ == '__main__':  # If this file is the main program, you are running:
-    main()                  # Call the main function above
-
-main()
+if __name__ == '__main__':
+    main()

@@ -128,7 +128,7 @@ def main():
         sleep(0.001) 
     print('\nFinal state:')
     ts.snapshot()
-    ts.print_statistics() 
+    ts.print_statistics()
     
 if __name__ == '__main__':
     main()
