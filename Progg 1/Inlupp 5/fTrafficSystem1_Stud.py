@@ -67,7 +67,6 @@ def main():
     for i in range(100):
         ts.snapshot()
         ts.step()
-        sleep(0.001)
     print('\nFinal state:')
     ts.snapshot()
 

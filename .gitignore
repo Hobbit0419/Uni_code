@@ -4,3 +4,9 @@
 *.txt
 *.jpg
 /.venv
+*.log
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+__pycache__/

@@ -24,14 +24,6 @@ def demo_light():
         print(t+1, a_light, a_light.is_green())
         a_light.step() # Nästa steg för trafikljuset
 
-def demo_light():
-    """För demonstration av klassen Light"""
-    a_light = Light(7, 3) # Skapa ett trafikljus, period 7, green time 3
-    # Simulera 15 tidssteg
-    for t in range(15):
-        print(t+1, a_light, a_light.is_green())
-        a_light.step() # NÃ¤sta steg fÃ¶r trafikljuset
-
 def main():
     print('\nLight demonstration')
     demo_light()

@@ -1,0 +1,210 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Inlämmningsuppgift 1 matematsik statistik KF}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Uppgift 1}
+
+\subsection{a)}
+
+För att beräkna väntevärdet för $E(X)$ behövs för det första värdet på för alla tal i det i uppgiften givna intervallet. För att ta fram dessa värden så användes den i uppgiften givna kodsnutten på alla tal i intervallet. Några ytterligare rader kod användes för att skapa en lista med alla värden för $X$ för talen i intervallet. Dessa summerades sedan och dividerades sedan med antalet försök för att få fram $E(X) = 2,4$.
+
+\subsection{b)}
+
+För att definera en fördelning för a $E(X)$ behövs först sanolikheterna för samtliga möjliga utfall. Dessa beräknas genom att räkna hur många gånger varje utfall förekommer och sedan dividera det med totala antalet försök. Från mean kommandot får vi också samma svar $E(X) = 2,4$
+
+\subsection{c)}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{figur1c.png}
+        \end{center}
+        \caption{Graf över den diskreta sannolikhetsfördelningen för $X$ samt dess fördelningsfunktion}
+        \label{fig:1c}
+    \end{small}
+\end{figure}
+
+Med hjälp av de inbyggda funktionerna i scipy.stats och fördelningen som definerades i föregående uppgift erhölls övan graf.
+
+\subsection{d)}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figur1d.png}
+        \end{center}
+        \caption{Graf som visar hur en poisson fördelning förhåller sig till den faktiska fördelningen}
+        \label{fig:1d}
+    \end{small}
+\end{figure}
+
+Poisson fördelningen verkar vara en bra approximation. I figuren syns det att den följer fördelningen ganska bra. verkar underskatta för det mesta men ju fler primtalfaktorer desto mer överskatta poisson fördelningen. 
+
+\section{Uppgift 2}
+
+\subsection{a)}
+
+\begin{table}[H]
+    \caption{Statistiska grund data för alla upptäckta planeter fram till och med 2021}
+    \label{tab:1}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{l|llll}
+                     & Planetmassa[Jordmassor] & Yttremperatur[Kelvin] & Stjärn radie[Solradier] & Stjärnmassa[Solmassor] \\
+                     \hline
+    Medelvärde       & 725         & 1060          & 1,54         & 0,973       \\
+    Standardavikelse & 1340        & 561           & 3,82         & 0,474       \\
+    Minsta värde     & 0,02        & 50            & 0,01         & 0,01        \\
+    Största värde    & 17700       & 4050          & 83,8         & 10,9        \\
+    Median           & 221         & 961           & 0,960        & 0,960       \\
+    Variationsbredd  & 1340        & 511           & 3,81         & 0,473      
+    \end{tabular}}%
+\end{table}
+
+Med hjälp av den inbyggda funktionen describe i pandas samt lite huvudräkning erhölls övan tabell med statistiska grunddata för det givna mängden data
+
+\subsection{b)}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figur2b.png}
+        \end{center}
+        \caption{Scatter plot över planetmassa kontra yttemperatur}
+        \label{fig:2b}
+    \end{small}
+\end{figure}
+
+
+\subsection{c)}
+
+För att kunna få en överblick av variabler som har stor variationsbredd är användandet av logaritmerade axlar att föredra. Om axlarna på ovan graf logarimeras erhålls följande plot. 
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figur2c.png}
+        \end{center}
+        \caption{Log log scatter plot över planetmassa kontra yttemperatur}
+        \label{fig:2c}
+    \end{small}
+\end{figure}
+
+För att kunna få log axlar i matplotlib finns det för figurer en egenskap som heter axis scale där man med en sträng kan skala om axlarna till log skalor.
+
+\subsection{d)}
+
+\begin{table}[H]
+    \centering
+    \caption{}
+    \label{tab:2}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llll}
+        Planetmassa[Jordmassor] & Yttremperatur[Kelvin] & Stjärn radie[Solradier] & Stjärnmassa[Solmassor] \\ 
+        \hline
+        3,75                        & 387                       & 0,30                        & 0,30                       \\
+        2,64                        & 300                       & 0,21                        & 0,18                       \\
+        2,69                        & 370                       & 0,39                        & 0,39                       \\
+        3,06                        & 342                       & 0,30                        & 0,27                       \\
+        1,27                        & 234                       & 0,14                        & 0,12                       \\
+        1,40                        & 301                       & 0,20                        & 0,17                       \\
+        2,20                        & 344                       & 0,42                        & 0,45                      
+    \end{tabular}%
+    }
+\end{table}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figur2d.png}
+        \end{center}
+        \caption{}
+        \label{fig:2d}
+    \end{small}
+\end{figure}
+
+I tabellen ovan kan läsaren hitta intressanta data om de mest jordlika planeterna i datamängden. Dessa togs fram genom att använda den inbyggda filterfunktionen för pandas dataframes. Filtret som användes va:
+
+\begin{align}
+    0.5 < &Mass < 4\\
+    200 < &Equilibrium Temperature < 400
+\end{align}
+
+Sedan för att se hur dom ligger i fördelningen med alla planeter färglades dom oranga som läsaren kan se i figur \ref{fig:2d}
+
+\subsection{e)}
+
+Korrelationskoefficienter togs fram genom att använda .corr metoden som finns inbyggd i pandas. De variabler som har störst korrelation är yttemperatur och stjärn massa med en Korrelationskoefficient på 0,62. Sambandet illustreras i följande figur.
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figur2e.png}
+        \end{center}
+        \caption{Scatter plot över planetmassa och yttemperatur med en linjäranpassning för att förtydliga korrelationen}
+        \label{fig:2e}
+    \end{small}
+\end{figure}
+
+
+\subsection{f)}
+
+\begin{figure}
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{Figur2f1.png}
+        \end{center}
+        \caption{Histogram över yttemperturen, med en bin bredd på 100 kelvin}
+        \label{fig:2f1}
+    \end{small}
+\end{figure}
+
+\begin{figure}
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figur2f2.png}
+        \end{center}
+        \caption{Normaliserat histogram över yttemperturen, med en bin bredd på 100 kelvin}
+        \label{fig:2f2}
+    \end{small}
+\end{figure}
+
+\begin{figure}
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figur2f3.png}
+        \end{center}
+        \caption{Boxplot av planeternas yttemperatur}
+        \label{fig:2f3}
+    \end{small}
+\end{figure}
+\end{document}
