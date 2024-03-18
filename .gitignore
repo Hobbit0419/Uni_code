@@ -1,4 +1,6 @@
 *.csv
+*.pyg
+*.toc
 *.png
 *.dat
 *.txt
