@@ -1,0 +1,127 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip5mm
+\parindent0mm
+
+\title{Matematisk statestik inlupp 2}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Uppgift 1}
+
+\subsection{(a)}
+Täthetsfunktionen för den givna variabeln X fås genom att göra inversmetoden baklänges.
+
+Alltså inverteras den givna funktionen och sedan deriveras den och då erhålls täthetsfunktionen.
+
+\begin{align}
+    \frac{1}{3}(1 - \frac{x}{6})
+\end{align}
+
+\subsection{(b)}
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{fig_1b.png}
+        \end{center}
+        \caption{Simulerad fördelning för den givna slumpvariabeln X}
+        \label{fig:1b}
+    \end{small}
+\end{figure}
+
+Som vi ser i figur \ref{fig:1b} så stämmer de simulerade värden ganska väl överens med täthetsfunktionen. 
+
+\section{Uppgift 2}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{fig_2a.png}
+        \end{center}
+        \caption{Illustration av kvadrerade Maxwell-Boltzmann fördelningar med variarande argument alpha}
+        \label{fig:2a}
+    \end{small}
+\end{figure}
+
+Större värde på parametern alpha leder till att toppen på fördelningen förskjuts samt att den blir mer utspridd. 
+
+\section{Uppgift 3}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{fig_3.png}
+        \end{center}
+        \caption{Illustration av den givna datan med en anpassad linje}
+        \label{fig:3}
+    \end{small}
+\end{figure}
+
+Eftersom kraften är konstant och vi ändrar på massan bör massan ses som den obereonde och accelerationen bör ses som den beroende variabeln. Med det i åtanke anpassades en linje till den givna datan som går att se i figur \ref{fig:3}. Denna linje har ekvationen $-0,143x + 1,794$. Den har en förklaringsgrad på $r^2 = 0.703$. Relativt högt alltså är datan ganska väl förklarad av linjen, det verkar alltså som att förhållandet mellan accelerationen och massan är linjärt. Ett $95\%$ konfidensintervall för kraften ser ut som följande $4,10 < F < 4,82$
+
+\newpage
+\section{Uppgift 4}
+
+Mellanankomsttiderna beskrivs av följande statistisk data.
+
+\begin{table}[H]
+    \centering
+    \caption{}
+    \label{tab:my-table}
+    \begin{tabular}{ll}
+    Medelvärde            & $3,17\cdot 10^{-2}$ \\
+    Standardavikelse      & $4,70\cdot 10^{-2}$ \\
+    Variationskoefficient & 1,48       \\
+    Min                   & 0,00       \\
+    Undre kvartilen       & $8,32\cdot 10^{-3}$ \\
+    Övre kvartilen        & $4,20\cdot 10^{-2}$ \\
+    Max                   & 2,22                     
+    \end{tabular}
+\end{table}
+
+Fördelningen av mellan ankomsttiderna plottades i ett histogram. 
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{fig_411.png}
+        \end{center}
+        \caption{Histogram över mellanankomsttider för neutrinos i ICECUBE detektorn}
+        \label{fig:tids fördelning}
+    \end{small}
+\end{figure}
+
+Det syns ganska tydligt att denna verkar följa en exponential fördelning, vilket understyks ytterliggare av att rita in täthetsfunktionen för en exponential fördelning med parameter härled genom moment metoden. 
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{fig_42.png}
+        \end{center}
+        \caption{Histogram med föreslagen fördelning inritad i orangt}
+        \label{fig:fördelning sim}
+    \end{small}
+\end{figure}
+
+Som jag ser det kan jag inte hitta något som talar emot att denna datan skulle vara exponential fördelad. Momentmetoden gav en intensitet på 31,5
+
+\end{document}
