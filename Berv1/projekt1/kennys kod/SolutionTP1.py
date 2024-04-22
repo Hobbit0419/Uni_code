@@ -46,10 +46,10 @@ u[0,:] = f
 
 # Löser med RK3
 for n in range(N):
-	 w1=F(t[n],u[n,:])
-	 w2=F(t[n]+k/2,u[n,:]+k/2*w1)
-	 w3=F(t[n]+k,u[n,:]-k*w1+2*k*w2)
-	 u[n+1,:] = u[n,:] + k/6*(w1+4*w2+w3)
+	w1=F(t[n],u[n,:])
+	w2=F(t[n]+k/2,u[n,:]+k/2*w1)
+	w3=F(t[n]+k,u[n,:]-k*w1+2*k*w2)
+	u[n+1,:] = u[n,:] + k/6*(w1+4*w2+w3)
      
 fig = plt.figure()
 plt.plot(t[:],u[:,0],label='$y^{(n)}$')

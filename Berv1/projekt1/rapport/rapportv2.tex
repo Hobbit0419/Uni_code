@@ -1,0 +1,380 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[parfill]{parskip}
+\usepackage{changepage}
+\usepackage{subcaption}
+\usepackage{changepage}
+\usepackage{color}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{%frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false,
+  breakatwhitespace=false,
+  tabsize=4,
+  morekeywords={FIR_H_BUFFER,dsp16_t,dsp16_filt_iirpart}
+}
+
+\lstset{emph={%  
+    DSP16_Q,H_SIZE%
+    },emphstyle={\color{mauve}}%
+}
+
+\title{Uppsala University Template}
+
+\begin{document}
+
+%-------------------------
+%	uncomment irrelevant 
+%	parts, like logo etc
+%-------------------------
+\pagenumbering{Alph}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\begin{center}
+%---------------------
+%	HEADING SECTIONS
+%---------------------
+\textsc{\LARGE Uppsala University}\\[1.5cm] % Name of your university/college
+\textsc{\Large Introduktion till beräkningsvetenskap}\\[0.5cm] % Major heading such as course name
+\textsc{\large Projekt 1}\\[0.5cm] % Minor heading such as course title
+
+%------------------
+%	TITLE SECTION
+%------------------
+\HRule \\[0.4cm]
+{ \huge \bfseries Undersökning av numeriska metoder för ODE}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%--------------------
+%	AUTHOR SECTION
+%--------------------
+ %\begin{minipage}{1.4\textwidth}
+ %\begin{flushleft} 
+
+\large\emph{Author:}\\ Anton Lindbro\\[1.0cm]%
+%\large\emph{Collaborated with:}\\Collaborator\\[1cm]
+                        		% \\ [1.0cm]%
+
+ %\end{flushleft}
+ %\end{minipage}
+
+%---------------------
+%	Supervisor
+%---------------------
+ %\begin{minipage}{0.4\textwidth}
+ %\begin{flushright} \large
+ %\emph{Supervisor:} \\
+ %Dr. James \textsc{Smith} % Supervisor's Name
+ %\end{flushright}
+ %\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+{\large \today}\\[1cm] % Date
+
+%----------
+%	LOGO 
+%----------
+\includegraphics[width=1.7in]{figures/uulogga.png}\\%[1cm]
+\end{center}
+\end{titlepage}
+\pagenumbering{arabic}
+\pagebreak
+%-------------------------
+%	Abstract
+%-------------------------
+\begin{abstract}
+    I denna rapporten så undersöks numeriska metoder för lösning av ODE. Detta görs genom lösning av ODEn för en pendel och de numeriska resultaten jämförs men en analytisk lösning för att verifiera nogrannhetsgrader. Allt detta görs med hjälp av python. 
+\end{abstract}
+\pagebreak
+%-------------------------
+%	Table of Contents
+%-------------------------
+\tableofcontents
+\pagebreak
+%-------------------------
+%       Main Text
+%-------------------------
+\section{Inledning}
+Numeriska metoder för lösning av ODE är mycket användbara då en stor majoritet av ODE inte går att lösa analytiskt. I detta projektet har en metod som kallas runge-kutta 4(RK4) implementerats i python och de givna lösningarna har utvärderats. RK4 är en industri standard som funkar för en majoritet av ODE system och det var därför denna valdes. Projektet har bestått av 4 deluppgifter och genomförande och resultat för respektive beskrivs nedan. 
+
+\section{Genomförande}
+Här följer beskrivning av genomförande för samtliga deluppgifter i projektet.
+
+\subsection{Deluppgift 1}
+För att kunna använda de analytiska lösningarna givna i projektbeskrivningen så behövde tre konstanter beräknas. Detta gjordes genom att sätta in den givna begynnelse datan och lösa för de sökta konstanterna. Med de givna begynnelse värdedna kan vi bilda ett ekvations system för de båda analytiska lösningarna englit följande:
+
+\begin{align}
+    0 &= c_1 \cos(\omega_0 t) + c_2 \sin(\omega_0 t) + \frac{\gamma\omega_0^2 \cos(\omega t)}{\omega_0^2 - \omega^2}\\
+    0 &= - c_1\omega_0 \sin(\omega_0t) + c_2\omega_0 \cos(\omega_0 t) - \frac{\omega\gamma\omega_0^2 \sin(\omega t)}{\omega_0^2 - \omega^2}
+\end{align}
+
+Sätter vi in de givna begynnelse vilkoren kan vi simplifiera till förljande
+
+\begin{align}
+    c_1 &= \frac{\gamma\omega_0^2}{\omega_0^2 - \omega^2}\\
+    c_2\omega_0 &= 0
+\end{align}
+
+Eftersom $\omega_0 \neq 0$ så ser vi att $c_2=0$.
+
+För att ta fram $d_1$ följs samma procedur och $d_1 = 0$.
+
+Respektive funktion implementeras i python och en ifsats används för att se vilken av de två analytiska lösningarna som bör användas för en given mängd parametrar. 
+
+\subsection{Deluppgift 2}
+RK4 implementeras i python med hjälp av följande kod.
+
+\begin{lstlisting}[language=Python]
+    def RK4(func, initvalues, T, N, w, w_0, y):
+	k = T/N
+	t = np.linspace(0,T,N+1)
+	u = np.zeros((N+1,2),dtype = float)
+	u[0,:] = initvalues
+
+	for n in range(N):
+		w1=func(t[n], u[n,:], w_0, w, y)
+		w2=func(t[n] + k/2, u[n,:] + k/2 * w1, w_0, w, y)
+		w3=func(t[n] + k/2, u[n,:] + k/2 * w2, w_0, w, y)
+		w4=func(t[n+1], u[n,:] + k * w3, w_0, w, y)
+		u[n+1,:] = u[n,:] + k/6*(w1 + 2*w2 + 2*w3 + w4)
+	
+	return u, t
+\end{lstlisting}
+
+Eftersom RK4 bara kan användas för att lösa förstaordningens ODE så behöver vi dela upp den givna ODE i ett system av förstaordningens ekvationer.
+
+\begin{align}
+    \ddot{\theta} = -\omega_0\theta + \gamma\omega_0^2\cos(\omega t)
+\end{align}
+
+Nya variabler införs $a = \theta$ och $b = \dot{theta}$
+
+\begin{align}
+    \dot{a} &= \dot{\theta} = b\\
+    \dot{b} &= \ddot{\theta} = -\omega_0 a + \gamma\omega_0^2\cos(\omega t)
+\end{align}
+
+Och då har vi ett system av förstaordningens ekvationer som kan lösas med RK4.
+
+Genom att sedan jämföra resultatet från RK4 med de analytiska lösningarna erhölls ett fel som sedan utvärderades. 
+
+Noggranhets-ordningen av RK4 verifierades genom att beräkna den för de givna resultaten. Noggranhets-ordningen q erhölls enligt följande formel.
+
+\begin{align}
+    q(2N) = \log_2 \left( \frac{e_N}{e_{2N}}\right)
+\end{align}
+
+Där $e_N$ är felet vid N stycken tidsteg.
+
+\subsection{Deluppgift 3}
+Här undersöktes den numeriska stabiliteten hos RK4. Detta görs genom att undersöka hur RK4 presterar vid färre och färre tidsteg. Detta görs för en given mängd parametrar. RK1 testas också mycket kort på liknande sätt. 
+
+\subsection{Deluppgift 4}
+Här används istället SciPys inbyggda ODE lösaren för att undersöka kaos. I denna deluppgift löses ekvationen
+
+\begin{align}
+    \ddot{\theta} = -\omega_0^2 \sin(\theta) - 2\beta \dot{\theta} + \gamma \omega_0^2 \cos(\omega t)
+\end{align}
+
+även denna behövs delas upp, med samma variabler som användes för att delaupp ekv.5 får vi systemet
+
+
+\begin{align}
+    \dot{a} &= b\\
+    \dot{b} &= -\omega_0^2 \sin(a) - 2\beta \dot{b} + \gamma \omega_0^2 \cos(\omega t)
+ \end{align}
+
+Sedan undersöks stabiliteten i RK45 för ovan system genom att variera $\gamma$ och undersöka konsekvenserna. 
+
+\section{Resultat}
+
+\subsection{Deluppgift 1}
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/anal_solve.png}
+        \end{center}
+        \caption{Graf över resultatet för de två olika i uppgiften givna analytiska lösningarna.}
+        \label{fig:anal_sol}
+    \end{small}
+\end{figure}
+
+De parametrarna som användes för att framställan fig.\ref{fig:anal_sol} var för den översta grafen
+\begin{align*}
+    \omega &= 2 \pi\\
+    \omega_0 &= 3 \pi\\
+    \gamma &= 0,1
+\end{align*}
+
+och för den nedre grafen
+
+\begin{align*}
+    \omega &= 3 \pi\\
+    \omega_0 &= 3 \pi\\
+    \gamma &= 0,1
+\end{align*}
+
+Båda är beräknade fram till tiden $T = 10$ med 1000 tidsteg.
+
+\subsection{Deluppgift 2}
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/RK4_solve_with_error.png}
+        \end{center}
+        \caption{Lösning av ekv.5 med hjälp av RK4 samt det numeriska felet jämfört med den analytiska lösningen}
+        \label{fig:RK4 with error}
+    \end{small}
+\end{figure}
+
+\begin{table}[H]
+    \caption{Fel och noggranhets-ordninga vid olika antal tidsteg}
+    \label{tab:e-q}
+    \begin{center}
+        \begin{tabular}{lll}
+            \hline
+            N   & $e_N$ & $q(N)$ \\
+            \hline
+            200 & $6,44 \cdot 10^{-3}$    &     \\
+            400 & $3,77 \cdot 10^{-4}$    & 4,09    \\
+            800 & $2,24 \cdot 10^{-5}$    & 4,07   \\
+            \hline 
+        \end{tabular}
+    \end{center}
+\end{table}
+
+Figur \ref{fig:RK4 with error} och tabell \ref{tab:e-q} har framstälts med parametrarna
+
+\begin{align*}
+    \omega &= 2 \pi\\
+    \omega_0 &= 3 \pi\\
+    \gamma &= 0,1\\
+    T &= 9,9\\
+    N &= 200
+\end{align*}
+
+\subsection{Deluppgift 3}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/RK4_solve.png}
+        \end{center}
+        \caption{RK4 resultat för två olika mängder parametrar.}
+        \label{fig:RK4-solve}
+    \end{small}
+\end{figure}
+
+För att erhålla graferna i figur \ref{fig:RK4-solve} användes parametrarna
+
+\begin{align*}
+    &
+    \begin{aligned}
+        \omega &= 2 \pi\\
+        \omega_0 &= 3 \pi\\
+        \gamma &= 0,1\\
+        T &= 40\\
+        N &= 800
+    \end{aligned}
+    &
+    \begin{aligned}
+        \omega &= 3 \pi\\
+        \omega_0 &= 3 \pi\\
+        \gamma &= 0,1\\
+        T &= 40\\
+        N &= 800
+    \end{aligned}\\
+    &\text{Övre graf}
+    &\text{Undre graf}
+    \end{align*}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/RK4_step_chaos.png}
+        \end{center}
+        \caption{RK4 resultat för en mängd olika antal tidsteg.}
+        \label{fig:RK4-stability}
+    \end{small}
+\end{figure}
+
+Ovan grafer har alla samma inparametrar som nedregrafen i figur \ref{fig:RK4-solve} och antalet tidsteg för varje graf syns till vänster i figuren.
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/RK1_solve.png}
+        \end{center}
+        \caption{ODE löst med RK1}
+        \label{fig:RK1-solve}
+    \end{small}
+\end{figure}
+
+Figur \ref{fig:RK1-solve} erhölls med in parametrar
+
+\begin{align*}
+    \omega &= 2 \pi\\
+    \omega_0 &= 3 \pi\\
+    \gamma &= 0,1\\
+    T &= 40\\
+    N &= 10 \ 000
+\end{align*}
+
+\subsection{Deluppgift 4}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/RK45_solve.png}
+        \end{center}
+        \caption{}
+        \label{fig:RK45-solve}
+    \end{small}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/RK45_gamma_chaos.png}
+        \end{center}
+        \caption{}
+        \label{fig:RK45-chaos}
+    \end{small}
+\end{figure}
+
+
+\section{Diskussion}
+
+
+\end{document}
