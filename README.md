@@ -1,2 +1,2 @@
 # proggen
-This is where i will put all my stuff from my first python course at university
+Here you find all the code of the bachelors student Anton
