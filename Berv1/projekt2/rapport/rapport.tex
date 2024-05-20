@@ -110,7 +110,7 @@
 %	Abstract
 %-------------------------
 \begin{abstract}
-    bruh
+    I denna rapporten utforskas olika numeriska metoder för integration. Metoderna utvärderas och verifieras och deras beteende i olika situationer utforskas. Vedertagna värden på noggranhetgrader verifieras.
 \end{abstract}
 \pagebreak
 %-------------------------
@@ -123,27 +123,84 @@
 %-------------------------
 \section{Inledning}
 
-\section{Genomförande}
+Numersik integration är användbar i många situationer. Inom fysiken så finner man sig ofta i situationer där man har en funktion som behöver integreras men det är omöjligt att göra analytiskt, det finns helt enkelt inte en primitiv funktion. Då vänder man sig till de numeriska metoderna och människans bästa vän datorn. Därför utforskar denna rapporten två olika numeriska metoder för integration, trapets metoden och simpsons metod. 
+
+\section{Genomförande och resultat}
+
+Här följer genomförande och resultat för samtliga deluppgifter i projektet.
 
 \subsection{Deluppgift 1}
+Den linjära modellen given i uppgiftsbeskrivningen implementeras i python och en funktion som plottar upp dess absolutvärde skrivs. Denna funktion ger upphov till följande figur.
+
+\begin{figure}[H]
+  \begin{small}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{figures/vellong.png}
+    \end{center}
+    \caption{Absolutvärdet av vinkelhastigheten för pendeln med in parametrar $N = 4000$, $\omega = 2\pi$,  $\omega_0 = 3\pi$, $\gamma = 0,1$}
+    \label{fig:vellong}
+  \end{small}
+\end{figure}
+
+Scipys inbyggda integrallösare QUAD användes för att integrera funktionen i \ref{fig:vellong}. Denna gav värdet $12.03$
+
+Samma funktione plottades över ett kortare tidsintervall $0<t<0,25$ och integralen på detta intervall beräknades till $0,1273$
+
+\begin{figure}[H]
+  \begin{small}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{figures/velshort.png}
+    \end{center}
+    \caption{Absolutvärdet av vinkelhastigheten för pendeln med in parametrar $N = 200$, $\omega = 2\pi$,  $\omega_0 = 3\pi$, $\gamma = 0,1$}
+    \label{fig:velshort}
+  \end{small}
+\end{figure}
 
 \subsection{Deluppgift 2}
 
+Funktioner för att beräkna integrationsvärden, fel och noggranhetgrader implementerades i python för både trapets metoden och simpsons formel. Dessa värden redovisas i tabellen nedan. I tabellen så är $S_T(N)$ integrationsvärdet beräknat med trapets metoden vid N tidsteg och $S_S(N)$ samma fast för simpsons formel. $e_N$ följande respektiive metod är felet och q(N) är konvergensen. 
+
+\begin{table}[H]
+  \caption{Tabell över integrationsvärden med två olika metoder och felen i respektive metoder. $0<t<10$}
+  \label{tab:TSL}
+    \begin{tabular}{lllllll}
+      \hline
+      N   & $S_T(N)$ & $e_N$ & q(N) & $S_S(N)$ & $e_N$ & q(N) \\ \hline
+      100 & 12,0425 &  &  &  &  &  \\
+      200 & 12,0354 & 1,04 $\cdot 10^{-3}$ &  & 12,0400 &  &  \\
+      400 & 12,0323 & 1,72 $\cdot 10^{-4}$ & 2,61 & 12,0333 & 1,37 $\cdot 10^{-5}$ &  \\
+      800 & 12,0328 & 2,52 $\cdot 10^{-5}$ & 2,77 & 12,3309 & 1,67 $\cdot 10^{-5}$ & -0,28 \\ \hline
+    \end{tabular}
+\end{table}
+
+Ovan tabell är given av inparametrarna $\omega = 2\pi$,  $\omega_0 = 3\pi$, $\gamma = 0,1$ och ett tidsintervall $0<t<10$ om vi använder samma inparametrar men ett kortare tidsintervall $0<t<0,25$ får vi följande tabell
+
+\begin{table}[H]
+  \caption{Tabell över integrationsvärden med två olika metoder och felen i respektive metoder. $0<t<0,25$}
+  \label{tab:TSS}
+    \begin{tabular}{lllllll}
+      \hline
+      N   & $S_T(N)$ & $e_N$ & q(N) & $S_S(N)$ & $e_N$ & q(N) \\ \hline
+      100 & 0,127 &  &  &  &  &  \\
+      200 & 0,127 & 6,65 $\cdot 10^{-7}$ &  & 0,127 &  &  \\
+      400 & 0,127 & 1,65 $\cdot 10^{-7}$ & 2,02 & 0,127 & 5,16 $\cdot 10^{-13}$ &  \\
+      800 & 0,127 & 4,12 $\cdot 10^{-8}$ & 2,01 & 0,127 & 3,21 $\cdot 10^{-14}$ & 4,00 \\ \hline
+    \end{tabular}
+\end{table}
+
 \subsection{Deluppgift 3}
 
-\subsection{Deluppgift 4}
-
-\section{Resultat}
-
-\subsection{Deluppgift 1}
-
-\subsection{Deluppgift 2}
-
-\subsection{Deluppgift 3}
-
-\subsection{Deluppgift 4}
-
+Med inparametrarna $\omega = 2\pi$ $\omega_0 = \frac{3}{2} \omega$ $\beta = \frac{1}{4}\omega_0$ $\gamma = 1,07$ för den modellen som användes i föregående projekt får vi ett integrationsvärden på 286 för tidsintervllet $0<t<40$
 
 \section{Diskussion}
+
+\subsection{Deluppgift 1}
+När QUAD anropas utan en limit får man en varning som säger att max antal delningar har uppnåts och att man borde undersöka integranden närmare. Så inprincip säger scipy att funktionen inte är så snäll. Varningen fås inte när man integrera mellan 0 och 0,25 bara mellan 0 och 10. 
+
+\subsection{Deluppgift 2}
+Som ni kan se i tabell \ref{tab:TSL} så är konvergensen för simpsons formel mycket udda i det långa tidsintervllet. Det beror på att funktionen inte är så snäll. I det korta tidsintervllet som syns i tabell \ref{tab:TSS} så stämme konvergensen för de båda metoderna. 
+
+\subsection{Deluppgift 3}
+Trunkeringsfelen som uppstår här är dels i ODE lösningen och sedan i integraringen. Eftersom båda utförs numersikt tillkommer trunkeringsfel i båda processerna. Dessa kan uppskattas med hjälp av taylorutveklingar för respektive metoder.
 
 \end{document}
