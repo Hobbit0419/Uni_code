@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[parfill]{parskip}
+\usepackage{changepage}
+\usepackage{subcaption}
+\usepackage{changepage}
+\usepackage{color}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{%frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false,
+  breakatwhitespace=false,
+  tabsize=4,
+  morekeywords={FIR_H_BUFFER,dsp16_t,dsp16_filt_iirpart}
+}
+
+\lstset{emph={%  
+    DSP16_Q,H_SIZE%
+    },emphstyle={\color{mauve}}%
+}
+
+\title{Uppsala University Template}
+
+\begin{document}
+
+%-------------------------
+%	uncomment irrelevant 
+%	parts, like logo etc
+%-------------------------
+\pagenumbering{Alph}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\begin{center}
+%---------------------
+%	HEADING SECTIONS
+%---------------------
+\textsc{\LARGE Uppsala University}\\[1.5cm] % Name of your university/college
+\textsc{\Large Experimentell metodit för fysik 1}\\[0.5cm] % Major heading such as course name
+\textsc{\large Essä}\\[0.5cm] % Minor heading such as course title
+
+%------------------
+%	TITLE SECTION
+%------------------
+\HRule \\[0.4cm]
+{ \huge \bfseries Curies discovery of radium}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%--------------------
+%	AUTHOR SECTION
+%--------------------
+ %\begin{minipage}{1.4\textwidth}
+ %\begin{flushleft} 
+
+\large\emph{Author:}\\ Anton Lindbro\\[1.0cm]%
+%\large\emph{Collaborated with:}\\Collaborator\\[1cm]
+                        		% \\ [1.0cm]%
+
+ %\end{flushleft}
+ %\end{minipage}
+
+%---------------------
+%	Supervisor
+%---------------------
+ %\begin{minipage}{0.4\textwidth}
+ %\begin{flushright} \large
+ %\emph{Supervisor:} \\
+ %Dr. James \textsc{Smith} % Supervisor's Name
+ %\end{flushright}
+ %\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+{\large \today}\\[1cm] % Date
+
+%----------
+%	LOGO 
+%----------
+\includegraphics[width=1.7in]{figures/uulogga.png}\\%[1cm]
+\end{center}
+\end{titlepage}
+\pagenumbering{arabic}
+\pagebreak
+%-------------------------
+%	Abstract
+%-------------------------
+%\begin{abstract}
+    
+%\end{abstract}
+%\pagebreak
+%-------------------------
+%	Table of Contents
+%-------------------------
+\tableofcontents
+\pagebreak
+%-------------------------
+%       Main Text
+%-------------------------
+\section{Prologue}
+
+In the late 19th century, amidst an inspiring yet challenging upbringing, Marie Sklodowska embarked on her academic journey at the prestigious Sorbonne in Paris. With unwavering determination, she excelled in her studies, earning dual master's degrees in physics and mathematics, consistently ranking at the top of her class. It was during this time that she crossed paths with Pierre Curie, a distinguished physicist, nearly a decade her senior, who had already established his reputation in the scientific community.
+
+\section{Her research}
+
+After meeting Pierre a intellectual connection was immediate. This connection soon grew deeper and the couple soon got married. After persuading her husband to get a doctorate she too wanted one. Inspired by Henri Becquerel's research on 'Uranium rays' which had gone unnoticed by most of his colleges she began researching these 'Uranium rays'
+
+\subsection{Initial findings}
+Using an elektrometer built by her husband she measured the radiation emitted by different uranium compounds. After analysing her data she noticed that the sole determinant of the radiation intensity was the amount of uranium present in the sample. From this data she hypothesised that the radiation is due to some phenomena inside the uranium atoms and not due to the structure of the compound. During this she also measured all the other elements of the periodic table and found that only uranium and thorium emit radiation. 
+
+\subsection{A new element found?}
+Through a stroke of brilliance Marie decided to continue her research by studying the ores from which thorium and uranium are refined. Studying these she found that a particular type of ore called pitchblende was four to five times more active than could be explained by the uranium content. Using this information she hypothesised that the pitchblende contained small amounts of another much more active element not yet known. 
+
+\subsection{Hard work ahead}
+With this hypothesis it was time to try to prove it. The big challenge in this would be to produce a tangible amount of these proposed new elements. To do this she required a substantial amount of the expensive pitchblende. Through some contacts around Europe and at the Sorbonne she acquired enough pitchblende and a 'laboratory' to do the refining in. Her work continued in a glass roofed shed on the university ground where she did the laborious work of refining her new element. She succeed and got to present her findings in her doctoral thesis.
+
+\section{The challenges she faced}
+
+From a pure research point of view her foremost barrier was to be able to prove that what she found in the pitchblende was indeed a new element. The process of proving that also came with the taxing labour. The refinement and analysis of the new element was gruelling work done in conditions we today would call below standard. 
+
+The most substantial challenge she faced were her limited resources. Doing the kind of cutting edge physics she were doing with the very limited resource she had must have been hard.
+
+\section{Scientific methods}
+
+\subsection{Experimental Design}
+
+From what I can deduce from the articles, Curie's experiments were well designed. She was very systematical in her studies.
+
+\subsection{Analysis}
+
+The conclusions she drew from her data were from a modern physicists point of view obvious, we have to remember that what she was doing was state of the art nuclear physics, therefore we have to do our best to look away from our modern knowledge to evaluate her conclusions. If we look at it he conclusions seem logical even though they are revolutionary. 
+
+\subsection{Publications}
+Her findings on radium being published in her doctoral thesis her findings were reviewed by a panel of distinguished physicists.
+
+\pagebreak
+
+\nocite{*}
+\bibliographystyle{apalike}
+\bibliography{referenser}
+
+\end{document}
