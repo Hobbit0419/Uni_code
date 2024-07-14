@@ -171,5 +171,7 @@ cython_debug/
 *.synctex.gz
 *.out
 *.pyg
+*.blg
+*.bbl
 
 
