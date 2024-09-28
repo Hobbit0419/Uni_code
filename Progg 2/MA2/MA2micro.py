@@ -49,6 +49,6 @@ def main():
             print("Result: ", expression(wtok))
             
     print("Bye!")
-  
+
 if __name__ == '__main__':
     main()

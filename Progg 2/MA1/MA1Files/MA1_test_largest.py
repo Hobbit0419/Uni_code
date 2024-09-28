@@ -17,6 +17,7 @@ class Test(unittest.TestCase):
         self.assertEqual(largest(lst[0:3]), 7)
         self.assertEqual(lst, [5, 3, 7, 11, 4],
                          msg='largest destroys the list')
+        self.assertEqual(largest([(i * i) % 512 for i in range(512)]), 505)
 
 
 if __name__ == "__main__":

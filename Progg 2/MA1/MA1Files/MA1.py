@@ -70,8 +70,8 @@ def reverse_string(s: str) -> str:
 def largest(a):                     
     if len(a) <= 1:#If the lengt of the list is 1 return that element
         return a[0]
-    elif a[0] > largest(a[1:]):# If the first element is larger than the largest in the rest return that
-        return a[0]
+    elif a[0] > a[1]:# If the first element is larger than the largest in the rest return that
+        return largest(a[2:] + [a[0]])
     else:
         return largest(a[1:])#Otherwise return the largest in the rest of the list
 
@@ -130,7 +130,7 @@ def main():
     endtime = time.perf_counter()
     executiontime2 = endtime - starttime
     
-    print(executiontime1 * 1.618**5 - executiontime2)#If this difference is close to zero we have verified the complexity 1.618^n
+    print((executiontime2/executiontime1) - 1.618**5)#If this difference is close to zero we have verified the complexity 1.618^n
     
     c = (executiontime2/(1.618**20) + executiontime1/(1.618**15))/2 #Calculate the consant c for this machine
     

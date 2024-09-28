@@ -1,0 +1,135 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Homework 1 GoA 3}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1}
+
+There are several ways to compute the integral in the question but in order to make it a bit easier I applied the fundamental theorem of calculus for line integrals and tried to find a potential function. 
+
+We start with the integral
+
+\begin{align}
+    \int_{\gamma} e^y dx + xe^y dy + (z+1)e^z dz 
+\end{align}
+
+Then we from this write a system of differentialequations
+
+\begin{align}
+    \frac{\partial U}{\partial x} &= e^y \\
+    \frac{\partial U}{\partial y} &= xe^y \\ 
+    \frac{\partial U}{\partial z} &= (z+1)e^z 
+\end{align}
+
+Solving this system is then a matter of integration. We start by solving the first equation.
+
+\begin{align}
+    \frac{\partial U}{\partial x} &= e^y \Leftrightarrow U = \int e^y dx = xe^y + g(y,z)
+\end{align}
+
+This integration gives us a integration constant wich is a function of y and z in order to find out what this function is we begin by taking the y derivative of U.
+
+\begin{align}
+    \frac{\partial U}{\partial y} = xe^y + g_y 
+\end{align}
+
+The right hand side of equation 3 and 6 should be equal this gives that $g_y = 0$ 
+
+We do the same in z and get that $g_z = (z+1)e^z$. The problem has now been reduced to two equations
+
+\begin{align}
+    g_y &= 0 \\
+    g_z &= (z+1)e^z 
+\end{align}
+
+If we then solve equation 7
+
+\begin{align}
+    g(y,z) = \int 0 dy = 0 + h(z)
+\end{align}
+
+This gives a constant of integration wich is a function of z. We take the z derivative of this function and get that $h'(z) = (z+1)e^z$ we can then integrate this to find out what $h(z)$ is.
+
+\begin{align}
+    h(z) = \int h'(z) dz = \int (z+1)e^z dz = \int ze^z + e^z dz= \int ze^z dz +  e^z
+\end{align}
+
+To solve $\int ze^z$ we need to use integration by parts. 
+
+\begin{align}
+    \int ze^z dz = ze^z - \int e^z dz = e^z(z - 1)
+\end{align}
+
+This gives that $h(z) = e^z(z-1) + e^z$ and the full potential function $U = xe^x + e^z(z-1) + e^z$
+
+We can then evaluate this at the endpoints which are using the parametrization given $(0,0,0)$ and $(-1,-1,1)$
+
+\begin{align}
+    U(0,0,0) &= 0e^0 + e^0(0-1) + e^0 = 0\\
+    U(-1,-1,1) &= -1e^-1 + e^1(1-1) + e^1 = -\frac{1}{e} + e
+\end{align}
+
+The integral is then $U(0,0,0) - U(-1,-1,1) = \frac{1}{e} - e$ 
+
+\begin{align}
+    \int_{\gamma} e^y dx + xe^y dy + (z+1)e^z dz = \frac{1}{e} - e 
+\end{align}
+
+\section*{Question 2}
+\setcounter{equation}{0}
+
+In order to make this integral easier to solve we can use greens theorem to rewrite it. We have the integral
+
+\begin{align}
+    \int_{\gamma} \frac{y^3}{3}dx  - \frac{x^3}{3}dy
+\end{align}
+
+Using greens theorem we can rewrite it amsmath
+
+\begin{align}
+    \iint_{D} -(x^2 + y^2) dxdy
+\end{align}
+
+Where D is the volume enclosed by $\gamma$ and $\gamma$ is the sphere described by $x^2 + y^2 = 3$. We can then switch to polar coordinates in order to calculate the integral.
+
+\begin{align}
+    \iint_{D} -r^2 rdrd\theta
+\end{align}
+
+Rewriting the domain we find that $0\leq r \leq \sqrt{3}$ and $0 < \theta \leq 2\pi$. We can then apply Fubinis theorem to 3 and get the iterated integral
+
+\begin{align}
+    \int_{0}^{2\pi} \int_{0}^{\sqrt{3}} -r^3 dr d\theta = 2\pi \left [ \frac{-r^4}{4} \right ]_{0}^{\sqrt{3}} = -\frac{9\pi}{2}
+\end{align}
+
+So we get
+
+\begin{align}
+    \int_{\gamma} \frac{y^3}{3}dx  - \frac{x^3}{3}dy = -\frac{9\pi}{2}
+\end{align}
+
+\end{document}
+
