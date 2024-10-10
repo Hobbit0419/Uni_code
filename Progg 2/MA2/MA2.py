@@ -23,13 +23,13 @@ class EvaluationError(Exception):
 
 #Defining functions for log and factorial that checks for evaluation errors
 def log(n):
-    if n < 0:
+    if n <= 0:
         raise EvaluationError("Function log can't evaluate arguments less than 0")
     else:
         return math.log(n)
 
 def fac(n):
-    if (n).is_integer() == False:
+    if (n).is_integer() == False or n < 0:
         raise EvaluationError("Function fac can only evaluate whole numbers")
     else:
         n = int(n)

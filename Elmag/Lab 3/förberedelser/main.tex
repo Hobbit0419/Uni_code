@@ -1,0 +1,133 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Förberedelse lab 3}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+1.
+
+\begin{enumerate}
+    \item Öka arean
+    \item Minska avståndet
+    \item Tillför dielektriskt material
+\end{enumerate}
+
+2.
+
+a) Spänningen över kondensatorn blir 20 V. Kondensatorn laddas upp till samma spänning som läggs över kretsen.
+
+Volt metern V kommer visa spänningen över R$_1$ som vi kan ta fram med ohms lag. Eftersom det inte flyter någon ström genom kondensatorn när den är fulladdad så kan vi bortse från den när vi beräknar spänningen över R$_1$
+
+\begin{align}
+    I &= \frac{20}{(R_1 + R_2)} =  1 \mu A\\
+    V_2 &= I \cdot R_2 = 19.9 V
+\end{align}
+
+Eftersom strömmen genom båda motstånden är samma kan vi plocka fram strömmen med ekv.1 och sedan räkna ut spänningen över R$_2$ med ekv.2. 
+
+b) När Brytaren öppnas kommer kondensatorn laddas ur. Strömmen kommer gå genom motstånden och den elektriska energin kommer där göras om till värme. 
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.7\textwidth]{Selection_001.png}
+        \end{center}
+        \caption{När brytraren är öppen kommer strömmen följa den röda vägen}
+        \label{fig:krets}
+    \end{small}
+\end{figure}
+
+c) För att härleda ekv.5 börjar vi med följande identiteter.
+
+\begin{align}
+    Q = CU, \hspace{3mm} I = \frac{U}{R}, \hspace{3mm}  -\frac{dQ}{dt} = I
+\end{align}
+
+Dessa går att skriva om till en differential ekvation
+
+\begin{align}
+    \frac{dQ}{dt} = -\frac{Q}{RC}
+\end{align}
+
+Denna har lösningarna, där K är en godtycklig konstant
+
+\begin{align}
+    Q = K \cdot e^{-\frac{t}{RC}}  
+\end{align}
+
+Med initialvärden $U(0) = U_0$ kan vi bestämma konstanten
+
+\begin{align}
+    Q = CU_0e^{-\frac{t}{RC}}
+\end{align}
+
+Dividera sedan med C på båda sidor får vi
+
+\begin{align}
+    U = U_0e^{-\frac{t}{RC}}
+\end{align}
+
+Eftersom motstånden i kretsen är seriekopplade är deras ersättnings resistans $R = R_1 + R_2$ och om man sätter in det i 7 får man exakt ekv.5
+
+d) Tiden då spänning har nått häften av det ursprungliga värdet får genom att lösa $ e^{-\frac{t}{RC}} = \frac{1}{2}$. Detta eftersom $U_0$ är det ursprungliga värdet och U är hälften av $U_0$ när $U_0$ multipliceras med $\frac{1}{2}$. Löser vi denna ekvationen får vi fram ett uttryck för halveringstiden
+
+\begin{align}
+    t_{\frac{1}{2}} = \tau ln(2)
+\end{align}
+
+Som i fallet för kretsen i figur fyra $t_{\frac{1}{2}} = 0,07 s$
+
+e) Vi väljer att mäta över $R_2$ för att det kommer ge bättre mätningar. Mätningar över motståndet kommer minnska mätinstrumentets inverkan på kretsens beteende. 
+
+4.
+
+a) Kondensatorn kommer laddas ur och spänningen kommer bli 0 V
+
+b) Kondensatorn kommer laddas upp och spänningen blir 5 V
+
+c) \begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{Selection_002.png}
+        \end{center}
+        \caption{Såhär tror jag det ser ut}
+        \label{fig:spänning}
+    \end{small}
+\end{figure}
+
+5. 
+
+För att $q(t) = \frac{Q_0}{2}$ måste $e^{-\frac{t}{\tau}} = \frac{1}{2}$
+
+\begin{align}
+    e^{-\frac{t}{\tau}} &= \frac{1}{2}\\
+    -\frac{t}{\tau} &= \ln{\frac{1}{2}}\\
+    \frac{t}{\tau} &= \ln{2}\\
+    t &= \tau \ln{2}
+\end{align}
+
+\end{document}
+
+s

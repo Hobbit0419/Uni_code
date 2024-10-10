@@ -1,0 +1,62 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Homework 2 GoA 3}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Flux}
+
+In order to compute the flux of the vectorfield $\boldsymbol{F}(x,y,z)=(x^4z,x^3y^2,2x^3yz)$ over the box defined by $0\geq x \geq 1, 0 \geq y \geq 2, 0 \geq z \geq 1$ we use the divergens theorem since we have a vectorfield we can easily calculate the divergens of and a surface that encloses a simple volume the resulting tripple integral will be simple. 
+
+We begin by calculating the divergens of the field F
+
+\begin{align}
+    \frac{\partial F_x}{\partial x} &= 4x^3z \\
+    \frac{\partial F_y}{\partial y} &= 2yx^3 \\
+    \frac{\partial F_z}{\partial z} &= 2x^3y \\
+    \nabla \cdot \boldsymbol{F} &= 4x^3(y+z)
+\end{align}
+
+\begin{equation}
+    \iiint_D 4x^3(y+z) dxdydz
+\end{equation}
+
+Where D is the box mentioned above. Using Fubinis therorem we can rewrite it as a iterated integral
+
+\begin{align}
+    \int_0^1 dz \int_0^2 dy \int_0^1 4x^3(y+z) dx  \\
+    \int_0^1 dz \int_0^2 \left [x^4(y+z)\right ]_0^1 dy &= \int_0^1 dz \int_0^2 y+z dy \\
+    \int_0^1 \left [ \frac{y^2}{2}+yz \right ]_0^2 dz &= \int_0^1 2+2z dz \\
+    \left [ 2z + z^2 \right ]_0^1 &= 3
+\end{align}
+
+Since the divergence theorem gives the wrong orientation we flip the sign and get that the flux over the box is -3
+
+\section*{Series}
+
+
+
+\end{document}
+
