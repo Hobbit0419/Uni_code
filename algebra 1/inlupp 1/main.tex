@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Inlämmingsuppgift 1 Algebra 1}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+Visa att om A och B är mängder gäller $\mathcal{P}(A) \cup \mathcal{P}(B) \subseteq \mathcal{P}(A \cup B)$
+
+Eftersom $ \emptyset \subseteq \mathcal{P}(A)$ alltid är sant är påståendet ovan sant.
+
+Alternativt kan man bevisa det
+
+\begin{align}
+    \mathcal{P}(A) =& \left\{x | x \subseteq A\right\}\\
+    \mathcal{P}(A) \cup \mathcal{P}(B) =& \left\{x | x \subseteq A \lor x \subseteq B\right\}\\
+    \left\{x | x \subseteq A \lor x \subseteq B \right\} =& \left\{x | x \subseteq A \cup B\right\} \\
+    \left\{x | x \subseteq A \cup B\right\} =& \mathcal{P}(A \cup B)
+\end{align}
+
+Alltså
+\begin{equation}
+    \mathcal{P}(A) \cup \mathcal{P}(B) \subseteq \mathcal{P}(A \cup B)
+\end{equation}
+\end{document}

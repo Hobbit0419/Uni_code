@@ -1,0 +1,101 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Inlämmningsuppgift 1}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem uppställning}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{uppställning.jpg}
+        \end{center}
+        \caption{Figur med krafter och den stående vågen inritad}
+        \label{fig:}
+    \end{small}
+\end{figure}
+
+\begin{align}
+    r &= 0,11 \cdot 10^{-3} m\\
+    F &= 5,10 \cdot 10^{-3} \cdot 9,82 N\\
+    \lambda &= \frac{2 \cdot 0,87}{3} m\\\
+    f &= 14,2 Hz
+\end{align}
+
+Uppgiften söker kedjans material.
+
+\section{Fysik}
+
+Stående vågor i strängar har några egenskaper som gör dom lätta att hanskas med. Deras våglängd är väl bestämd utifrån strängens längd.
+
+\begin{equation}
+    \lambda_n = \frac{2l}{n+1}
+\end{equation}
+
+Där n är antalet noder. Våg farten i en sträng är också väl bestämd enligt
+
+\begin{equation}
+    v = \sqrt{\frac{F}{\mu}}
+\end{equation}
+
+Där F är förspänningen och $\mu$ är den linjära massdensiteten. Våg farten kan också relateras till frekvens och våglängd enligt 
+
+\begin{equation}
+    v = \lambda f
+\end{equation}
+
+\section{Plan}
+För att ta reda på kedjans material behöver vi hitta en densitet. Detta kan göras genom att sätta ekv.2 och 3 lika med varandra och lösa ut $\mu$ och sedan dividera med tvärsnitts arean. När vi sedan har en densitet letar vi upp det material vars densitet matchar närmst i physics handbook. 
+\section{Utförande}
+
+\begin{equation}
+    \sqrt{\frac{F}{\mu}} = \lambda f \implies \mu = \frac{F}{\lambda^2 f^2}
+\end{equation}
+
+Dividerar vi med tvärsnitts arean får vi
+
+\begin{equation}
+    \rho = \frac{F}{\lambda^2 f^2 \pi r^2}
+\end{equation}
+
+med dom värden givna i uppgiften
+
+Sätter vi in allt detta och beräknar det numeriska värdet får vi $\rho = 19,4 \cdot 10^3$ kg m$^{-3}$. Detta matchar mycket nära densiteten för guld på $19,28 \cdot 10^3$ kg m$^{-3}$
+
+\section{Rimlighet}
+
+För att undersöka svarets rimlighet så gör vi en enhets analys
+
+\begin{align}
+    [\rho] = [\frac{F}{\lambda^2 f^2 \pi r^2}]
+    kg m^{-3} = kg m s^{-2} m^{-2} s^2 m^{-2}
+    kg m^{-3} = kg m^{-3}
+\end{align}
+
+Så enheterna stämmer och värdet verkar rimligt då vi kunde hitta ett material som var mycket nära.
+
+\end{document}
+

@@ -56,7 +56,26 @@ Since the divergence theorem gives the wrong orientation we flip the sign and ge
 
 \section*{Series}
 
+In order to determine the convergence of the series below prove that the absolute value of the series converges. 
 
+\begin{equation}
+    \sum_{n=1}^{\infty} \frac{(-5)^{n+1}}{(2n)^n}
+\end{equation}
+
+Using the root test we find that the series is absolute convergent as follows.
+
+\begin{align}
+    \lim_{n\to\infty} \sqrt[n]{\frac{5^{n+1}}{(2n)^n}} \\
+    \lim_{n\to\infty} \frac{5^{1+\frac{1}{n}}}{(2n)}
+\end{align}
+
+Since the exponent of the numerator goes to one when n grows 12 can be written as 
+
+\begin{equation}
+    \lim_{n\to\infty} \frac{5}{(2n)} = 0
+\end{equation}
+
+So by the root test the series in 11 is convergent and therfore 10 is absolutely convergent.
 
 \end{document}
 
