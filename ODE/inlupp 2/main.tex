@@ -26,7 +26,136 @@
 
 \maketitle
 
+\section*{Problem 1}
+In this problem we are asked to find the general solution to the ODE $x^2y'' + xy' - 4y = 0$ with one given solution $y_1=x^2$.
 
+To find the general solution we use the reduction of order method to find another linearly independet solution to $y_1$ and linear combinations of these will be the general solution. 
+
+We start by assuming the solution $y_2$ is on the form $y_2=y_1u$. We then calculate the derivatives and substitute it into the equation
+
+\begin{align}
+    y_2 &= y_1u\\
+    y_2' &= y_1'u + y_1 u'\\
+    y_2'' &= y_1''u + 2y_1'u' + y_1u'' 
+\end{align}
+
+Then we rewrite the ODE on the form
+
+\begin{equation}
+    y'' + \frac{1}{x}y' - \frac{4}{x^2}y = 0
+\end{equation}
+
+Substituting in our $y_2$ we get
+
+\begin{align}
+    (y_1''u + 2y_1'u' + y_1u'') + \frac{1}{x}(y_1'u + y_1 u') - \frac{4}{x^2}(y_1u) &= 0\\
+    u(y_1'' + \frac{1}{x}y' - \frac{4}{x^2}y_1) + u'(\frac{1}{x}y_1 + 2y_1') + u''y_1 &= 0
+\end{align}
+
+Using since $y_1$ is a solution to eq.4 the first term in eq.6 is zero. Plugging in $y_1 = x^2$ and simplifying we get
+
+\begin{equation}
+    u'5x + u''x^2 = 0
+\end{equation}
+
+Doing a change of variables $v = u'$ we get a linear first order ODE
+
+\begin{equation}
+    v' + \frac{5}{x}v = 0
+\end{equation}
+
+Using the formula for linear first order ODE
+
+\begin{align}
+    \frac{dv}{dx} &= -\frac{5}{x} v\\
+    \frac{1}{v} dv &= -\frac{5}{x} dx\\
+    \ln{|v|} &= -5\ln{|x|} + C\\
+    v &= \pm e^C \cdot e^{-5\ln{|x|}}
+\end{align}
+
+With $A=\pm e^C$ we  and since we are on the interval from zero to infinity get
+
+\begin{equation}
+    v=Ax^{-5}
+\end{equation}
+
+Integrating this one more time to get u
+
+\begin{equation}
+    u = \int Ax^{-5} dx = \frac{Ax^{-4}}{4} + c = Bx^{-4} + c
+\end{equation}
+
+Multiplying this with $y_1$ we get $y_2 = Bx^{-2}$ giving us the general solution 
+
+\begin{equation}
+    y = C_1x^2 + C_2(x^{-2} + cx^2) = C_3x^2 + C_2x^{-2}
+\end{equation}
+
+\pagebreak
+
+\section*{Problem 2}
+
+In this problem we are asked to solve the IVP 
+
+\begin{align}
+    4y'' - 12y' + 9y = e^{\frac{3}{2}x}\\
+    y(0) = -1, y'(0) = 2
+\end{align}
+
+In order to solve this we need to find the general solution and then substitute in the initial values to find the specified solution. Since we have an inhomogeneus equation the general solution will consist of two parts, one is the general solution to the coresponding homogeneus equation and the other is the particular solution for this equation. 
+
+We start by solving the corresponding homogeneus equation. It has the following characteristic equation.
+
+\begin{equation}
+    r^2 - 3r + \frac{9}{4} = 0
+\end{equation}
+
+This has the roots $r_1 = r_2 = \frac{3}{2}$
+
+This gives the general solution
+
+\begin{equation}
+    y = (C_1x + C_2)e^{\frac{3}{2}}
+\end{equation}
+
+Now we need to make an ansatz for what $y_p$ could look like. Since we have both $e^{\frac{3}{2}}$ and $xe^{\frac{3}{2}}$ terms in the homogeneus solution we make the ansatz $y_p=Ax^2e^{\frac{3}{2}x}$. Calculating the derivatives of this we get
+
+\begin{align}
+    y_p &= x^2Ae^{\frac{3}{2}x}\\
+    y_p' &= 2Axe^{\frac{3}{2}x} + \frac{3A}{2}x^2e^{\frac{3}{2}x}\\
+    y_p'' &= 2Ae^{\frac{3}{2}x} + 6Axe^{\frac{3}{2}x} + \frac{9A}{4}x^2e^{\frac{3}{2}x}
+\end{align}
+
+Substituting this into eq.16 we get
+
+\begin{equation}
+    4(2Ae^{\frac{3}{2}x} + 6Axe^{\frac{3}{2}x} + \frac{9A}{4}x^2e^{\frac{3}{2}x}) - 12(2Axe^{\frac{3}{2}x} + \frac{3A}{2}x^2e^{\frac{3}{2}x}) + 9(x^2Ae^{\frac{3}{2}x}) = e^{\frac{3}{2}x}
+\end{equation}
+
+Simplifying and dividing by $e^{\frac{3}{2}}$ we get
+
+\begin{equation}
+    8A + 24Ax - 24Ax + 18Ax^2 - 18Ax^2 = 1 \Rightarrow A = \frac{1}{8}
+\end{equation}
+
+With this we get the general solution
+
+\begin{equation}
+    y = (C_1x + C_2)e^{\frac{3}{2}} + \frac{1}{8}x^2e^{\frac{3}{2}x}
+\end{equation}
+
+Now we use the inital conditions to get the specific solutions to our IVP
+
+\begin{align}
+    y(0) = (C_10 + C_2)e^{\frac{3}{2}} + \frac{1}{8}0^2e^{\frac{3}{2}0} = C_2e^{\frac{3}{2}} = -1 \Rightarrow C_2 = -\frac{1}{e^{\frac{3}{2}}}\\
+    y'(0) = C_1e^{\frac{3}{2}} + \frac{2}{8} \cdot 0 e^0 + \frac{3}{16} \cdot 0^2e^0 = 2 \Rightarrow C_1 = \frac{2}{e^{\frac{3}{2}}}
+\end{align}
+
+Giving us a solution
+
+\begin{equation}
+    y = 1 + \frac{x^2}{8}e^{\frac{3}{2}x} 
+\end{equation}
 
 \end{document}
 
