@@ -173,5 +173,7 @@ cython_debug/
 *.pyg
 *.blg
 *.bbl
+*.run.xml
+*.bcf
 
 

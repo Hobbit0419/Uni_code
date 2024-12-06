@@ -1,0 +1,164 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Homework 1 Fourier analasys}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\maketitle
+
+\section{}
+
+We are asked to solve a differential equation
+
+\begin{equation}
+    y''(t) + 2y'(t) + 2y(t) = -2t
+\end{equation}
+
+Using the Laplace transform we can solve this. If we take the Laplace transform on  both sides we get
+
+\begin{equation}
+    s^2Y(s) - sf(0) - f'(0) + 2(sY(s)-f(0)) + 2Y(s) = -\frac{2}{s^2}
+\end{equation}
+
+We expand and collect terms with $Y(s)$ we get
+
+\begin{equation}
+    Y(s)(S^2+2s+2) = -\frac{2}{s^2} + 1
+\end{equation}
+
+Solving for $Y(s)$ we get
+
+\begin{equation}
+    Y(s) = \frac{s^2 - 2}{s^2(s^2+2s+2)}
+\end{equation}
+
+We can do partial fraction decomposition in order to get something we can do inverse Laplace on. Doing that we get
+
+\begin{equation}
+    \frac{s^2 - 2}{s^2(s^2+2s+2)} = \frac{1}{s} - \frac{1}{s^2}  - \frac{s}{s^2(s^2+2s+2)}
+\end{equation}
+
+This can be rewritten as
+
+\begin{equation}
+    \frac{1}{s} - \frac{1}{s^2}  - \frac{s}{s^2(s^2+2s+2)} = \frac{1}{s} - \frac{1}{s^2}  - (\frac{s+1}{s^2(s^2+2s+2)} - \frac{1}{s^2(s^2+2s+2)})
+\end{equation}
+
+The first term is just 1 the second is t and the last is $e^{-t}\cos{t} - e^{-t}\sin{t}$
+
+Giving us the solution
+
+\begin{equation}
+    y(t) = 1-t-e^{-t}\cos{t} + e^{-t}\sin{t}
+\end{equation}
+
+\section{}
+
+\subsection*{a}
+In order to find the Fourier coefficients we need to use the formula for arbitrary period. Writing the integral we get
+
+\begin{equation}
+    a_n = \frac{2}{\pi} \int_{-\frac{\pi}{2}}^\frac{\pi}{2} \sin{x}\cos{2nx} dx
+\end{equation}
+
+Since we have done an even expansion of sine we have an even function in the integral and it can thus be rewritten as
+
+\begin{equation}
+    a_n = \frac{4}{\pi} \int_0^\frac{\pi}{2} \sin{x}\cos{2nx} dx
+\end{equation}
+
+Then using $\sin{a}\cos{b} = \sin{a-b} + \sin{a+b}$ we get
+
+\begin{equation}
+    a_n = \frac{2}{\pi} \int_0^\frac{\pi}{2} \sin{(x(1-2n))} + \sin{(x(1+2n))} dx
+\end{equation}
+
+Solving this integral we get
+
+\begin{equation}
+    a_n = \frac{2}{\pi} \left [ \frac{-\cos{(x(1-2n))}}{1-2n} - \frac{\cos{(x(1+2n))}}{1+2n} \right ]_0^{\frac{\pi}{2}}
+\end{equation}
+
+Evaluating at odd multiples of $\frac{\pi}{2}$ we get 0 and at zero we get
+
+\begin{equation}
+    a_n = \frac{2}{\pi} \left ( \frac{1}{1-2n} + \frac{1}{1+2n} \right ) = \frac{4}{\pi} \frac{1}{(1-4n^2)} = 
+\end{equation}
+
+We can the write the series as 
+
+\begin{equation}
+    |sin(x)| \sim \frac{4}{\pi} + \sum_{n=1}^\infty \frac{4\cos(2nx)}{\pi(1-4n^2)}
+\end{equation}
+
+\subsection*{b}
+
+Using Dirichlet convergence criterion we can see that on the interval $-\pi \ge x \le \pi$ except at multiples of $\pi$ the series converges to our even extension of sine aka $|sin(x)|$. In these problematic points were we cannot differentiate the function. We can then handle these points as points of discontinuity. DCC says that at points of discontinuity we can find what the series converges to if we have lateral derivatives.
+
+Since we have lateral limits that are equal and lateral derivatives exist we now that the series converges to the function $|\sin{x}|$ on our interval
+
+\subsection*{c}
+
+Using Fejérs theorem and its corollary we can prove that the function converges uniformly. 
+
+By Fejér as long as the function is continuos on the interval $-\pi \ge x \le \pi$ and the series of  the absolute values of the Fourier coefficients converge the series converges uniformly to the function.
+
+our Fourier coefficients follow the series
+
+\begin{equation}
+    a_n = \frac{2}{\pi} \sum_{n=1}^\infty \frac{1}{(1-4n^2)}
+\end{equation}
+
+The absolute value of this series can be bounded above by 
+
+\begin{equation}
+    \sum_{n=1}^\infty \frac{1}{n^2}
+\end{equation}
+
+That converges so our series converges. Therfore our series converges uniformly to our function $|sin(x)|$
+
+\subsection*{d}
+
+In order to find the value of the sum we need to use the series we found previously. IF we evaluate it at a smart point we can solve our problem
+
+\begin{equation}
+    |\sin{\frac{\pi}{4}}| = \frac{2}{\pi} + \frac{4}{\pi} \sum_{n=1}^\infty \frac{\cos{(2n\frac{\pi}{4})}}{(1-4n^2)}
+\end{equation}
+
+$\cos{(2n\frac{\pi}{4})}$ is 0 at odd n and 1 at even n so we can write a equivalent series with $n=2m$
+
+\begin{equation}
+    \frac{\pi}{4}(\frac{1}{\sqrt{2}} - \frac{2}{\pi}) = \sum_{m=1}^\infty \frac{(-1)^m}{(1-16m^2)}
+\end{equation}
+
+We need to multiply with $\frac{1}{-1}$ on both sides to get the right series
+
+\begin{equation}
+    -\frac{\pi}{4}(\frac{1}{\sqrt{2}} - \frac{2}{\pi}) = \sum_{m=1}^\infty \frac{(-1)^m}{(16m^2-1)}
+\end{equation}
+
+So the series is equal to $\frac{4 - \pi}{8}$
+
+\end{document}
+

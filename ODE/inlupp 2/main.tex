@@ -115,10 +115,10 @@ This has the roots $r_1 = r_2 = \frac{3}{2}$
 This gives the general solution
 
 \begin{equation}
-    y = (C_1x + C_2)e^{\frac{3}{2}}
+    y = (C_1x + C_2)e^{\frac{3}{2}x}
 \end{equation}
 
-Now we need to make an ansatz for what $y_p$ could look like. Since we have both $e^{\frac{3}{2}}$ and $xe^{\frac{3}{2}}$ terms in the homogeneus solution we make the ansatz $y_p=Ax^2e^{\frac{3}{2}x}$. Calculating the derivatives of this we get
+Now we need to make an ansatz for what $y_p$ could look like. Since we have both $e^{\frac{3}{2}x}$ and $xe^{\frac{3}{2}x}$ terms in the homogeneus solution we make the ansatz $y_p=Ax^2e^{\frac{3}{2}x}$. Calculating the derivatives of this we get
 
 \begin{align}
     y_p &= x^2Ae^{\frac{3}{2}x}\\
@@ -141,20 +141,20 @@ Simplifying and dividing by $e^{\frac{3}{2}}$ we get
 With this we get the general solution
 
 \begin{equation}
-    y = (C_1x + C_2)e^{\frac{3}{2}} + \frac{1}{8}x^2e^{\frac{3}{2}x}
+    y = (C_1x + C_2)e^{\frac{3}{2}x} + \frac{1}{8}x^2e^{\frac{3}{2}x}
 \end{equation}
 
 Now we use the inital conditions to get the specific solutions to our IVP
 
 \begin{align}
-    y(0) = (C_10 + C_2)e^{\frac{3}{2}} + \frac{1}{8}0^2e^{\frac{3}{2}0} = C_2e^{\frac{3}{2}} = -1 \Rightarrow C_2 = -\frac{1}{e^{\frac{3}{2}}}\\
-    y'(0) = C_1e^{\frac{3}{2}} + \frac{2}{8} \cdot 0 e^0 + \frac{3}{16} \cdot 0^2e^0 = 2 \Rightarrow C_1 = \frac{2}{e^{\frac{3}{2}}}
+    y(0) = (C_1 \cdot 0 + C_2)e^0 + \frac{1}{8}0^2e^{\frac{3}{2}0} = -1 \Rightarrow C_2 = -1\\
+    y'(0) = \frac{3}{2}e^0(C_1 \cdot 0 + C_2 + \frac{1}{8}0^2) + e^0(C_1 + \frac{2}{8} \cdot 0) = \frac{3C_2}{2} + C_1 = 2 \Rightarrow C_1 = \frac{7}{2}
 \end{align}
 
 Giving us a solution
 
 \begin{equation}
-    y = 1 + \frac{x^2}{8}e^{\frac{3}{2}x} 
+    y = e^{\frac{3}{2}x}(\frac{x^2}{8} + \frac{7x}{2} - 1)
 \end{equation}
 
 \end{document}

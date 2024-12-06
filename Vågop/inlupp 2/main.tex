@@ -1,0 +1,100 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Vågors fysik med optik inlämmning 2}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem uppställning}
+
+Vi har en sond som med hjälp av ett solsegel ska lämna solsystemet. Det finns två möjliga alternativ för material på solseglet och frågan är vilket som bör användas.
+
+\section{Fysiken bakom}
+
+Det som får sonden att drivas framåt med solseglet är stråltrycket från solen. Stråltrycket fås av för absorbenta material
+
+\begin{equation}
+    P = \frac{I}{c}
+\end{equation}
+
+för reflektiva material
+
+\begin{equation}
+    P = \frac{2I}{c}
+\end{equation}
+
+Där I är irradiancen som träffar seglet. Om vi antar att solen strålar isotropt fås den av
+
+\begin{equation}
+    I = \frac{p_s}{4\pi r^2}
+\end{equation}
+
+Gravitationen från solen får vi enligt
+
+\begin{equation}
+    F_g = G \frac{mM}{r^2}
+\end{equation}
+
+Där m är sondens massa och M är solens massa
+
+Kraften från seglet får av 
+
+\begin{equation}
+    F_s = P\cdot A
+\end{equation}
+
+Där A är seglets area
+
+\section{Plan}
+
+Sätt $F_s = F_g$ och lös ut A för de två olika materialen och se vilken som ger lägst kostnad
+
+\section{Utförande}
+
+\begin{equation}
+    A\frac{P_s}{4\pi r^2 c} = G \frac{mM}{r^2} \Rightarrow A = \frac{4\pi m M c G}{P_s}
+\end{equation}
+
+Detta för det absobenta materialet. För det reflektiva materialet blir det bara en faktor $\frac{1}{2}$ skillnad.
+
+Sätter vi in värden får vi 
+
+\begin{align}
+    A_r =  A = \frac{4\pi m M c G}{2 P_s} = 3,2 \cdot 10^6\\
+    A_a =  A = \frac{4\pi m M c G}{P_s} = 6,4 \cdot 10^6
+\end{align}
+
+Kostnaden för det hela kommer vara för den absorbenta vara $6,4x$ kr där x är en arbiträr kvadratmeter kostnad. För den reflektiva kommer det vara $3,2 \cdot 1,6x = 5,12x$ vilket blir billigare. Det reflektiva materialet är det mest kostnads effektiva. 
+
+\section{Rimlighet}
+Enhets analys ger
+
+\begin{equation}
+    m^2 = kg \cdot kg \cdot m \cdot s^{-1} \cdot m^3 \cdot kg^{-1} \cdot s^{-2} \cdot kg^{-1} \cdot m^{-2} \cdot s^3 
+\end{equation}
+
+Den identiteten håller. Den enorma arean är också rimlig med tanke på den lilla kraften som stråltrycket åstadkommer. 
+
+\end{document}
+
