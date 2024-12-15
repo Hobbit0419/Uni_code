@@ -161,6 +161,7 @@ cython_debug/
 *.webp
 *.png
 *.jpg
+*.jpeg
 
 #Latex aux files
 *.toc

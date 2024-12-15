@@ -24,7 +24,7 @@ style=apa
 \parskip 5mm
 \parindent 0mm
 
-\title{Lorem ipsum}
+\title{Rapportutkast 1}
 \author{Anton Lindbro}
 \date{\today}
 
@@ -34,7 +34,278 @@ style=apa
 
 \maketitle
 
+\begin{abstract}
+    
+\end{abstract}
 
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\section{Inledning}
+
+Sedan tidigt 1900-tal har vi vetat att ljus är både en våg och en partikel och uppvisar därmed egenskaper som tyder på båda formerna av existens. I denna laboration har ljusets vågegenskaper undersökts närmare. Diffraktion och interferens är två av dessa vågegenskaper som ljus uppvisar, dessa fenomen stöter man på i dom mest alldagliga sammanhang, det fina färgerna som syns på en såpbubblas yta eller den anti-reflexiva beläggningen på dina glasögon båda dessa är exempel på interferens. Diffraktion används också kanske inte lika mycket längre som det brukade men CD och DVD skivor använder sig av diffraktion för att läsa av informationen på skivorna. (\cite{MIT_diff_and_interference})
+
+\section{Teori}
+
+\subsection{interferens}
+Interferens är ett fundamentalt fenomen inom vågoptiken. Interferens uppstår när två eller fler koherenta ljusvågor superponeras. Beroende på fasen hos dessa vågor förstärker eller försvagas det resulterade ljuset, detta skapar ett interferens mönster.
+(\cite{Hecht2017})
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.75\textwidth]{figures/image-191.png}
+        \end{center}
+        \caption{Exempel på interferens mönster}
+        \label{fig:interferens}
+    \end{small}
+\end{figure}
+\cite{DoubleSlitInterferenceImage}
+
+De ljusa och mörka punkterna motsvara punkter där de båda ljuvågorna är antingen i fas eller ur fas. När vågorna är ur fas släcker dom utvarandra och det bildas mörka punkter medans när vågorna är i fas förstärker dom varandra och vi får ljusa punkter. Ovan figur är ett exempel på Youngs dubbelspalt experiment som på 1800-talet var med och påvisade ljusets vågegenskaper. 
+(\cite{Hecht2017})
+
+Det finns en mycket enkel formel för interferens maxima
+\begin{equation}
+    d\sin\theta = m \lambda
+\end{equation}
+
+Där d är avståndet mellan spalterna, $\theta$ är vinkeln mot mittpunktsnormalen som en linje mellan punkten du studerar och en av dina spalter bildar, m är ett heltal och $\lambda$ är ljusets våglängd. Denna formeln kan härledas från fasskillnaden hos två vågor. 
+
+\begin{equation}
+    \delta = \frac{2\pi}{\lambda}d\sin\theta
+\end{equation}
+(\cite{PH})
+
+För att få maxima bör fasskillnaden vara ett jämnt tal gånger pi då är vågorna i fas.
+
+\begin{align}
+    \frac{2\pi}{\lambda}d\sin\theta = 2m \pi \\
+    d \sin\theta = \frac{\lambda}{2\pi} 2m \pi \\
+    d \sin\theta = m \lambda
+\end{align}
+
+\subsection{Diffraktion}
+
+Likt interferens är diffraktion också ett vågfenomen som bildar intressanta mönster. Diffraktion uppstår dock istället på grund av ett hinder i vågens väg, t.ex en spalt. Diffraktion kan alltså uppstå från en ensam våg som stöter på ett hinder. Diffraktions mönstret är också beroende på vad det är för typ av hinder och det kommer undersökas närmare i denna rapport. I fallet där vi har en enkelspalt har vi en formel för diffraktions minimum.
+
+\begin{equation}
+    b\sin\theta = m\lambda
+\end{equation}
+(\cite{PH})
+
+Denna formeln är mycket lik formeln för interferens maximum men istället för spaltavståndet så är b spaltbredden. 
+
+\section{Utförande}
+
+\subsection{Experiment uppställning}
+
+Experiment 1-4 använder sig av samma uppställning som beskrivs nedan, för experiment 5 och 6 beskrivs uppställningen under respektive rubrik.
+
+Uppställningen består av, en diod laser(2), ett spalltset(3), en ljusintensitets mätare på släden tillsammans med en positions mätare(4) samt ett digitalt inteface för att koppla sensorerna till datorn(5). Dessa komponenter utom 5 är monterade på en optiskt bänk (1). Lasern var en grön laser med våglängden 532 nm. 
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{figures/Screenshot 2024-12-13 at 09-46-38 Vågoptik-RKNov2024-1.pdf.png}
+        \end{center}
+        \caption{Bild av experimentuppställning (från labbhandledning)}
+        \label{fig:uppställning}
+    \end{small}
+\end{figure}
+
+Mättningarna görs genom att en spalt i spalltsetet väljs, lasern sätts på och släden med intensitets mätare dras från ena sidan till den andra. Detta ger upphov till mätpunkter med intensitet och position. 
+
+Innan mätningarna börjar behövs intensitets sensorn kalibreras. Sensorn ger relativa värden i form av procent så sensorn kalibreras med två värden, ett minimum värde och ett maximum värde. Dessa värdena fås genom att ta ett värde med lasern avstängd och ett med lasern påslagen och sensorn i maximum för den spalten eller annat som används. 
+
+\subsection{Spaltbredd hos enkelspalt}
+
+I detta experiment mäts diffraktions mönstret för en enkelspalt, för att sedan ta fram spaltbredden för denna spalt. Mättningarna görs enligt proceduren ovan. För att sedan plocka fram spaltbredden ur den uppmätta datan, används ekv.6. För att kunna använda denna formeln behöver vi hitta vinkeln för ett minimum, detta görs genom att hitta positionen för maximum och sedan positionen för minimum och subtrahera dessa. Denna längden delas sedan med avståndet mellan spalten och sensorn för att få sinus värdet av vinkeln, sedan använder vi $\sin\theta \approx \theta$ och får då spalltbredden d.
+
+\begin{equation}
+    d = \frac{m \lambda}{\sin (\frac{s}{D})}
+\end{equation}
+
+Änvänds första diffraktions minimum sätts $m=1$, s är avståndet till minimat och D är avståndet mellan spalten och sensorn. 
+
+\subsection{Intensitets kvot hos enkelspalt}
+
+I detta experiment används datan från ovan mätning för att ta fram intensitets kvoten mellan mitten maximat och första maximat. Intensiteten för en enkelspalt ges av.
+
+\begin{equation}
+    I = I_0 \left ( \frac{\sin\frac{\beta}{2}}{\frac{\beta}{2}}\right )^2
+\end{equation}
+
+Där $\beta = \frac{2\pi}{\lambda}b\sin\theta$ och $I_0$ är intensiteten för mitten maximat. Detta innebär att intensitets kvoten ges av den kvadrerade kvoten till höger om $I_0$. Det teoretiska värdet ges alltså av $\left ( \frac{\sin\frac{\beta}{2}}{\frac{\beta}{2}}\right )^2$. För att erhålla ett uppmätt värde dividerar vi värdet för första maximat med toppvärdet. 
+
+\subsection{Spaltavstånd och spaltbredd hos dubbelspalt}
+
+Likt experiment 1 och 2 gör även här en mätning av ljusintensiteten som funktion av positionen och ett mönster erhålls. Här återfinns både diffraktion och interferens därför kan vi använda formlerna för interferens maximum och diffraktions minimum för att bestämma spaltbredd och spaltavstånd. Även här används grafen för att bestämma vinkel för interferens maximum och diffraktions minimum d och b löses ut ur ekv.1 och 6 respektive vinkel från mätningarna sätts in för att erhålla värden. 
+
+\subsection{Kvadruppelspalt}
+
+Här byter vi ut dubbelspalten till en kvadruppelspalt och gör mätning likt ovan experiment. Det erhållna mönstret observeras. 
+
+\subsection{Diffraktion från cirkulärt hål}
+
+Uppställningen förändras nu något, laser byts ut till en laser med våglängden 650 nm och släden med ljusmätaren plockas bort. Istället för spalter väljer vi nu ett cirkulärt hål. Den röda lasern lyser genom hålet och det erhållna diffraktions mönstret observeras med hjälp av ett papper. På pappret ritas mönstret av. Avståndet mellan mitten och första minimat mäts. Diametern av det cirkulära hålet erhålls sedan med följande formel
+
+\begin{equation}
+    D = 1.22 \frac{\lambda}{\sin\theta}
+\end{equation}
+
+Där vinkeln $\theta = \frac{s}{d}$ där s är avståndet mellan mitten och minimat och d är avståndet mellan hålet och pappret när mönstret ritades av. 
+
+\subsection{Reflektionsgitter}
+
+Här bytas det cirkulära hålet från experiment 5 till ett reflektionsgitter.
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{figures/refgitter.jpeg}
+        \end{center}
+        \caption{Reflektionsgitter}
+        \label{fig:refgit}
+    \end{small}
+\end{figure}
+
+Vinkeln för de reflekterade strålarna mät med hjälp av gradskivan och ekv.1 kan även här användas för beräkna avståndet mellan ritsarna då vi har normalt infall. 
+
+\section{Resultat}
+
+\subsection{Spaltbredd hos enkelspalt}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{figures/enkelspalt.png}
+        \end{center}
+        \caption{Uppmätt diffraktions mönster från enkelspalt}
+        \label{fig:enkelspalt}
+    \end{small}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{figures/enkelspaltt.png}
+        \end{center}
+        \caption{Teoretiskt diffraktions mönster från enkelspalt}
+        \label{fig:enkelspaltt}
+    \end{small}
+\end{figure}
+
+\begin{table}
+    \caption{Spaltbredd hos enkelspalt}
+    \label{tab:bred}
+    \centering
+    \begin{tabular}{c|c}
+        Uppmätt & Faktisk \\
+        \hline
+        0,039 mm & 0,04 mm \\
+    \end{tabular}
+\end{table}
+
+
+
+\subsection{Intensitets kvot hos enkelspalt}
+
+\begin{table}
+    \caption{Intensitetskvot}
+    \label{tab:kvot}
+    \centering
+    \begin{tabular}{c|c}
+        Uppmätt & Teoretisk \\
+        \hline
+        0,04 & 0,04 \\
+    \end{tabular}
+\end{table}
+
+
+
+\subsection{Spaltavstånd och spaltbredd hos dubbelspalt}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{figures/dubbelspalt.png}
+        \end{center}
+        \caption{Uppmät diffraktions mönster från dubbelspalt}
+        \label{fig:dubbelspalt}
+    \end{small}
+\end{figure}
+
+\begin{table}
+    \caption{}
+    \label{tab:}
+    \centering
+    \begin{tabular}{c|cc}
+           & Uppmätt & Faktiskt \\
+        \hline
+        Bredd & 0,032 mm & 0,04 mm \\
+        Avstånd & 0,5 mm & 0,5 mm \\
+    \end{tabular}
+\end{table}
+
+
+\subsection{Kvadruppelspalt}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{figures/kvadruppelspalt.png}
+        \end{center}
+        \caption{Uppmätt diffraktions mönster från kvadruppelspalt}
+        \label{fig:kvadruppelspalt}
+    \end{small}
+\end{figure}
+
+
+\subsection{Diffraktion från cirkulärt hål}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.75\textwidth]{figures/cirkulärthål.jpeg}
+        \end{center}
+        \caption{Diffraktions mönster från cirkulärt hål}
+        \label{fig:hål}
+    \end{small}
+\end{figure}
+
+\begin{table}
+    \caption{Diametern hos cirkulärt hål}
+    \label{tab:diameter}
+    \centering
+    \begin{tabular}{c|c}
+        Uppmätt & Faktisk \\
+        \hline
+        0,44 mm & 0,5 mm \\
+    \end{tabular}
+\end{table}
+
+
+\subsection{Reflektionsgitter}
+
+Erhållen gitterkonstant 1260
+
+\section{Diskussion}
+
+De stora felkärllorna, använde oss av fel öppning för ljusensorn i de första mätningarna, pga icke kontinuerlig mätning var det i vissa fall svårt att hitta det faktiska max eller minvärdet samt deras positioner. 
+
+\section{Slutsats}
+
+Jag som är intresserad av astronomi kommer använda interferens mycket i form av interferometrar, de används i många olika precis mätnings sammanhang. Diffraktion används som sagt i DVD skivor m.m
+
+Kommentar: 
+Mycket kvar att göra men detta är en första draft så ge mig all kritik ni kan tänka er. 
+
+\pagebreak
+\printbibliography
 
 \end{document}
 

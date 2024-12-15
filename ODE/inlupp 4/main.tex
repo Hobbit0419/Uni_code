@@ -1,0 +1,343 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Assignment 4 ODE}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection*{a)}
+
+In order to find the general solution to this system of equations we need to find the eigenvalues and eigen vectors of the coefficient matrix. In order to do that we solve the following equation
+
+\begin{equation}
+    |A-\lambda I| = 0
+\end{equation}
+
+For our particular matrix $\left(
+    \begin{matrix}
+        1 & -5 \\
+        4 & 5
+    \end{matrix}
+\right)$ we get
+
+\begin{equation}
+    \left|
+        \begin{matrix}
+            1-\lambda & -5 \\
+            4 & 5 - \lambda
+        \end{matrix}
+    \right| = (1-\lambda)(5-\lambda) - (-5 \cdot 4) = \lambda^2 - 6\lambda + 25
+\end{equation}
+
+Solving eq.2 gives
+
+\begin{align}
+    \lambda^2 - 6\lambda + 25 \Rightarrow \lambda = 3 \pm \sqrt{9-25} = 3 \pm 4i
+\end{align}
+
+Giving us the complex eigen values $\lambda = 3 \pm 4i$. Now we need to find the eigenvectors corresponding to these eigenvalues. This is done by solving the following eqauation.
+
+\begin{equation}
+    (A-\lambda I)K = 0
+\end{equation}
+
+For our complex eigenvalues we get
+
+\begin{align}
+    \begin{pmatrix}
+        -2-4i & -5 \\
+        4 & 2-4i
+    \end{pmatrix}
+    \begin{pmatrix}
+        K_1 \\
+        K_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0 \\
+        0
+    \end{pmatrix}
+\end{align}
+
+The two equations are equivalent with a factor -4 between them so we solve the lower of the two equations as follows.
+
+\begin{align}
+    4K_1 + (2-4i)K_2 = 0
+\end{align}
+3
+This gives us the solutions
+
+\begin{align}
+    K_1 = (2-4i) \\
+    K_2 = -4
+\end{align}
+
+Giving us the vector K
+
+\begin{equation}
+    K = 
+    \begin{pmatrix}
+        2-4i \\
+        -4
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        2 \\
+        -4
+    \end{pmatrix}
+    +
+    i
+    \begin{pmatrix}
+        0 \\
+        -4
+    \end{pmatrix}
+\end{equation}
+
+This gives us the general solution in complex form
+
+\begin{equation}
+    X = e^{(3+4i)t} \cdot 
+    \left[
+        \begin{pmatrix}
+            2 \\
+            -4
+        \end{pmatrix}
+        +
+        i
+        \begin{pmatrix}
+            0 \\
+            -4
+        \end{pmatrix}
+    \right]
+\end{equation}
+
+The complex exponential can be rewritten in trigonometric form
+
+\begin{equation}
+    e^3(\cos4t + i\sin4t) \cdot 
+    \left[
+        \begin{pmatrix}
+            2 \\
+            -4
+        \end{pmatrix}
+        +
+        i
+        \begin{pmatrix}
+            0 \\
+            -4
+        \end{pmatrix}
+    \right]
+\end{equation}
+
+Taking the real and imaginary parts of this we get
+
+\begin{align}
+    X_1 = e^3
+    \begin{pmatrix}
+        2\cos4t \\
+        4\sin4t - 4\cos4t
+    \end{pmatrix} \\
+    X_2 = e^3
+    \begin{pmatrix}
+        2\sin4t \\
+        -4\cos4t - 4\sin4t
+    \end{pmatrix}
+\end{align}
+
+Giving us the general solution in real form
+
+\begin{equation}
+    X = e^3 \left (
+    C_1\begin{pmatrix}
+        2\cos4t \\
+        4\sin4t - 4\cos4t
+    \end{pmatrix} +
+    C_2 \begin{pmatrix}
+        2\sin4t \\
+        -4\cos4t - 4\sin4t
+    \end{pmatrix} \right )
+\end{equation}
+
+\subsection*{b)}
+
+The trajectories will be unstable spirals a.k.a spirals moving away from zero since the real part of our eigenvalues is positive. 
+
+
+\section{}
+
+In order to solve this we start by solving the corresponding homogeneus system. We need the eigenvalues and eigenvectors of $\begin{pmatrix}
+    3 & 6 \\
+    -1 & -4
+\end{pmatrix}$ these can be calculated by solving the following equations
+
+\begin{equation}
+    \begin{vmatrix}
+        3-\lambda & 6 \\
+        -1 & -4 - \lambda
+    \end{vmatrix} = (3-\lambda)(-4-\lambda) - (6\cdot -1) = \lambda^2 + \lambda  -6 
+\end{equation}
+
+This gives us $\lambda_1 = -3, \lambda_2 = 2$. Finding the eigenvectors.
+
+\begin{equation}
+    (A-\lambda I)K = 0
+\end{equation}
+
+\begin{align}
+    \begin{pmatrix}
+        3-2 & 6 \\
+        -1 & -4 - 2
+    \end{pmatrix}
+    K_1
+    = 0 \\
+    \begin{pmatrix}
+        3-(-3) & 6 \\
+        -1 & -4 - (-3)
+    \end{pmatrix}
+    K_2
+    = 0
+\end{align}
+
+This gives us the eigenvectors $K_1 = \begin{pmatrix}
+    -6 \\
+    1
+\end{pmatrix}, K_2 = \begin{pmatrix}
+    -1 \\
+    1
+\end{pmatrix}$
+
+This gives us the homogeneus solution
+
+\begin{equation}
+    X = C_1 e^{2t} \begin{pmatrix}
+        -6 \\
+        1
+    \end{pmatrix} + C_2 e^{-3t} \begin{pmatrix}
+        -1 \\
+        1
+    \end{pmatrix}
+\end{equation}
+
+Now we use variation of parameters to find the particular solution. We begin by constructing the matrix $\Phi(t)$
+
+\begin{equation}
+    \Phi(t) = \begin{pmatrix}
+        -6e^{2t} & -1e^{-3t} \\
+        1e^{2t} & 1e^{-3t}
+    \end{pmatrix}
+\end{equation}
+
+Then we use the formula $X_p = \Phi(t) \int \Phi^-1(t) \cdot F(t) dt$ to find the particular solution.
+
+\begin{align}
+    F(t) = 
+    \begin{pmatrix}
+        7 \\
+        3
+    \end{pmatrix}
+    te^{2t}\\
+    \Phi^-1 = \frac{1}{5} \begin{pmatrix}
+        -e^{-2t} & -e^{-2t} \\
+        e^{3t} & 6e^{3t}
+    \end{pmatrix}
+\end{align}
+
+Giving us the equation
+
+\begin{equation}
+    X_p = \frac{1}{5} \begin{pmatrix}
+    -6e^{2t} & -1e^{-3t} \\
+    1e^{2t} & 1e^{-3t}
+\end{pmatrix}  \int \begin{pmatrix}
+    -e^{-2t} & -e^{-2t} \\
+    e^{3t} & 6e^{3t}
+\end{pmatrix} \cdot \begin{pmatrix}
+    7 \\
+    3
+\end{pmatrix}
+te^{2t} dt
+\end{equation}
+
+\begin{equation}
+    X_p = \frac{1}{5} \begin{pmatrix}
+        -6e^{2t} & -1e^{-3t} \\
+        1e^{2t} & 1e^{-3t}
+    \end{pmatrix} \int \begin{pmatrix}
+        -10t \\
+        25te^{5t}
+    \end{pmatrix} dt = \frac{1}{5} \begin{pmatrix}
+        -6e^{2t} & -1e^{-3t} \\
+        1e^{2t} & 1e^{-3t}
+    \end{pmatrix} \begin{pmatrix}
+        -5t^2 \\
+        (5t+1)e^{5t}
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    X_p = e^{2t} \frac{1}{5} \begin{pmatrix}
+        30t^2 + 5t+1 \\
+        -5t^2 + 5t+1
+    \end{pmatrix}
+\end{equation}
+
+If we put this togheter with the homogeneus solution we get
+
+\begin{equation}
+    X = C_1 e^{2t} \begin{pmatrix}
+        -6 \\
+        1
+    \end{pmatrix} + C_2 e^{-3t} \begin{pmatrix}
+        -1 \\
+        1
+    \end{pmatrix} + e^{2t}\frac{1}{5} \begin{pmatrix}
+        30t^2 + 5t+1 \\
+        -5t^2 + 5t+1
+    \end{pmatrix}
+\end{equation}
+
+This we can simplify
+
+\begin{equation}
+    X = C_1 e^{2t} \begin{pmatrix}
+        -6 \\
+        1
+    \end{pmatrix} \begin{pmatrix}
+        30t^2 + 5t+1 \\
+        -5t^2 + 5t+1
+    \end{pmatrix}  + C_2 e^{-3t} \begin{pmatrix}
+        -1 \\
+        1
+    \end{pmatrix}
+\end{equation}
+
+\end{document}
+
