@@ -1,0 +1,295 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Förberedelser labb 1}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Lagrangian}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/problemuppställning.jpg}
+        \end{center}
+        \caption{}
+        \label{fig:uppställning}
+    \end{small}
+\end{figure}
+
+
+För lagrangianen behöver vi T och U. Från fig \ref{fig:uppställning} kan vi plocka fram T och U.
+T kommer från pendlarnas kinetiska energi som kommer från deras rotationella energi. 
+
+\begin{align}
+    T = \frac{1}{2}I_O\omega_1^2 + \frac{1}{2}I_O\omega_2^2
+\end{align}
+
+Där m är pendelns massa, $I_O$ är pendelns tröghetsmoment runt punkten O och $\omega_i$ är pendlarnas respektive hastigheter och vinkelhastigheter. Generaliserade koordinater väljs till $\phi, \theta$ och vi kan då uttrycka nödvändiga storheter i dessa koordinater.
+
+\begin{align}
+    \omega_1 = \dot{\theta} \\
+    \omega_2 = \dot{\phi}
+\end{align}
+
+Det ger 
+
+\begin{align}
+    T =  \frac{1}{2}I_O\dot{\theta}^2 + \frac{1}{2}I_O\dot{\phi}^2
+\end{align}
+
+U kommer nu dels från gravitations potentialen och dels från fjäderns potential.
+
+\begin{align}
+    U = mgh_1 + mgh_2 + \frac{1}{2}kd^2
+\end{align}
+
+Där $h_i$ är höjden för respektive masscentrum och d är längd förändringen av fjädern.
+
+\begin{align}
+    h_1 = L(1-\cos\theta)\\
+    h_2 = L(1-\cos\phi)\\
+    d = l(\sin\theta-\sin\phi)
+\end{align}
+
+Det ger
+
+\begin{align}
+    U = mgL(1-\cos\theta) + mgL(1-\cos\phi) + \frac{1}{2}kl^2(\sin\theta-\sin\phi)^2
+\end{align}
+
+Vid små svängningar använder vi ledande ordning 2. Därmed blir lagraniganen till ledande ordning
+
+\begin{align}
+    L \approx \frac{1}{2}I_O\dot{\theta}^2 + \frac{1}{2}I_O\dot{\phi}^2 - mgL\left (\frac{\theta^2}{2}+\frac{\phi^2}{2}\right ) - \frac{1}{2}kl^2(\theta^2 +\phi^2-2\theta\phi)
+\end{align}
+
+\section{Rörelse ekvationer}
+
+Från detta kan vi få rörelse ekvationerna
+\begin{align}
+    \frac{\partial L}{\partial \theta} &= -mgL\theta - kl^2\theta + kl^2\phi \\
+    \frac{\partial L}{\partial \dot{\theta}} &= I_O\dot{\theta} \\
+    \frac{\partial L}{\partial \phi} &= -mgL\phi - kl^2\phi + kl^2\theta \\
+    \frac{\partial L}{\partial \dot{\phi}} &= I_O \dot{\phi}
+\end{align}
+
+\begin{align}
+    \frac{d}{dt}(\frac{\partial L}{\partial \dot{\theta}}) - \frac{\partial L}{\partial \theta} = I_O\ddot{\theta} + mgL\theta +kl^2\theta - kl^2\phi = 0\\
+    \frac{d}{dt}(\frac{\partial L}{\partial \dot{\phi}}) - \frac{\partial L}{\partial \phi} = I_O\ddot{\phi} + mgL\phi + kl^2\phi - kl^2\theta = 0
+\end{align}
+
+Samlar vi termer och skriver om
+
+\begin{align}
+    \ddot{\theta}I_O + \theta(mgL+kl^2) - kl^2\phi = 0 \\
+    \ddot{\phi}I_O + \phi(mgL+kl^2) - kl^2\theta = 0
+\end{align}
+
+\section{Lösning}
+
+Vi förväntar oss en svängnings rörelse så vi ansätter det med $\theta = B_1e^{i\omega t}$ och $\phi = B_2e^{i\omega t}$. Sätter vi in det i ekv. 17 och 18 fås
+
+\begin{align}
+    -\omega^2 B_1e^{i\omega t} I_O + B_1e^{i\omega t}(mgL+kl^2) - kl^2 B_2e^{i\omega t} = 0 \\
+    -\omega^2 B_2e^{i\omega t} I_O + B_2e^{i\omega t} (mgL+kl^2) - kl^2 B_1e^{i\omega t} = 0
+\end{align}
+
+För att vi ska få en svängningsrörelse måste vi anta $e^{i \omega t} \neq 0$, samlar vi termer får vi då ekvationerna
+
+\begin{align}
+    B_1(-\omega^2I_O + (mgL+kl^2)) - B_2kl^2 = 0 \\
+    B_2(-\omega^2I_O + (mgL+kl^2)) - B_1kl^2 = 0
+\end{align}
+
+Detta kan vi skriva om till en matris ekvation
+
+\begin{align}
+    \begin{pmatrix}
+        -\omega^2I_O + (mgL+kl^2) & -kl^2 \\
+        -kl^2 & -\omega^2I_O + (mgL+kl^2)
+    \end{pmatrix} \begin{pmatrix}
+        B_1 \\
+        B_2
+    \end{pmatrix} = \mathbf{0}
+\end{align}
+
+För att denna ska ha icke triviala lösningar måste determinanten av koefficient matrisen vara 0.
+
+\begin{align}
+    \begin{vmatrix}
+        -\omega^2I_O + (mL+kl^2) & -kl^2 \\
+        -kl^2 & -\omega^2 I_O + (mgL+kl^2)
+    \end{vmatrix} = \mathbf{0}
+\end{align}
+
+Detta ger ekvationerna
+
+\begin{align}
+    (-\omega^2I_O + (mgL+kl^2))^2 - (-kl^2)^2 = 0 \\
+    (-\omega^2I_O + (mgL+kl^2))^2 = (kl^2)^2\\
+    -\omega^2I_O + (mgL+kl^2) = \pm kl^2 \\
+    \omega^2 = \frac{\mp kl^2 + mgL + kl^2}{I_O}
+\end{align}
+
+Detta ger egenfrekvenserna
+
+\begin{align}
+    \omega_- = \sqrt{\frac{mgL}{I_O}} \\
+    \omega_+ = \sqrt{\frac{mgL + 2kl^2}{I_O}}
+\end{align}
+
+Nu när vi har egenfrekvenserna behöver vi ta fram egenmoderna. Adderar vi 17 och 18 får vi
+
+\begin{align}
+    \ddot{\theta}I_O + \theta(mgL+kl^2) - kl^2 \phi + I_O\ddot{\phi} + \phi (mgL+kl^2) - kl^2 \theta = 0 \\
+    I_0(\ddot{\theta} + \ddot{\phi}) + (mgL+kl^2)(\theta+ \phi) - kl^2(\theta + \phi) = 0 \Rightarrow q_+ = (\theta + \phi)
+\end{align}
+
+Subtraherar vi dom fås
+
+\begin{align}
+    \ddot{\theta}I_O + \theta(mgL+kl^2) - kl^2 \phi - I_O\ddot{\phi} - \phi (mgL+kl^2) + kl^2 \theta \\
+    I_0(\ddot{\theta}-\ddot{\phi}) + (mgL+kl^2)(\theta - \phi) - kl^2(\theta - \phi) \Rightarrow q_ = (\theta-\phi)
+\end{align}
+
+Egenmoderna svänger med egenfrekvenserna.
+
+\begin{align}
+    q_+(t) = A\cos(\omega_+ t) + B\sin(\omega_+ t) \\
+    q_-(t) = C\cos(\omega_- t) + D\sin(\omega_- t)
+\end{align}
+
+$\theta$ och $\phi$ ges av $q_+$ och $q_-$ enligt
+
+\begin{align}
+    \theta = \frac{1}{2}(q_+ + q_-)\\
+    \phi = \frac{1}{2}(q_+ - q_-)
+\end{align}
+
+Det ger den allmänna lösningen för $\theta$ och $\phi$
+
+\begin{align}
+    \theta(t) = \frac{1}{2}(A\cos(\omega_+ t) + B\sin(\omega_+ t) + C\cos(\omega_- t) + D\sin(\omega_- t))\\
+    \phi(t) = \frac{1}{2}(A\cos(\omega_+ t) + B\sin(\omega_+ t) - C\cos(\omega_- t) - D\sin(\omega_- t))
+\end{align}
+
+Vilket ger 4 konstanter vilket är rimligt då vi har två andragrads diff ekvationer. 
+
+\section{Specialfall}
+
+\subsection*{A}
+
+Begynnelse värden
+\begin{align}
+    \theta(0) = \alpha\\
+    \dot{\theta}(0) = 0 \\
+    \phi(0) = \alpha \\
+    \dot{\phi} = 0
+\end{align}
+
+Detta ger
+
+\begin{align}
+    q_+(0) = 2 \alpha \\
+    q_-(0) = 0 \\
+    \dot{q_+} = 0 \\
+    \dot{q_-} = 0 \\
+\end{align}
+
+Detta ger
+
+\begin{align}
+    q_+(0) = A = 2 \alpha \\
+    \dot{q_+}(0) = -B = 0 \\
+    q_-(0) = C = 0 \\
+    \dot{q_-} = -D = 0
+\end{align}
+
+Så vi får inget - bara + vilket var väntat
+
+\subsection*{B}
+Begynnelse värden
+\begin{align}
+    \theta(0) = \alpha\\
+    \dot{\theta}(0) = 0 \\
+    \phi(0) = -\alpha \\
+    \dot{\phi} = 0
+\end{align}
+
+Detta ger
+
+\begin{align}
+    q_+(0) =  \\
+    q_-(0) = 2 \alpha \\
+    \dot{q_+} = 0 \\
+    \dot{q_-} = 0 \\
+\end{align}
+
+Detta ger
+
+\begin{align}
+    q_+(0) = A = 0\\
+    \dot{q_+}(0) = -B = 0 \\
+    q_-(0) = C = 2 \alpha \\
+    \dot{q_-} = -D = 0
+\end{align}
+
+Nu får vi inget + bara - vilket också var väntat
+
+\subsection*{C}
+
+Begynnelse värden
+\begin{align}
+    \theta(0) = \alpha\\
+    \dot{\theta}(0) = 0 \\
+    \phi(0) = 0 \\
+    \dot{\phi} = 0
+\end{align}
+
+detta ger
+
+\begin{align}
+    q_+(0) = \alpha \\
+    q_-(0) = \alpha \\
+    \dot{q_+} = 0 \\
+    \dot{q_-} = 0 \\
+\end{align}
+
+\begin{align}
+    q_+(0) = A = \alpha\\
+    \dot{q_+}(0) = -B = 0 \\
+    q_-(0) = C = \alpha \\
+    \dot{q_-} = -D = 0
+\end{align}
+
+Detta ger konstant blanding av båda med samma amplitud vilket också var väntat.
+
+\end{document}
+

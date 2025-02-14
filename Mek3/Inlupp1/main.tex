@@ -1,0 +1,274 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Inlämmning 1 mekanik III}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Uppgift 1}
+
+\subsection*{Uppställning}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{figures/Screenshot 2025-02-01 at 11-45-11 mek3 - mek3.pdf.png}
+        \end{center}
+        \caption{Problem uppställning}
+        \label{fig:uppställning}
+    \end{small}
+\end{figure}
+
+Problemet består av ett snöre med en fin gammal tekopp i ena änden och ett gem i den andra. Snörret löper friktionsfritt över punkten A. Vid $t=0$ släpps gemet och uppgiften är att hitta rörelsen för gemet som funktion av tiden.
+
+För att kunna göra en modell av gemets rörelse så behöver vi göra några idealiseringar.
+
+\begin{itemize}
+    \item Icke elastiskt snöre med längden $l$
+    \item Snöret löper friktionsfritt över A
+    \item Diametern av A är mycket liten $\Rightarrow r+z=l$ gäller alltid
+    \item Inget luftmotstånd
+\end{itemize}
+
+Jag har valt att använda polära koordinater för att beskriva systemet. Detta då vi antar att koppen faller vertikalt neråt. Jag har valt att sätta r som avståndet mellan gemet och punkten A, och $\theta$ vara vinkeln mellan snöret som sitter fast i gemet och ursprungsläget som visas i figuren. 
+
+Dom sambanden som används är 
+
+\begin{align}
+    z+r=l\\
+    T = \frac{1}{2}mv^2\\
+    U = -mgh\\
+    L = T-U
+\end{align}
+
+\subsection*{Plan}
+
+\begin{enumerate}
+    \item Hitta kinetiskt och potentiell energi
+    \item Skriv upp lagrangianen
+    \item Beräkna relevanta derivator
+    \item Skriv upp rörelse ekvationerna
+    \item Lös dessa på lämpligt sätt
+    \item Plotta lösningen
+\end{enumerate}
+
+\subsection*{Utförande}
+
+Den kinetiska energin för systemet är summan av den kinetiska energin för dom båda kropparna.
+
+\begin{equation}
+    T = \frac{1}{2} Mv_1^2 + \frac{1}{2}mv_2^2
+\end{equation}
+
+Utifrån figuren kan vi ta fram $v_1 och v_2$
+
+\begin{align}
+    v_1 = \dot{z} = -\dot{r} \\
+    v_2 = \sqrt{\dot{r}^2 + r^2\dot{\theta}^2}
+\end{align}
+
+Sätter vi in det i ekv. 5 och förenklar får vi.
+
+\begin{equation}
+    T = \frac{1}{2}(\dot{r}^2(M+m)+ mr^2\dot{\theta}^2)
+\end{equation}
+
+För att ta fram den potentiella energin för de båda kropparna behöver vi ha det vertikala avståndet från noll nivån. För koppen blir det
+
+\begin{equation}
+    h = z = l - r
+\end{equation}
+
+För gemet behöver vi ha koll på vinkeln också
+
+\begin{equation}
+    h = -r\sin\theta
+\end{equation}
+
+Använder vi nu dessa höjderna får vi
+
+\begin{equation}
+    U = -Mg(l-r) - mgr\sin\theta
+\end{equation}
+
+Detta tillsammans med ekv.8 ger lagrangianen
+
+\begin{equation}
+    L = \frac{1}{2}(\dot{r}^2(M+m)+ mr^2\dot{\theta}^2) +Mg(l-r) + mgr\sin\theta
+\end{equation}
+
+Nu behöver vi beräkna lite derivator
+
+\begin{align}
+    \frac{\partial L}{\partial \theta} = -mgr\cos\theta \\
+    \frac{\partial L}{\partial \dot{\theta}} = mr^2\dot{\theta}\\
+    \frac{\partial L}{\partial r} = mr\dot{\theta}^2 - Mg + mg\sin\theta \\
+    \frac{\partial L}{\partial \dot{r}} = \dot{r}(M+m)
+\end{align}
+
+Dessa ger os rörelse ekvationerna
+
+\begin{align}
+    \frac{d}{dt}(mr^2\dot{\theta}) + mgr\cos\theta = 0 \\
+    \frac{d}{dt}(\dot{r}(M+m)) - mr\dot{\theta}^2 + Mg - mg\sin\theta = 0
+\end{align}
+
+Beräknar vi tids derivatorna får vi 
+
+\begin{align}
+    \ddot{\theta}r^2m + 2\dot{\theta}r\dot{r} + \sin\theta mgr = 0\\
+    \ddot{r}(M+m)-mr\dot{\theta}^2 + g(M-m) = 0
+\end{align}
+
+För att få något hum om hurvida dessa rörelsekvationerna stämmer eller inte så gör vi en enhets analys
+
+\begin{align}
+    s^{-2}m^2kg + s^{-1}m m s^{-1} + kg m s^{-2} m = \frac{kg m^2}{s^2}\\
+    ms^{-2} kg - kg m s^{-2} + ms^{-2} kg = \frac{kgm}{s^2} 
+\end{align}
+
+Så enheterna är konsekventa i dom två ekvationerna. Eftersom det är kopplade ickelinjära ekvationer använder jag mathematica för att lösa dom. Det ger en lösning som ser ut som följnade. 
+
+Kommentar: Min numeriska lösning ger att $\theta$ är konstant så antingen är mina rörelse ekvationer fel eller så har jag skrivit nått fel i mathematica. Kan inte själv hitta några fel dock. 
+
+
+\section*{Uppgift 2}
+
+\subsection*{Uppställning}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{figures/Screenshot 2025-02-01 at 13-19-53 mek3 - mek3.pdf.png}
+        \end{center}
+        \caption{Problem uppställning}
+        \label{fig:uppställning}
+    \end{small}
+\end{figure}
+
+I denna uppgiften har vi en sattelit i omloppsbana kring jorden. Precis som alla satteliter utsätts den för luftmotstånd. Uppgiften är att plocka fram rörelse ekvationerna och lösa dessa under vissa förhållanden. 
+
+Vi börjar med idealiseringarna
+\begin{itemize}
+    \item Luftmotståndet $F_l = -mk\mathbf{v}$ där k är en konstant
+    \item k är liten $\Rightarrow$ långsam förändring i omloppsbanan
+\end{itemize}
+
+Jag väljer att återigen använda polära koordinater. Här använder vi istället sattelitens höjd över marken och vinkeln som syns i bilden. 
+
+Sambanden som används
+
+\begin{align}
+    T = \frac{1}{2}mv^2\\
+    U = -mgh\\
+    \mathbf{F_l} = -mk\mathbf{v}\\
+    L = T-U
+\end{align}
+
+\subsection*{Plan}
+
+\begin{enumerate}
+    \item Ta fram T och U för satteliten
+    \item Ställ upp lagrangianen
+    \item Beräkna derivator
+    \item Ställ upp rörelsekvationerna med luftmotståndet som en generaliserad kraft
+    \item Lös dom under idealiseringarna
+\end{enumerate}
+
+\subsection*{Utförande} 
+
+Den kinetiska energin får vi som
+\begin{equation}
+    T = \frac{1}{2}m\mathbf{v}^2 = \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)
+\end{equation}
+
+med r som avståndet från centrum och ut
+
+Den potentiella energin är 
+
+\begin{equation}
+    U = mgr
+\end{equation}
+
+med noll för potentiell energi i origo
+
+Detta ger lagrangianen
+
+\begin{equation}
+    L = \frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2) - mgr
+\end{equation}
+
+Beräknar vi derivatorna
+
+\begin{align}
+    \frac{\partial L}{\partial \theta} = 0 \\
+    \frac{\partial L}{\partial \dot{\theta}} = mr^2\dot{\theta} \\
+    \frac{\partial L}{\partial r} =  mr\dot{\theta}^2 - mg\\
+    \frac{\partial L}{\partial \dot{r}} = m\dot{r}\\
+\end{align}
+
+Det ger rörelsekvationerna
+
+\begin{align}
+    \frac{d}{dt}(\frac{\partial L}{\partial \dot{\theta}}) - \frac{\partial L}{\partial \theta} &= \frac{d}{dt}(mr^2\dot{\theta}) \\
+    \frac{d}{dt}(\frac{\partial L}{\partial \dot{r}}) - \frac{\partial L}{\partial r} &= \frac{d}{dt}(m\dot{r}) - mr\dot{\theta}^2 + mg
+\end{align}
+
+För att få med luftmotståndet behöver vi beräkna de generaliserade krafterna för varje koordinat. Detta görs enligt följande
+
+\begin{align}
+    Q_{\theta} = -mk\mathbf{v} \cdot \frac{\partial \mathbf{v}}{\partial \dot{\theta}} = -mkr^2\dot{\theta} \\
+    Q_r = -mk\mathbf{v} \cdot \frac{\partial \mathbf{v}}{\partial \dot{r}} = -mk\dot{r}
+\end{align}
+
+
+
+Beräknar vi tids derivatorna och sätter ekvationerna lika med respektive generaliserad kraft
+
+\begin{align}
+    mr^2\ddot{\theta} + 2mr\dot{r}\dot{\theta} = -mkr^2\dot{\theta}\\
+    m\ddot{r} - mr\dot{\theta}^2 + mg = -mk\dot{r}
+\end{align}
+
+För en sanity check kollar vi enheterna i höger leden
+
+\begin{align}
+    kg m^2 s^{-2} + kg m m s^{-1} s^{-1} = \frac{kgm^2}{s^2} \\
+    kg m s^{-2} - kg m s^{-2} kg m s^{-2} = \frac{kgm}{s^2}
+\end{align}
+
+Detta ger $[k] = s^{-1}$ i båda ekvationerna så enheterna stämmer och vi verkara vara på rätt spår. 
+
+
+Kommentar:
+Nu är jag lite osäker på hur jag ska gå vidare. Kan jag anta att $\dot{r} = 0$ och därmed få ett ODE system för $\theta$.
+
+\end{document}
+
