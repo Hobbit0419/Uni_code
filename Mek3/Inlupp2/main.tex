@@ -1,0 +1,165 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Inlämmning 2 mekanik III}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Uppgift 1}
+
+\subsection{Uppställning och plan}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{PXL_20250220_122419456.jpg}
+        \end{center}
+        \caption{Uppställning av systemet.}
+        \label{fig:Uppställning}
+    \end{small}
+\end{figure}
+
+
+Vi har en Lagragian given
+\begin{align*}
+    L  = \frac{1}{2} m \dot{z}^2 + \frac{1}{2} I \dot{\theta}^2 - \frac{1}{2}kz^2 - \frac{\delta}{2}\theta^2 - \epsilon z \theta   
+\end{align*}
+
+Vi har parametrarna $I$, $m$, $k$, $\delta$ och $\epsilon$ som är konstanter. $I$ är tröghetsmomentet för massan som hänger i fjädern, denna går att ändra genom att flytta på muttrarna som sitter på vikten. $m$ är massan som hänger i fjädern. $k$ är fjäderkonstanten för fjädern. $\delta$ är en konstant som beskriver hur mycket fjädern inte vill vridas termen med $\delta$ beskriver den potentiella energin i fjädern på grund av att den är vriden. $\epsilon$ är en kopplingskonstant. 
+
+För att ta fram och lösa rörelse ekvationerna behöver vi göra följande steg:
+\begin{enumerate}
+    \item Skriv om Lagrangianen på matrisform
+    \item Diagnoalisera matriserna och hitta normalkoordinaterna
+    \item Skriv om Lagrangianen i normalkoordinaterna
+    \item Skriv ut rörelse ekvationerna
+    \item Lös rörelse ekvationerna
+\end{enumerate}
+
+\subsection{Genomförande}
+
+Vi skriver om Lagrangianen på matrisform
+
+\begin{align*}
+    L = \frac{1}{2} \begin{pmatrix} \dot{z} & \dot{\theta} \end{pmatrix} \begin{pmatrix} m & 0 \\ 0 & I \end{pmatrix} \begin{pmatrix} \dot{z} \\ \dot{\theta} \end{pmatrix} - \frac{1}{2} \begin{pmatrix} z & \theta \end{pmatrix} \begin{pmatrix} k & \epsilon \\ \epsilon & \delta \end{pmatrix} \begin{pmatrix} z \\ \theta \end{pmatrix}
+\end{align*}
+
+Vi börjar med att byta koordinater så den första matrisen blir identiteten.
+
+\begin{align*}
+    \begin{pmatrix}
+        \dot{z} \\
+        \dot{\theta}
+    \end{pmatrix} = \begin{pmatrix}
+        \sqrt{\frac{1}{m}} & 0 \\ 0 & \sqrt{\frac{1}{I}}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \dot{z}' \\
+        \dot{\theta}'
+    \end{pmatrix}
+\end{align*}
+
+Då får vi
+
+\begin{align*}
+    L = \frac{1}{2} \begin{pmatrix} \dot{z}' & \dot{\theta}' \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} \dot{z} \\ \dot{\theta} \end{pmatrix} - \frac{1}{2} \begin{pmatrix} z' & \theta' \end{pmatrix} \begin{pmatrix} \frac{k}{m} & \frac{\epsilon}{I} \\ \frac{\epsilon}{m} & \frac{\delta}{I} \end{pmatrix} \begin{pmatrix} z' \\ \theta' \end{pmatrix}
+\end{align*}
+
+Nu tar vi fram egenvärden och egenvektorer för den andra matrisen
+
+\begin{align*}
+    \begin{vmatrix}
+        \frac{k}{m} - \lambda & \frac{\epsilon}{I} \\
+        \frac{\epsilon}{m} & \frac{\delta}{I} - \lambda
+    \end{vmatrix} = 0
+\end{align*}
+
+\subsection{Rimlighet}
+
+\section{Uppgift 2}
+
+\subsection{Uppställning och plan}
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{Screenshot 2025-02-20 at 13-27-34 Inlämningsuppgift 2.png}
+        \end{center}
+        \caption{Illustration av objekt och observationer.}
+        \label{fig:2}
+    \end{small}
+\end{figure}
+
+Vi vill ta reda på objektets hastighet med hjälp av dessa tre observationerna. För att göra detta måste vi hitta någonting som relaterar en förändring i observerad våglängd på ljus till hastigheten hos ett objekt, detta fenomen kallas för relativistisk doppler eller röd/blå förkjutning. Så i den första observationen är alltså den våglängden vi uppfattar kortare än den objektet sände ut, i den andra observationen ser vi då våglängden hos objektet som den borde vara eftersom vi i det ögonblicket inte har någon relativ hastighet. I den tredje observationen ser vi ingenting för att våglängden nu är utsträckt så långt att den ligger utanför synligt ljus. 
+
+För att ta reda på objektets hastighet behöver vi göra följande steg:
+
+\begin{enumerate}
+    \item Lösa ut hastigheten ur formeln för relativistisk doppler
+    \item Beräkna hastigheten med hjälp av de två första observationerna
+    \item Kontrollera vårt svar genom att se så den tredje observationen stämmer överens med vårt svar
+\end{enumerate}
+
+
+\subsection{Genomförande}
+
+Formeln för relativistisk doppler för objekt som rör sig motvarandra är
+
+\begin{align*}
+    f = f_0 \sqrt{\frac{1 + \frac{v}{c}}{1 - \frac{v}{c}}}
+\end{align*}
+
+Där $f$ är den observerade frekvensen, $f_0$ är den sända frekvensen, v är den relativa hastigheten och c är ljusets hastighet. Nu löser vi ut v.
+
+\begin{align*}
+    f^2 = f_0^2 \frac{1 + \frac{v}{c}}{1 - \frac{v}{c}} \\
+    f^2 (1 - \frac{v}{c}) = f_0^2 (1 + \frac{v}{c}) \\
+    f^2 - f^2 \frac{v}{c} = f_0^2 + f_0^2 \frac{v}{c} \\
+    f^2 - f_0^2 = f^2 \frac{v}{c} + f_0^2 \frac{v}{c} \\
+    f^2 - f_0^2 = v \frac{f^2 + f_0^2}{c} \\
+    v = \frac{f^2 - f_0^2}{f^2 + f_0^2} c
+\end{align*}
+
+Sedan kan vi sätta in värdena från observationerna $f = \frac{c}{550\text{nm}}$, $f_0 = \frac{c}{720\text{nm}}$. Det ger $v= 0.26$c
+
+Då kan vi dubbelkolla vårt svar genom att kolla om den tredje observationen stämmer överens med vårt svar. Vi vet att våglängden är utsträckt så långt att den ligger utanför synligt ljus. Detta betyder att våglängden är större än 720 nm. Vi kan räkna ut våglängden med hjälp av relativistisk doppler och se att den stämmer överens med vårt svar.
+
+\begin{align*}
+    f = f_0 \sqrt{\frac{1 - \frac{v}{c}}{1 + \frac{v}{c}}}
+\end{align*}
+
+Sätter vi in $f_0$ och v från förra beräkningen får vi $f = \frac{1}{1226}$ detta ligger långt utanför det synliga spektrat.
+
+\subsection{Rimlighet}
+Ja svaret är rimligt, hastigheten är under ljusets hastighet och den tredje observationen stämmer överens med vårt svar.
+
+Dimensionen i uttrycket för hastigheten stämmer då vi har frekvens över frekvens vilket blir dimensionslöst multiplicerat med en hastighet så den slutgiltiga dimensionen blir hastighet.
+
+\end{document}
+
