@@ -75,34 +75,92 @@ Vi börjar med att byta koordinater så den första matrisen blir identiteten.
 
 \begin{align*}
     \begin{pmatrix}
-        \dot{z} \\
-        \dot{\theta}
+        z \\
+        \theta
     \end{pmatrix} = \begin{pmatrix}
         \sqrt{\frac{1}{m}} & 0 \\ 0 & \sqrt{\frac{1}{I}}
     \end{pmatrix}
     \begin{pmatrix}
-        \dot{z}' \\
-        \dot{\theta}'
+        z' \\
+        \theta'
     \end{pmatrix}
 \end{align*}
 
-Då får vi
+Vi sätter också in $I=\frac{m\delta}{k}$.
 
 \begin{align*}
-    L = \frac{1}{2} \begin{pmatrix} \dot{z}' & \dot{\theta}' \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} \dot{z} \\ \dot{\theta} \end{pmatrix} - \frac{1}{2} \begin{pmatrix} z' & \theta' \end{pmatrix} \begin{pmatrix} \frac{k}{m} & \frac{\epsilon}{I} \\ \frac{\epsilon}{m} & \frac{\delta}{I} \end{pmatrix} \begin{pmatrix} z' \\ \theta' \end{pmatrix}
+    L = \frac{1}{2} \begin{pmatrix} \dot{z}' & \dot{\theta}' \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} \dot{z} \\ \dot{\theta} \end{pmatrix} - \frac{1}{2} \begin{pmatrix} z' & \theta' \end{pmatrix} \begin{pmatrix} \frac{k}{m} & \frac{\epsilon k}{m \delta} \\ \frac{\epsilon}{m} & \frac{k}{m} \end{pmatrix} \begin{pmatrix} z' \\ \theta' \end{pmatrix}
 \end{align*}
 
 Nu tar vi fram egenvärden och egenvektorer för den andra matrisen
 
 \begin{align*}
-    \begin{vmatrix}
-        \frac{k}{m} - \lambda & \frac{\epsilon}{I} \\
-        \frac{\epsilon}{m} & \frac{\delta}{I} - \lambda
-    \end{vmatrix} = 0
+    \begin{vmatrix} \frac{k}{m} - \lambda & \frac{\epsilon k}{m \delta} \\ \frac{\epsilon}{m} & \frac{k}{m} - \lambda \end{vmatrix} = 0 \\
+    \left ( \frac{k}{m} - \lambda \right )^2 - \frac{\epsilon^2 k}{m^2 \delta} = 0 \\
+    \lambda = \frac{k}{m} \pm \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}}
 \end{align*}
+
+Detta ger egenvektorerna
+
+\begin{align*}
+    \lambda = \frac{k}{m} + \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}} \Rightarrow \begin{pmatrix} \sqrt{\frac{k}{\delta}} \\ 1 \end{pmatrix} \\
+    \lambda = \frac{k}{m} - \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}} \Rightarrow \begin{pmatrix} -\sqrt{\frac{k}{\delta}} \\ 1 \end{pmatrix}
+\end{align*}
+
+Då kan vi skriva om Lagrangianen i normalkoordinaterna
+
+\begin{align*}
+    \begin{pmatrix} q_+ \\ q_- \end{pmatrix} = \begin{pmatrix} \sqrt{\frac{k}{\delta}} & -\sqrt{\frac{k}{\delta}} \\ 1 & 1 \end{pmatrix} \begin{pmatrix} z' \\ \theta' \end{pmatrix}\\
+    \begin{pmatrix}z' \\ \theta'\end{pmatrix} = \frac{\delta}{k}\begin{pmatrix} -1 & \sqrt{\frac{k}{\delta}} \\ 1 & \sqrt{\frac{k}{\delta}} \end{pmatrix} \begin{pmatrix} q_+ \\ q_- \end{pmatrix}
+\end{align*}
+
+
+\begin{align*}
+        L = \frac{\delta}{2k} \begin{pmatrix} \dot{q_+} & \dot{q_-} \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} \dot{q_+} \\ \dot{q_-} \end{pmatrix} - \frac{\delta}{2k} \begin{pmatrix} \dot{q_+} & \dot{q_-} \end{pmatrix} \begin{pmatrix} \frac{k}{m} + \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}} & 0 \\ 0 & \frac{k}{m} - \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}} \end{pmatrix} \begin{pmatrix} \dot{q_+} \\ \dot{q_-} \end{pmatrix}  
+\end{align*}
+
+Det ger oss rörelse ekvationerna
+
+\begin{align*}
+    \ddot{q_+} + \left ( \frac{k}{m} + \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}} \right ) q_+ = 0 \\
+    \ddot{q_-} + \left ( \frac{k}{m} - \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}} \right ) q_- = 0
+\end{align*}
+
+Dessa löses av
+
+\begin{align*}
+    q_+(t) = A_+ \cos \left ( \sqrt{\frac{k}{m} + \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}}} t \right ) + B_+ \sin \left ( \sqrt{\frac{k}{m} + \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}}} t \right ) \\
+    q_-(t) = A_- \cos \left ( \sqrt{\frac{k}{m} - \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}}} t \right ) + B_- \sin \left ( \sqrt{\frac{k}{m} - \frac{\epsilon}{m}\sqrt{\frac{k}{\delta}}} t \right )
+\end{align*}
+
+Nu behöver vi göra om dessa tillbaka till de ursprungliga koordinaterna. 
+
+\begin{align*}
+    z = \frac{\delta}{k} \left ( -q_+ + \sqrt{\frac{k}{\delta}} q_- \right ) \\
+    \theta = \frac{\delta}{k} \left ( q_+ + \sqrt{\frac{k}{\delta}} q_- \right )
+\end{align*}
+
+Vi sätter begynnelse vilkor för att lösa ut konstanterna. Vi sätter $z(0) = 1$, $\theta(0) = 0$, $\dot{z}(0) = 0$ och $\dot{\theta}(0) = 0$. Dessa kan vi översätta till normalkoordinaterna $q_+(0) = \sqrt{\frac{k}{\delta}}$, $q_-(0) = 0$, $\dot{q_+}(0) = 0$ och $\dot{q_-}(0) = 0$. 
+
+Här fastnar jag, kan inte lösa ut konstanterna.
 
 \subsection{Rimlighet}
 
+Vi kan kolla dimensionen för att se om det vi har är rimligt.
+
+\begin{align*}
+    [k] = \frac{kg}{s^2} \\
+    [m] = kg \\
+    [\delta] = kg \cdot m^2 \\
+    [\epsilon] = \frac{kg\cdot m}{s}
+\end{align*}
+
+\begin{align*}
+    [\frac{k}{m}] = \frac{1}{s^2}
+    [\frac{\epsilon}{m}\sqrt{\frac{k}{\delta}}] = \frac{1}{s^2}
+\end{align*}
+
+Så dimensionen i rörelse ekvationerna stämmer.
 \section{Uppgift 2}
 
 \subsection{Uppställning och plan}

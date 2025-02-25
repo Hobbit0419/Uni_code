@@ -1,0 +1,71 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Case study: Scales of nature}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Measrument units in particle physics}
+
+\subsection{Electron-Volt}
+
+An electron volt is defined as the amount of kinetic energy gained by an electron accelerating over a potential difference of 1 volt in vacuum. In joules one electron volt is $1.602176634 \cdot 10^{-19}$ J.
+
+\subsection{Proton-Volt}
+
+By analogy the proton volt would be the kintic energy gained by a proton accelerating over a potential difference of 1 volt in vacuum. Since the energy i calculated as $E = qV$ where $q$ is the charge of the particle and $V$ is the potential difference, the proton volt is $1.602176634 \cdot 10^{-19}$ J the same as the electron volt. 
+\subsection{Higgs mass}
+
+When we say the mass of the Higgs boson is 125 GeV we mean that the rest energy if the Higgs is 125 GeV. So to convert this to kilograms we use the formula $E = mc^2$ where $E$ is the energy, $m$ is the mass and $c$ is the speed of light. We get $m = \frac{E}{c^2} = \frac{125 \cdot 10^9 \cdot 1.602176634 \cdot 10^{-19}}{(3 \cdot 10^8)^2} = 2.24 \cdot 10^{-25}$ kg.
+
+\subsection{Higgs energy}
+
+In order to know how much of that battery we need to change units. We know that 1 eV is $1.602176634 \cdot 10^{-19}$ J. So 125 GeV is $125 \cdot 10^9 \cdot 1.602176634 \cdot 10^{-19} = 2.0027207925 \cdot 10^{-11}$ J. So we need $2.0027207925 \cdot 10^{-11}$ J to create a Higgs boson. The capacity of the battery is given i milli amp hours, this is not energy but an amount of charge. To convert this to energy we need the voltage of the battery. The energy in a battery is given by $E = qV$ where $q$ is the charge and $V$ is the voltage. The voltage of the battery is 1.5 V so the energy in the battery is $1.5 \cdot 3600 * 1.7 = 9180$ J. In this calculation 1.5 is the voltage of the battery and 1.7 is the amount of amp hours in the battery. The 3600 comes from how many seconds in one hour because the formula stated above wanted charge and since amp charge per second we need the 3600. If we now divide the energy needed to create a Higgs boson with the energy in the battery we get $\frac{2.0027207925 \cdot 10^{-11}}{9180} = 2.18 \cdot 10^{-15}$ so we need $2.18 \cdot 10^{-15}$ batteries to create a Higgs boson.
+\section{The size of the universe}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{scales_of_nature.png}
+        \end{center}
+        \caption{}
+        \label{fig:}
+    \end{small}
+\end{figure}
+
+
+\section{The size of the atom}
+
+\section{The size of stars}
+
+\section{The size of black holes}
+
+\end{document}
+

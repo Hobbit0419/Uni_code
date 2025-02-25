@@ -1,0 +1,118 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Assignment 2 Mathematical methods in physics}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+
+\subsection{}
+
+We are supposed to write a series solution for the given PDE. We have a string with fixed ends that is being driven by a timedependent force. The PDE is given by   
+\begin{align*}
+    \frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2} + f(x,t)
+\end{align*}
+
+Since we have fixed ends a sine series is appropriate for the solution. We can write that series as
+\begin{align*}
+    u(x,t) = \sum_{n=1}^{\infty} u_n(t) \sin \left ( \frac{n\pi x}{L} \right )
+\end{align*}
+
+\subsection{}
+
+Now we need to compute the series coeffcients for a cosine series for the driving force. We can write the driving force as
+\begin{align*}
+    f(t) = \sum_{n=1}^{\infty} f_n \sin \left ( \frac{n\pi x}{L} \right )
+\end{align*}
+
+\begin{align*}
+    f_n = \frac{2}{L} \int_{0}^{L} f(t) \sin \left ( \frac{n\pi x}{L} \right ) dx
+\end{align*}
+
+Since $f(t)$ is constant in x we get
+
+\begin{align*}
+    f_n &= \frac{2f(t)}{L} \int_{0}^{L} \sin \left ( \frac{n\pi x}{L} \right ) dx = \frac{2f(t)}{L} \left [ -\frac{L}{n\pi} \cos \left ( \frac{n\pi x}{L} \right ) \right ]_{0}^{L} = \frac{2f(t)}{n\pi} \left ( 1 - (-1)^n \right )\\
+    f_n &= \frac{4f(t)}{n\pi} \text{ for n odd}
+\end{align*}
+
+\subsection{}
+
+Now we substitute the series solutions into the PDE and solve for $u_n(t)$
+
+\begin{align*}
+    \sum_{n=1}^\infty \frac{\partial^2 u_n}{\partial t^2} \sin \left ( \frac{n\pi x}{L} \right ) = -\frac{c^2 \pi^2}{L^2} \sum_{n=1}^{\infty} u_n(t) n^2\sin \left ( \frac{n\pi x}{L} \right ) + \sum_{n=1}^{\infty}f_n \sin \left ( \frac{n\pi x}{L} \right )
+\end{align*}
+
+Now we cancel all $\sin$ terms and get
+
+\begin{align*}
+    \frac{\partial^2 u_n}{\partial t^2} = -\frac{c^2 \pi^2}{L^2} u_n(t) n^2 + f_n
+\end{align*}
+
+\subsection{}
+
+If we set $f(t) = \sin{\omega t}$ we can solve the ODE for $u_n(t)$
+
+\begin{align*}
+    \frac{\partial^2 u_n}{\partial t^2} = -\frac{c^2 \pi^2}{L^2} u_n(t) n^2 + \frac{4\sin{\omega t}}{n\pi}
+\end{align*}
+\subsection{}
+
+\subsection{}
+
+\section{Problem 2}
+
+\subsection{}
+
+\subsection{}
+
+\section{Problem 3}
+
+\subsection{}
+
+\subsection{}
+
+\subsection{}
+
+\subsection{}
+
+\section{Problem 4}
+
+
+\section{Problem 5}
+
+\subsection{}
+
+\subsection{}
+
+\end{document}
+
