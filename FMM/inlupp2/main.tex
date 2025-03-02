@@ -32,87 +32,302 @@ style=apa
 
 \maketitle
 
-\section{Problem 1}
+\section*{Problem 1}
 
-\subsection{}
-
-We are supposed to write a series solution for the given PDE. We have a string with fixed ends that is being driven by a timedependent force. The PDE is given by   
-\begin{align*}
-    \frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2} + f(x,t)
-\end{align*}
-
-Since we have fixed ends a sine series is appropriate for the solution. We can write that series as
-\begin{align*}
-    u(x,t) = \sum_{n=1}^{\infty} u_n(t) \sin \left ( \frac{n\pi x}{L} \right )
-\end{align*}
-
-\subsection{}
-
-Now we need to compute the series coeffcients for a cosine series for the driving force. We can write the driving force as
-\begin{align*}
-    f(t) = \sum_{n=1}^{\infty} f_n \sin \left ( \frac{n\pi x}{L} \right )
-\end{align*}
+We have a uniform string  with fixed endpoints. The string is initially at rest in the equilibrium position, but there is a timedependent driving force that is uniform in x. The PDE looks likte this:
 
 \begin{align*}
-    f_n = \frac{2}{L} \int_{0}^{L} f(t) \sin \left ( \frac{n\pi x}{L} \right ) dx
+    \frac{\partial^2 u }{\partial t^2}(x,t) = c^2 \frac{\partial^2 u}{\partial x^2}(x,t) + f(t)
 \end{align*}
 
-Since $f(t)$ is constant in x we get
+A series solution to this PDE with time dependent coefficients would be given by a sine series due to the fixed endpoints. The solution would look like this:
 
 \begin{align*}
-    f_n &= \frac{2f(t)}{L} \int_{0}^{L} \sin \left ( \frac{n\pi x}{L} \right ) dx = \frac{2f(t)}{L} \left [ -\frac{L}{n\pi} \cos \left ( \frac{n\pi x}{L} \right ) \right ]_{0}^{L} = \frac{2f(t)}{n\pi} \left ( 1 - (-1)^n \right )\\
-    f_n &= \frac{4f(t)}{n\pi} \text{ for n odd}
+    u(x,t) = \sum_{n=1}^{\infty} u_n(t) \sin \left(\frac{n \pi}{L}x \right)
 \end{align*}
 
-\subsection{}
-
-Now we substitute the series solutions into the PDE and solve for $u_n(t)$
+Similarly we can write the driving force as a sine series:
 
 \begin{align*}
-    \sum_{n=1}^\infty \frac{\partial^2 u_n}{\partial t^2} \sin \left ( \frac{n\pi x}{L} \right ) = -\frac{c^2 \pi^2}{L^2} \sum_{n=1}^{\infty} u_n(t) n^2\sin \left ( \frac{n\pi x}{L} \right ) + \sum_{n=1}^{\infty}f_n \sin \left ( \frac{n\pi x}{L} \right )
+    f(t) = \sum_{n=1}^{\infty} f_n(t) \sin \left(\frac{n \pi}{L}x \right)
 \end{align*}
 
-Now we cancel all $\sin$ terms and get
+We can compute the coefficients $f_n(t)$ using the formula:
 
 \begin{align*}
-    \frac{\partial^2 u_n}{\partial t^2} = -\frac{c^2 \pi^2}{L^2} u_n(t) n^2 + f_n
+    f_n(t) = \frac{2}{L} \int_0^L f(t) \sin \left(\frac{n \pi}{L}x \right) dx = \frac{2f(t)}{n \pi} ((-1)^{n+1} + 1)
 \end{align*}
 
-\subsection{}
-
-If we set $f(t) = \sin{\omega t}$ we can solve the ODE for $u_n(t)$
+This gives us the series:
 
 \begin{align*}
-    \frac{\partial^2 u_n}{\partial t^2} = -\frac{c^2 \pi^2}{L^2} u_n(t) n^2 + \frac{4\sin{\omega t}}{n\pi}
+    f(t) = \sum_{n=1}^{\infty} \frac{4f(t)}{(2n-1) \pi} \sin \left(\frac{n \pi}{L}x \right)
 \end{align*}
-\subsection{}
 
-\subsection{}
+We can now plug this into the PDE and get:
 
-\section{Problem 2}
+\begin{align*}
+    \sum_{n=1}^{\infty} \frac{\partial^2 u_n(t)}{\partial t^2} \sin \left(\frac{n \pi}{L}x \right) = c^2 \sum_{n=1}^{\infty} u_n(t) \frac{\partial^2}{\partial x^2}\left( \sin \left(\frac{n \pi}{L}x \right) \right) + \sum_{m=1}^{\infty} f_n(t) \sin \left(\frac{n \pi}{L}x \right)
+\end{align*}
 
-\subsection{}
+We collect terms and write it as a single sum:
 
-\subsection{}
+\begin{align*}
+    \sum_{n=1}^{\infty} \left( \frac{\partial^2 u_n(t)}{\partial t^2} - c^2 \frac{n^2 \pi^2}{L^2} u_n(t) - f_n(t)  \right)\sin \left(\frac{n \pi}{L}x \right) = 0
+\end{align*}
 
-\section{Problem 3}
+By the uniqness of fourirer series we can now conclude that each term in the sum must be equal to zero. This gives us a set of ODEs:
 
-\subsection{}
+\begin{align*}
+    \frac{\partial^2 u_n(t)}{\partial t^2} - c^2 \frac{n^2 \pi^2}{L^2} u_n(t) = f_n(t)
+\end{align*}
 
-\subsection{}
+IF we assume that $f(t) = sin(\omega t)$ we can solve the ode:
 
-\subsection{}
+\begin{align*}
+    \frac{\partial^2 u_n(t)}{\partial t^2} - c^2 \frac{n^2 \pi^2}{L^2} u_n(t) = f_n(t)
+\end{align*}
 
-\subsection{}
+We can solve this like any other ODE we start by finding the homogeneous solution:
 
-\section{Problem 4}
+\begin{align*}
+    \frac{\partial^2 u_n(t)}{\partial t^2} - c^2 \frac{n^2 \pi^2}{L^2} u_n(t) = 0
+\end{align*}
+
+This homogeneous solution can be found by physical reasoning. At time $t=0$ the string is at rest in the equilibrium position and the only thing moving it from there is the driving force f(t) and since we are computing the homogeneous solution we set $f(t) = 0$. This means that the string wont move. If the string doesnt move we can conclude that the homogeneous solution is $u_n(t) = 0$.
+This means that the only solution to the ODE is the particular solution. To find that we make an ansatz $u_n(t) = A_n \sin(\omega t)$ and plug it into the ODE and since we know that we get zero when $f_n(t) = 0$ we only need to compute for odd n:
+
+\begin{align*}
+    \frac{\partial^2 u_n(t)}{\partial t^2} - c^2 \frac{(2n-1)^2 \pi^2}{L^2} u_n(t) = \frac{4\sin(\omega t)}{(2n-1) \pi}
+\end{align*}
+
+This gives us:
+
+\begin{align*}
+    -A_n \omega^2 \sin(\omega t) - c^2 \frac{(2n-1)^2 \pi^2}{L^2} A_n \sin(\omega t) = \frac{4\sin(\omega t)}{(2n-1) \pi}
+\end{align*}
+
+We can now divide by $\sin(\omega t)$ and get:
+
+\begin{align*}
+    -A_n \omega^2 - c^2 \frac{(2n-1)^2 \pi^2}{L^2} A_n = \frac{4}{(2n-1) \pi}
+\end{align*}
+
+This we can solve for $A_n$:
+
+\begin{align*}
+    A_n = \frac{4}{(2n-1) \pi} \frac{1}{-\omega^2 - c^2 \frac{(2n-1)^2 \pi^2}{L^2}}
+\end{align*}
+
+This gives us the solution to the ODE:
+
+\begin{align*}
+    u_n(t) = \frac{4}{(2n-1) \pi} \frac{1}{-A_n \omega^2 - c^2 \frac{(2n-1)^2 \pi^2}{L^2}} \sin(\omega t)
+\end{align*}
+
+If we substitue this into the series solution we get:
+
+\begin{align*}
+    u(x,t) = \sum_{n=1}^{\infty} \frac{4}{(2n-1) \pi} \frac{1}{-A_n \omega^2 - c^2 \frac{(2n-1)^2 \pi^2}{L^2}} \sin(\omega t) \sin \left(\frac{n \pi}{L}x \right)
+\end{align*}
+
+When $\omega$ approaches $\frac{\pi c}{L}$ the first mode resonates and the amplitude goes to infinity. On the other hand if we approach $\frac{2 \pi c}{L}$ we dont get resonace since we dont have a mode that matches the driving force. This means that the amplitude will be finite.
+
+\section*{Problem 2}
+
+Again we have a uniform string  with fixed endpoints, and some frictional force acting on it. The PDE looks likte this:
+
+\begin{align*}
+    \rho_0\frac{\partial^2 u }{\partial t^2}(x,t) = T_0 \frac{\partial^2 u}{\partial x^2}(x,t) - \beta \frac{\partial u}{\partial t}(x,t)
+\end{align*}
+
+Since the PDE is linear and homogeneous and the boundry conditions also are linear and homogeneous we can use separation of variables. We can write the solution as a product of two functions:
+
+\begin{align*}
+    u(x,t) = X(x)T(t)
+\end{align*}
+
+We can now plug this into the PDE and get:
+
+\begin{align*}
+    \rho_0 X(x) \frac{\partial^2 T(t)}{\partial t^2} = T_0 \frac{\partial^2 X(x)}{\partial x^2}T(t) - \beta X(x) \frac{\partial T(t)}{\partial t}
+\end{align*}
+
+We can now divide by $XTT_0$ and get:
+
+\begin{align*}
+    \frac{\rho_0}{T_0} \frac{1}{T(t)} \frac{\partial^2 T(t)}{\partial t^2} = \frac{\partial^2 X(x)}{\partial x^2}\frac{1}{X(x)} - \frac{\beta}{T_0} \frac{1}{T(t)} \frac{\partial T(t)}{\partial t}
+\end{align*}
+
+From this we can form two ODEs:
+
+\begin{align*}
+    \frac{\partial^2 X(x)}{\partial x^2} = -\lambda X(x) \\
+    \frac{\rho_0}{T_0} \frac{\partial^2 T(t)}{\partial t^2} + \frac{\beta}{T_0} \frac{\partial T(t)}{\partial t} = -\lambda T(t)
+\end{align*}
+
+We can now solve the ODEs. We begin with the spatial ODE:
+
+\begin{align*}
+    \frac{\partial^2 X(x)}{\partial x^2} = -\lambda X(x)
+\end{align*}
+
+We need to consider the different cases for $\lambda$, we begin with $\lambda = 0$:
+
+\begin{align*}
+    \frac{\partial^2 X(x)}{\partial x^2} = 0
+\end{align*}
+
+This gives us the solution:
+
+\begin{align*}
+    X(x) = A + Bx
+\end{align*}
+
+Plugging in the boundary conditions we get:
+
+\begin{align*}
+    X(0) = 0 \Rightarrow A = 0 \\
+    X(L) = 0 \Rightarrow B = 0
+\end{align*}
+
+This gives us the trivial solution $X(x) = 0$. Now we consider $\lambda > 0$:
+
+\begin{align*}
+    \frac{\partial^2 X(x)}{\partial x^2} = -\lambda X(x)
+\end{align*}
+
+This gives us the solution:
+
+\begin{align*}
+    X(x) = A \cos(\sqrt{\lambda}x) + B \sin(\sqrt{\lambda}x)
+\end{align*}
+
+Plugging in the boundary conditions we get:
+
+\begin{align*}
+    X(0) = 0 \Rightarrow A = 0 \\
+    X(L) = 0 \Rightarrow B\sin(\sqrt{\lambda}L) = 0
+\end{align*}
+
+This is satisfied if $\sin(\sqrt{\lambda}L) = 0$ which gives us the condition:
+
+\begin{align*}
+    \sqrt{\lambda}L = n\pi \Rightarrow \lambda = \frac{n^2\pi^2}{L^2}
+\end{align*}
+
+Now we check the case $\lambda < 0$:
+
+\begin{align*}
+    \frac{\partial^2 X(x)}{\partial x^2} = -\lambda X(x)
+\end{align*}
+
+This gives us the solution:
+
+\begin{align*}
+    X(x) = A e^{\sqrt{-\lambda}x} + B e^{-\sqrt{-\lambda}x}
+\end{align*}
+
+Plugging in the boundary conditions we get:
+
+\begin{align*}
+    X(0) = 0 \Rightarrow A + B = 0 \\
+    X(L) = 0 \Rightarrow A e^{\sqrt{-\lambda}L} + B e^{-\sqrt{-\lambda}L} = 0
+\end{align*}
+
+This gives us the condition:
+
+\begin{align*}
+    e^{\sqrt{-\lambda}L} = -1
+\end{align*}
+
+This is not possible since $e^{\sqrt{-\lambda}L}$ is always positive. This means that $\lambda < 0$ gives us no solutions.
+This means that the only solutions to the spatial ODE are given by $\lambda = \frac{n^2\pi^2}{L^2}$ and $X_n(x) = B_n \sin(\frac{n\pi}{L}x)$.
+
+Now we solve the temporal ODE:
+
+\begin{align*}
+    \frac{\rho_0}{T_0} \frac{\partial^2 T(t)}{\partial t^2} + \frac{\beta}{T_0} \frac{\partial T(t)}{\partial t} = -\lambda T(t)
+\end{align*}
+
+We can plug in $\lambda = \frac{n^2\pi^2}{L^2}$ and get:
+
+\begin{align*}
+    \frac{\rho_0}{T_0} \frac{\partial^2 T(t)}{\partial t^2} + \frac{\beta}{T_0} \frac{\partial T(t)}{\partial t} = -\frac{n^2\pi^2}{L^2} T(t)
+\end{align*}
+
+We can now multiply by $\frac{T_0}{\rho_0}$ and get:
+
+\begin{align*}
+    \frac{\partial^2 T(t)}{\partial t^2} + \frac{\beta}{\rho_0} \frac{\partial T(t)}{\partial t} = -\frac{n^2\pi^2}{L^2} T(t)
+\end{align*}
+
+From this we can form the characteristic equation:
+
+\begin{align*}
+    r^2 + \frac{\beta}{\rho_0} r + \frac{n^2\pi^2}{L^2} = 0
+\end{align*}
+
+This gives us the solutions:
+
+\begin{align*}
+    r_{1,2} = -\frac{\beta}{2\rho_0} \pm \sqrt{\left(\frac{\beta}{2\rho_0}\right)^2 - \frac{n^2\pi^2}{L^2}}
+\end{align*}
+
+Since $\beta$ is small we can approximate $\left(\frac{\beta}{2 \rho_o}\right)^2 = 0$ and get:
+
+\begin{align*}
+    r_{1,2} = -\frac{\beta}{2\rho_0} \pm \sqrt{-\frac{n^2\pi^2}{L^2}} = -\frac{\beta}{2\rho_0} \pm i \frac{n\pi}{L}
+\end{align*}
+
+This gives us the solution:
+
+\begin{align*}
+    T_n(t) = e^{-\frac{\beta}{2\rho_0}t}\left( C_n \cos\left(\frac{n\pi}{L}t\right) + D_n \sin\left(\frac{n\pi}{L}t\right) \right)
+\end{align*}
+
+This gives us the general solution to the PDE:
+
+\begin{align*}
+    u(x,t) = \sum_{n=1}^{\infty} B_n e^{-\frac{\beta}{2\rho_0}t}\left( C_n \cos\left(\frac{n\pi}{L}t\right) + D_n \sin\left(\frac{n\pi}{L}t\right) \right) \sin\left(\frac{n\pi}{L}x\right)
+\end{align*}
+
+Now we can use the inital conditions to fix the coefficients. We have:
+
+\begin{align*}
+    u(x,0) = f(x) \Rightarrow \sum_{n=1}^{\infty} B_n C_n \sin\left(\frac{n\pi}{L}x\right) = f(x)
+\end{align*}
+
+We can use the fourier series to compute the coefficients:
+
+\begin{align*}
+    B_nC_n = \frac{2}{L} \int_0^L f(x) \sin\left(\frac{n\pi}{L}x\right) dx
+\end{align*}
+
+Since f(x) isn't specified we can leave the coefficients as they are. Now we can use the second inital condition $\frac{\partial u}{\partial t}(x,0) = g(x)$:
+
+\begin{align*}
+    \sum_{n=1}^{\infty} B_n(-\frac{\beta}{2 \rho_0}C_n + \frac{n\pi}{L}D_n)\sin\left(\frac{n\pi}{L}x\right) = g(x)
+\end{align*}
+
+Again we can use the fourier series to compute the coefficients:
+
+\begin{align*}
+    B_n(-\frac{\beta}{2 \rho_0}C_n + \frac{n\pi}{L}D_n) = \frac{2}{L} \int_0^L g(x) \sin\left(\frac{n\pi}{L}x\right) dx
+\end{align*}
+
+From the exponential term we can se that a larger $\beta$ will cause the amplitude to decay faster. The amplitude of the oscillations can be expressed as: $e^{-\frac{\beta}{2 \rho_0}}B_n\sqrt{C_n^2+D_n^2}$. How the ocsillatory nature of the different modes are affected by $\beta$ I don't really understand. 
+
+\section*{Problem 3}
+
+We are given an operator L and we are asked to determine $L^\dagger$
+
+\section*{Problem 4}
 
 
-\section{Problem 5}
+\section*{Problem 5}
 
-\subsection{}
 
-\subsection{}
 
 \end{document}
 
