@@ -320,14 +320,121 @@ From the exponential term we can se that a larger $\beta$ will cause the amplitu
 
 \section*{Problem 3}
 
-We are given an operator L and we are asked to determine $L^\dagger$
+We are given an operator $L$ and we are asked to determine $L^\dagger$
+
+\begin{align*}
+    L = a(x) \frac{d^2}{dx^2} + b(x) \frac{d}{dx} + c(x)
+\end{align*}
+
+The operator $L$ and its adjoint $L^\dagger$ are correlated as:
+\begin{align*}
+    \int_{x_0}^{x_1} u L^\dagger(v) - v L(u) dx = w(x) \bigg\rvert_{x_0}^{x_1}
+\end{align*}
+
+We now need to determine $L^\dagger$ and $w(x)$.
+
+We start by insterting the expanded form of $L$ and $L^\dagger$:
+\begin{align*}
+    \int_{x_0}^{x_1} u L^\dagger(v) - v L(u) dx = \int_{x_0}^{x_1} uL^\dagger(v) - \int_{x_0}^{x_1} v\left( a(x) \frac{d^2 u}{dx^2} + b(x) \frac{du}{dx} + c(x)u \right) dx
+\end{align*}
+
+The second term can be split further:
+
+\begin{align*}
+    \int_{x_0}^{x_1} v a(x) \frac{d^2 u}{dx^2} dx + \int_{x_0}^{x_1} v b(x) \frac{du}{dx} dx + \int_{x_0}^{x_1} c(x)uv dx
+\end{align*}
+
+Using integration by parts we can now compute these terms:
+
+\begin{align*}
+    \int_{x_0}^{x_1} v a(x) \frac{d^2 u}{dx^2} dx = va(x)\frac{du}{dx}\bigg\rvert_{x_0}^{x_1} - \int_{x_0}^{x_1} \frac{du}{dx}(\frac{dv}{dx}a(x) + v\frac{da}{dx}) dx = \\
+    = va(x)\frac{du}{dx}\bigg\rvert_{x_0}^{x_1} - \int_{x_0}^{x_1} \frac{du}{dx}\frac{dv}{dx}a(x) - \int_{x_0}^{x_1} \frac{du}{dx}v\frac{da}{dx} = \\
+    = va(x)\frac{du}{dx}\bigg\rvert_{x_0}^{x_1} - \left( u \frac{dv}{dx} a(x) \bigg\rvert_{x_0}^{x^1} - \int_{x_0}^{x_1} u \left( \frac{d^2v}{dx^2} a(x) + \frac{dv}{dx}\frac{da}{dx}\right)dx\right) - \\
+    - \left(uv\frac{da}{dx} \bigg\rvert_{x_0}^{x_1} - \int_{x_0}^{x_1} u \left( \frac{d^2 a}{dx^2}v + \frac{da}{dx}\frac{dv}{dx}\right)dx \right)
+\end{align*}
+
+\begin{align*}
+    &\int_{x_0}^{x_1} v b(x) \frac{du}{dx} dx = vb(x)u \bigg\rvert_{x_0}^{x_1} - \int_{x_0}^{x_1} u(\frac{dv}{dx}b(x) + v\frac{db}{dx})dx\\ 
+    &\int_{x_0}^{x_1} c(x)uv dx
+\end{align*}
+
+If we put this all together we get:
+
+\begin{align*}
+    \int_{x_0}^{x_1} v L(u) dx = v\frac{du}{dx}a - \frac{dv}{dx}ua - vu \frac{da}{dx} + vub \bigg\rvert_{x_0}^{x_1} + \int_{x_0}^{x_1} u\left(\frac{d^2 v}{dx^2}a + v\frac{d^2a}{dx^2} + 2 \frac{dv}{dx} \frac{da}{dx} \right) - u\left( \frac{dv}{dx}b + v \frac{db}{dx}\right) + uvc dx 
+\end{align*}
+
+If we rewrite the orginial equation we get:
+
+\begin{align*}
+    \int_{x_0}^{x_1} uL^\dagger(v) dx = \int_{x_0}^{x_!} v L(u) dx + w(x) \bigg\rvert_{x_0}^{x_1}
+\end{align*}
+
+If we compare the two integrals we can see that:
+\begin{align*}
+    L^\dagger = a(x)\frac{d^2}{dx^2} + \left(2\frac{da}{dx} - b(x)\right)\frac{d}{dx} + \left(\frac{d^2 a}{dx^2} - \frac{db}{dx} + c(x)\right)
+\end{align*}
+and
+\begin{align*}
+    w(x) = v\frac{du}{dx}a - \frac{dv}{dx}ua - vu \frac{da}{dx} + vub
+\end{align*}
+
+In order for $L = L^\dagger$ we need to compare terms to find constrants.
+
+\begin{align*}
+    &a(x) = a(x) \\
+    &2\frac{da}{dx} - b(x) = b(x) \\
+    &\frac{d^2 a}{dx^2} - \frac{db}{dx} + c(x) = c(x)
+\end{align*}
+
+In order for these equations to be satisfied we need to have $\frac{da}{dx} = b$. So $c(x)$ is arbitrary and $a(x)$ and $b(x)$ are related by $b(x) = \frac{da}{dx}$. If we have L on this form we can prove that it is of Sturm-Liouville type.
+
+We begin by rewriting the formula for a sturm-liouville operator:
+
+\begin{align*}
+    \frac{d}{dx}\left( p(x) \frac{d}{dx} \right) + q(x) = p(x) \frac{d^2}{dx^2} + \frac{dp}{dx} \frac{d}{dx} + q(x)
+\end{align*}
+
+From here we can correlate a,b and c with p and q:
+\begin{align*}
+    a(x) = p(x) \\
+    b(x) = \frac{dp}{dx} \\
+    c(x) = q(x)
+\end{align*}
+
+So with the constraint $b(x) = \frac{da}{dx}$ we can conclude that $L$ is of Sturm-Liouville type.
+
+Since $L = L^\dagger$ is of Sturm-Liouville type we can conclude that it is self adjoint with all regular boundary conditions as long as $a(x)$ is smoothe and positive and $c(x)$ is smooth and real. The regular boundry conditions are homogeneus and can be Dirichlet, Neumann or mixed.
+
+In order for $L = L^\dagger$ to be self adjoint the boundary terms must vanish. This means that $w(x)$ must vanish at the boundaries. So as long as the boundary conditions on both u and v make them vanish at the boundaries $w(x)$ will vanish and $L = L^\dagger$ will be self adjoint.
 
 \section*{Problem 4}
 
+In the coursebook a similar problem is worked out and the solution is given as:
+
+\begin{align*}
+    \frac{T_0}{\rho_{max}}\left(\frac{\pi}{L}\right)^2 \leq \lambda_1 \leq \frac{T_0}{\rho_{min}} \left(\frac{\pi}{L}\right)^2
+\end{align*}
+
+So now we just need to find $\rho_{max}$ and $\rho_{min}$. We have:
+
+\begin{align*}
+    \rho(x) = 1 + \frac{1}{100} \cdot \sin\left( 100 \cdot \frac{2nx}{L} \right)
+\end{align*}
+
+Since the sine function oscillates between -1 and 1 we can conclude that:
+\begin{align*}
+    \rho_{max} = 1 + \frac{1}{100} \\
+    \rho_{min} = 1 - \frac{1}{100}
+\end{align*}
+This gives us the bounds:
+\begin{align*}
+    \frac{T_0}{1 + \frac{1}{100}}\left(\frac{\pi}{L}\right)^2 \leq \lambda_1 \leq \frac{T_0}{1 - \frac{1}{100}} \left(\frac{\pi}{L}\right)^2
+\end{align*}
 
 \section*{Problem 5}
 
-
+We need to use a trial function 
 
 \end{document}
 

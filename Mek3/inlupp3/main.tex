@@ -1,0 +1,220 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Inlämmnings uppgift 3 - Mekanik 3}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+
+\subsection*{Problemuppställning}
+
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{Screenshot 2025-03-09 at 12-31-22 mek3 - mek3-1.pdf.png}
+        \end{center}
+        \caption{Problemuppställning}
+        \label{fig:uppställning1}
+    \end{small}
+\end{figure}
+
+Vi har en tjock cylinder med radie $r_2 = 350$mm och inner radie $r_1 = 274$mm. Cylindern har en höjd $h = 535$mm och en massa $m = 46.6$kg. På cylindern sitter också två tillverknings defekter som modeleras som två punktmassor med massa $m_d = 50$g. Denna cylindern kan rotera kring sin symetri axel, denna rotations axeln kan dock justeras med en liten vinkel $\theta$ i förhållande till symetri axeln. Tanken är att denna cylinder ska användas som ett svänghjul för energi lagring i fordon och kommer därför rotera mycket snabbt. För att minimera lagerkrafterna är det viktigt att vinkelhastighets vektorn är parallell med en principal axel för hela systememt annars riskerar systemet att vibrera sönder. Det som efterfrågas är alltså vinkeln $\theta$ som ger $\omega$ parallell med en principal axel. För att kunna lösa problemet görs några idealiseringar, vi antar friktionsfri rotation kring axeln, vi antar homogen cylinder och vi antar att defekterna är punktformiga. 
+
+\subsection*{Plan}
+
+För att lösa detta börjar vi att plocka fram tröghets tensorn för hela systemet i en godtycklig bas sedan diagonaliserar vi denna tensor och tillsist tar vi reda på vinkeln mellan vår ursprungliga bas och den nya basen.
+
+\subsection*{Genomförande}
+
+Vi kan dela upp problemet med att plocka fram tröghets tensorn i tre delar, först tar vi fram tröghets tensorn för den homogena cylindern, sedan tar vi fram tröghets tensorerna för defekterna och tillsist adderar vi ihop dessa två. Koordinat systemet i figuren är ett principal system för cylindern utan defekterna och vi behöver därmed bara plocka fram diagonal elementetn för cylindern.
+
+\begin{align*}
+    I_{zz} = \iiint_{V} \rho(x,y,z) x^2+y^2 dV \\
+    I_{xx} = \iiint_{V} \rho(x,y,z) y^2+z^2 dV \\
+    I_{yy} = \iiint_{V} \rho(x,y,z) x^2+z^2 dV
+\end{align*}
+
+Eftersom vi är i ett principal system för cylindern kan vi bara plocka dessa elementen direkt från physics handbook. 
+
+\begin{align*}
+    I_{zz} = \frac{1}{2} m r^2 \\
+    I_{xx} = \frac{1}{12} m (3r^2 + h^2) \\
+    I_{yy} = \frac{1}{12} m (3r^2 + h^2)
+\end{align*}
+
+För punktmassorna behöver vi ta fram deras positions vektorer och sedan beräkna tröghetstensrerna enligt formeln
+\begin{align*}
+    \mathbf{I} = m \begin{vmatrix}
+        x^2 + y^2 & -xy & -xz \\
+        -xy & y^2 + z^2 & -yz \\
+        -xz & -yz & z^2 + x^2
+    \end{vmatrix}
+\end{align*}
+
+Där $x,y,z$ är positionen för punktmassan. Positionerna kan vi få från figuren, vi antar att dom ligger i xy-planet i det kroppsfixa systemet. vi får då verktorerna $(r_1,h/2,0)$ och $(-r_1,-h/2,0)$ som postions vektorer för defekterna. Sätter vi in dessa i formeln för tröghets tensorn får vi
+\begin{align*}
+    \mathbf{I}_d = m_d \begin{vmatrix}
+        r_1^2 + (h/2)^2 & -r_1(h/2) & 0 \\
+        -r_1(h/2) & (h/2)^2 & 0 \\
+        0 & 0 & r_1^2
+    \end{vmatrix}
+\end{align*}
+Tröghetstensorn för defekterna är samma för båda. Sätter vi nu ihopa allt får vi den totala tröghets tensorn för systemet.
+\begin{align*}
+    \mathbf{I}_{tot} = \mathbf{I}_{cylinder} + 2\mathbf{I}_{d} = \begin{vmatrix}
+        I_{xx} & I_{xy} & 0 \\
+        I_{xy} & I_{yy} & 0 \\
+        0 & 0 & I_{zz}
+    \end{vmatrix}
+\end{align*}
+
+Med elementen
+\begin{align*}
+    I_{xx} = \\
+    I_{yy} = \\
+    I_{zz} = \\
+    I_{xy} = \\
+\end{align*}
+
+Men denna tensorn är inte diagonal så vi behöver diagonalisera den för att hitta ett principal system för hela systemet. Vi vet att det ända sättet vi kan förändra koordinaterna är att rotera axeln så vi kan sätta upp en rotations matris som roterar systemet. Eftersom $\theta$ kan va i vilken riktning som helst behöver vi använda oss av två rotations matriser, en för att rotera systemet i xz planet och en för att rotera systemet i xy planet. Vi kan då skriva rotations matrisen som
+\begin{align*}
+    \mathbf{R} = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & \cos(\theta) & -\sin(\theta) \\
+        0 & \sin(\theta) & \cos(\theta)
+    \end{pmatrix} \cdot
+    \begin{pmatrix}
+        \cos(\phi) & -\sin(\phi) & 0 \\
+        \sin(\phi) & \cos(\phi) & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}
+\end{align*}
+
+Det innebär att vi nu har matris ekvationen
+
+\begin{align*}
+    \mathbf{I}_{tot} = \mathbf{R}\cdot \mathbf{I}_{diagonal}
+\end{align*}
+
+Vi behöver alltså invertera $\mathbf{R}$ och multiplicera med $\mathbf{I}_{tot}$ för att få $\mathbf{I}_{diagonal}$. Vi kan då skriva om detta till
+\begin{align*}
+    \mathbf{I}_{diagonal} = \mathbf{R}^{-1}\cdot \mathbf{I}_{tot}
+\end{align*}
+Eftersom $\mathbf{R}$ är en rotations matris så är den ortogonal och därmed är $\mathbf{R}^{-1} = \mathbf{R}^T$. Vi kan då skriva om detta till
+\begin{align*}
+    \mathbf{I}_{diagonal} = \mathbf{R}^T\cdot \mathbf{I}_{tot}
+\end{align*}
+
+Nu kan vi sätta in vår rotations matris och få ett ekvationsystem för $\theta$ och $\phi$. Här fastnar jag lite och får inte till någon lösning till ekvationsystemet
+
+\subsection*{Rimlighet}
+Det vi har änsålänge kan vi kontrollera dimensionerna på. Eftersom $\mathbf{R}$ är enhetslös stämmer enheterna i det sista uttrycket. 
+
+
+
+\section*{Problem 2}
+
+\subsection*{Problemuppställning}
+\begin{figure}[H]
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{2001-a-space-odyssey-0-23-25-1024x481.jpg}
+        \end{center}
+        \caption{}
+        \label{fig:}
+    \end{small}
+\end{figure}
+
+Nu har vi en fiktiv rymdstation från filmen 2001: A Space Odyssey. Denna rymdstation består av en central cylinder och två ringar med fyra ekrar var en i varje ände av den centrala cylindern. För att ge passagerarna ombord en känsla av tyngdkraft roterar hela rymdstationen kring sin symetri axel. Detta är ju bra för dom ombord och gör säkert vistelesen mycket behaglig men det skulle kunna ställa till problem när det blir dags att manövrera rymdstationen. Som vi sett på labb så gillar inte snurrande objekt när man försöker ändra på deras riktning. Det som efterfrågas är vilken riktning man skulle behöva avfyra styrraketer för att kunna göra en manöver där man ändrar orientering med 90 grader samt hur man skulle kunna designa rymdstationen för att göra manöverreing enklare. Vi antar att denna rymdstationen befinner sig utanför atmosfären och att det inte finns något motstånd. Vi antar också att rymdstationen är homogen och att den snurrar med konstant vinkelhastighet $\omega$ kring sin symetri axel. Vi antar också att rymdstationen är i vila i förhållande till en inertial referensram. Vi antar också att det finns en bank med styrraketer i varje ände som kan avfyras vinkelrätt mot symetri axeln. Vi antar också att dessa styrraketer inte snurrar. Manövern vi vill genomföra illusteras nedan.
+
+\begin{figure}
+    \begin{small}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{Screenshot 2025-03-08 at 14-11-10 mek3 - mek3.pdf.png}
+        \end{center}
+        \caption{manöver}
+        \label{fig:manöver}
+    \end{small}
+\end{figure}
+
+
+\subsection*{Plan}
+
+För att kunna göra den manövernern behöver vi först förstå hur rotationen hos rymdstationen påverkar manövreringen och utifrån det designa manövern. Efter det får vi fundera på vilka av de effekter som uppkommer på grund av rymdstationens rotation påverkar manövereringen negativt och hur vi kan designa rymdstationen för att minimera dessa effekter.
+
+\subsection*{Genomförande}
+
+Eftersom vi har ett koordinat system som diagonaliserar tröghets tensorn för rymdstationen (detta vet vi eftersom vi har koordinat axlar parallella med symetri axlarna) så vet vi också att $\omega \parallel \mathbf{L}$ där $\mathbf{L}$ är vridmomentet. Eftersom vi vill rotera rymdstationen kan vi ställa upp följande samband
+\begin{align*}
+    \frac{dL}{dT} = \Omega \times \mathbf{L}
+\end{align*}
+
+Där $\Omega$ är rotations hastigheten för systemet i detta fall för z och x axlarna, denna är därmed riktad i y riktning och $\mathbf{L}$ är riktad i x riktning. Eulers andra lag säger också att
+\begin{align*}
+    \frac{d\mathbf{L}}{dt} = M
+\end{align*}
+
+Sätter vi dessa lika med varandra får vi
+\begin{align*}
+    M = \Omega \times \mathbf{L}
+\end{align*}
+
+Nu behöver vi bara lösa ut $\Omega$. Vi börjar med att ta vektorprodukten av båda sidorna med $\mathbf{L}$ och får då
+\begin{align*}
+    \mathbf{L} \times M = \mathbf{L} \times (\Omega \times \mathbf{L})
+\end{align*}
+
+Högerledet kan skrivas om med hjälp av en vektor identitet till 
+\begin{align*}
+    \mathbf{L} \times (\Omega \times \mathbf{L}) = (\mathbf{L} \cdot \mathbf{L})\Omega - (\mathbf{L} \cdot \Omega)\mathbf{L}
+\end{align*}
+
+Vi vet att $\mathbf{L}$ och $\Omega$ är ortogonala så $\mathbf{L} \cdot \Omega = 0$ och vi får
+\begin{align*}
+    \mathbf{L} \times M = |\mathbf{L}|^2\Omega
+\end{align*}
+
+Vilket tillslut ger
+\begin{align*}
+    \Omega = \frac{\mathbf{L} \times M}{|\mathbf{L}|^2}
+\end{align*}
+
+Från formeln kan vi då se att den resulterande rotationen hos rymdstationen är vinkelrät mot både $\mathbf{L}$ och $M$. Detta innebär att om vi vill göra manövern i figur \ref{fig:manöver} så måste vi avfyra styrraketerna så att dom skapar ett vridmoment riktita i z riktning. Detta kan göras genom att avfyra en raket på varje sida av stationen med en som är riktad i +y och en i -y riktning. Detta kommer att ge ett vridmoment i z riktning och därmed en rotation i x riktning. 
+
+För att förbättra manövreringen av rymdstationen kan vi designa den för att minimera $\mathbf{L}$, för utan rörelsemängdsmomentet kommer inte denna typen av precesions rörelse uppkomma och styraketerna blir därmed mer effektiva. Detta kan göras genom att t.ex snurra de två stora ringarna i mottsatt riktning mot varandra så deras rörelsemängdsmoment tar ut varandra. Detta skulle kunna skapa problem när man ska ta sig mellan ringarna men det skulle kunna vara värt det. Man skulle också kunna reducera $\mathbf{L}$ genom att göra ringarna lättare och därmed minska trögheten hos rymdstationen detta skulle inte eliminera problemen helt men de skulle minska något. 
+
+\subsection*{Rimlighet}
+
+Rimligheten kan vi kontrollera genom att titta på dimensionerna i formeln för $\Omega$ och se att de stämmer.
+\begin{align*}
+    \Omega = \frac{\mathbf{L} \times M}{|\mathbf{L}|^2}
+\end{align*}
+Där $\mathbf{L}$ har dimensionen $kg \cdot m^2 \cdot s^{-1}$ och $M$ har dimensionen $kg \cdot m^2 \cdot s^{-2}$. Detta ger oss
+\begin{align*}
+    \Omega = \frac{kg \cdot m^2 \cdot s^{-1} \times kg \cdot m^2 \cdot s^{-2}}{(kg \cdot m^2 \cdot s^{-1})^2} = \frac{kg^2 \cdot m^4  \cdot s^{-3}}{kg^2 \cdot m^4 \cdot s^{-2}} = s^{-1}
+\end{align*}
+Så dimensionerna stämmer och vi kan därmed anta att formeln är rimlig.
+\end{document}
+
