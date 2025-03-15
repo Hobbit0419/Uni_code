@@ -1,0 +1,104 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[swedish]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{Homework 3 mathematical methods in physics}
+\author{Anton Lindbro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+
+Here we have a ball $B^3$ of radius $a$ , the boundary of this ball is a sphere $S^2$ diveded into a northern and southern hemisphere. The northern hemisphere is in contact with a heatbath at temperature T and thesouthern hemisphere is in contact with a heatbath at temperature 0. There are no heatsources inside the ball. At time t=0 the temperature is uniform and equal to $T/2$. We are asked to find the equilibrium temperature distribution in the ball. To find this we need to solve the following equation
+
+\begin{align*}
+    \nabla^2 u(\rho,\phi,\theta) = 0
+\end{align*}
+
+where $u$ is the temperature distribution, $\rho$ is the radius, $\theta$ is the polar angle and $\phi$ is the azimuthal angle. The boundary conditions are as follows:
+\begin{align*}
+    u(a,\theta,\phi) = T \text{ for } 0 \leq \theta < \pi/2 \\
+    u(a,\theta,\phi) = 0 \text{ for } \pi/2 < \theta < \pi \\
+\end{align*}
+
+We can rewrite these using the Heaviside theta function $\theta_H(x)
+$
+
+\begin{align*}
+    u(a,\theta,\phi) = T \theta_H(\pi/2 - \theta)
+\end{align*}
+
+We need to rewrite the Laplace equation in spherical coordinates. The Laplace operator in spherical coordinates is given by
+\begin{align*}
+    \nabla^2 u = \frac{1}{\rho^2} \frac{\partial}{\partial \rho} \left( \rho^2 \frac{\partial u}{\partial \rho} \right) + \frac{1}{\rho^2 \sin(\theta)} \frac{\partial}{\partial \theta} \left( \sin(\theta) \frac{\partial u}{\partial \theta} \right) + \frac{1}{\rho^2 \sin^2(\theta)} \frac{\partial^2 u}{\partial \phi^2}
+\end{align*}
+
+We can now separate variables $u(\rho,\theta,\phi) = r(\rho)t(\theta)f(\phi)$ and plug this into the Laplace equation aswell as dividing by $r(\rho)t(\theta)f(\phi)$. This gives us the following equation
+
+\begin{align*}
+    \frac{1}{r}\frac{1}{\rho^2} \frac{d}{d \rho} \left( \rho^2 \frac{d r(\rho)}{d \rho} \right) + \frac{1}{t}\frac{1}{\rho^2\sin(\theta)} \frac{d}{d \theta} \left( \sin(\theta) \frac{d t(\theta)}{d \theta} \right) + \frac{1}{f}\frac{1}{\rho^2 \sin^2(\theta)} \frac{d^2 f(\phi)}{d \phi^2} = 0
+\end{align*}
+
+We can now multiply by $\rho^2 \sin^2(\theta)$ and se that f separates
+
+\begin{align*}
+    \frac{1}{f}\frac{d^2f}{d\phi^2} = \lambda \\
+    \frac{1}{r} \sin^2(\theta) \frac{d}{d \rho} \left( \rho^2 \frac{d r(\rho)}{d \rho} \right) + \frac{1}{t} \sin(\theta) \frac{d}{d \theta} \left( \sin(\theta) \frac{d t(\theta)}{d \theta} \right) = \lambda
+\end{align*}
+
+Now we can separate the second equation by divinding by $\sin^2(\theta)$
+
+\begin{align*}
+    \frac{1}{r}\frac{d}{d\rho}\left(\rho^2 \frac{dr(\rho)}{d\rho}\right) + \frac{1}{t} \frac{1}{\sin(\theta)} \frac{\partial}{\partial \theta} \left( \sin(\theta) \frac{\partial t(\theta)}{\partial \theta} \right) = \frac{\lambda}{\sin^2(\theta)}
+\end{align*}
+
+\begin{align*}
+    \frac{1}{r}\frac{d}{d\rho}\left(\rho^2 \frac{dr(\rho)}{d\rho}\right) = \frac{\lambda}{\sin^2(\theta)} - \frac{1}{t} \frac{1}{\sin(\theta)} \frac{\partial}{\partial \theta} \left( \sin(\theta) \frac{\partial t(\theta)}{\partial \theta} \right) = \mu
+\end{align*}
+
+We now have three separetade ODEs
+\begin{align*}
+    \frac{1}{f}\frac{d^2f}{d\phi^2} = \lambda \\
+    \frac{1}{r}\frac{d}{d\rho}\left(\rho^2 \frac{dr(\rho)}{d\rho}\right) = \mu \\
+    \frac{1}{t} \sin(\theta) \frac{d}{d \theta} \left( \sin(\theta) \frac{d t(\theta)}{d \theta} \right) = \lambda - \mu \sin^2(\theta)
+\end{align*}
+
+The first equation togheter with its periodic boundry conditions fix $\lambda = m^2$ and $f(\phi) = c_1\cos(m\phi) + c_2\sin(m\phi)$. We can now rewrite the remaining two equations as
+
+\begin{align*}
+    \frac{d}{d\rho}\left(\rho^2 \frac{dr(\rho)}{d\rho}\right) -r\mu = 0 \\
+    \frac{1}{t} \sin(\theta) \frac{d}{d \theta} \left( \sin(\theta) \frac{d t(\theta)}{d \theta} \right) = \frac{m^2}{\sin^2(\theta)} - \mu
+\end{align*}
+
+\begin{align*}
+    x
+\end{align*}
+\section*{Problem 2}
+
+\end{document}
+
