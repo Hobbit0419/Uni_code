@@ -1,0 +1,85 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[english]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[
+backend=biber,
+style=apa
+]{biblatex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{aas_macros}
+
+
+\addbibresource{referenser.bib}
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
+
+\textwidth 155mm \oddsidemargin -0mm
+\parskip 5mm
+\parindent 0mm
+
+\title{A data-driven method for stellar charaterisation}
+
+\author{Anton Lindbro}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  \node [anchor=north west, inner sep=30pt]  at (current page.north west)
+     {\includegraphics[height=4cm]{uu_logo.png}};
+\end{tikzpicture}
+
+%\section{Introduction/Goal}
+
+%Over arching question: How do we measure abundances of elements in M-dwarfs?
+
+%Goal: Create a large dataset of M-dwarf elemental abundances that can be used in future research.
+
+In the article 'A Data-driven M Dwarf Model and Detailed Abundances for ~17,000 M Dwarfs in SDSS-V' \cite{2025ApJ...982...13B} an novel aproach to determining elemental abundances for M-dwarfs is presented. The authors present a data-driven aproach to determining elemental abundances from high resolution spectra. Being able to understand the chemistry of these cool stars is challengin due to their cool nature. The low surface temperature of these stars enable simple chemical compunds to form in their atmospheres, these compounds give rise to complex spectral lines and make the spectra hard to analyse. The question this  article aims to answer is if there exists a method for charaterising M-dwarf spectra that is both accurate, precise and fast enough to be able to work with the large datasets that large scale sky surveys like SDSS are outputting today. As said the article presents a data-driven method and their goal is to evaluate this method and the different ways i can be implemented. 
+
+Having good understanding of the chemical makeup of M-dwarfs is important for many reasons. The chemicla composition of stars can be seen as the fossilrecords of the galaxy, by looking at the make up of stars we can deduce things about the chemical makeup of the gas they were born from. Knowing this is cruicial for the development of stellar and galactic evolution models. In a study from 2012 the validity of these models were questioned by studying the metalicity of 4141 M-dwarfs, the study found that the observations did not match the model predictions \cite{2012MNRAS.422.1489W}. This study and others like it could greatly benefit from the increased amount of good quality abundances for M-dwarfs.
+
+Another important reason good knowledge about M-dwars is important is that they make excellent candidates for exoplanet hosts. Their low mass and small sizes leads to strong signals using both radial velocity and transit exoplanet detection methods. M-dwarfs are particularly suited for finding earth sized planets in the habitable zone. Due to their low temperature and mass small terestial planets in the habitable zone will produce large signals using radial velocity method \cite{2018A&A...609A.117T}
+
+%\section{Novel aspects}
+
+%More data
+    %More training data - Binary stars
+    %More labeled data out - SDSS V and APOGEE
+
+%More elements
+
+
+
+%\section{Results}
+
+%The FGK-M training set yelds better results than the D. Souto et al. 2022 training set
+
+%The model is acurate for a large range of M-dwarfs
+
+%\section{Conclusions}
+
+%Method works great with some caveats
+
+%Larger traning set would be good
+
+%Model is bad at extrapolation outside its training set
+
+\printbibliography
+\end{document}
+
