@@ -8,27 +8,25 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{xcolor}
-\usepackage[
-backend=biber,
-style=apa
-]{biblatex}
+
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}} %Citation-related commands
+
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{aas_macros}
-
-
-\addbibresource{referenser.bib}
 
 \newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
 \newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
 \newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
 \newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
 
-\textwidth 155mm \oddsidemargin -0mm
+\textwidth 160mm \oddsidemargin -0mm
 \parskip 5mm
 \parindent 0mm
 
-\title{A data-driven method for stellar charaterisation}
+\title{A data-driven method for stellar characterisation}
 
 \author{Anton Lindbro}
 
@@ -44,42 +42,39 @@ style=apa
      {\includegraphics[height=4cm]{uu_logo.png}};
 \end{tikzpicture}
 
-%\section{Introduction/Goal}
+In the article 'A Data-driven M Dwarf Model and Detailed Abundances for ~17,000 M Dwarfs in SDSS-V' \citep{2025ApJ...982...13B}, a novel approach to determining elemental abundances for M-dwarfs is presented. The authors present a data-driven approach to determining elemental abundances from high resolution spectra. Being able to understand the chemistry of these cool stars is challenging due to their cool nature. The low surface temperature of these stars enable simple chemical compounds to form in their atmospheres. These compounds give rise to complex spectral features and make the spectra difficult to analyse. The question this  article aims to answer is if there exists a method for characterising M-dwarf spectra that is both accurate, precise and fast enough to be able to work with the large datasets that large scale sky surveys like SDSS are outputting today. As said, the article presents a data-driven method and their goal is to evaluate this method and the different ways i can be implemented. 
 
-%Over arching question: How do we measure abundances of elements in M-dwarfs?
+Having a good understanding of the chemical makeup of M-dwarfs is important for many reasons. The chemical composition of stars can be seen as the fossilrecords of the galaxy, by looking at the makeup of stars we can deduce things about the chemical makeup of the gas they were born from. Knowing this is crucial for the development of stellar and galactic evolution models. In a study from 2012 the validity of these models were questioned by studying the metallicity of 4141 M-dwarfs, the study found that the observations did not match the model predictions \citep{2012MNRAS.422.1489W}. This study and others like it could greatly benefit from the increased amount of good quality abundances for M-dwarfs.
 
-%Goal: Create a large dataset of M-dwarf elemental abundances that can be used in future research.
+Another important reason a good knowledge about M-dwarfs is important is that they make excellent candidates for exoplanet hosts. Their low mass and small sizes leads to strong signals using both radial velocity and transit exoplanet detection methods. M-dwarfs are particularly suited for finding earth sized planets in the habitable zone. Due to their low temperature and mass, small terrestrial planets in the habitable zone will produce large signals using radial velocity method \citep{2018A&A...609A.117T}. 
 
-In the article 'A Data-driven M Dwarf Model and Detailed Abundances for ~17,000 M Dwarfs in SDSS-V' \cite{2025ApJ...982...13B} an novel aproach to determining elemental abundances for M-dwarfs is presented. The authors present a data-driven aproach to determining elemental abundances from high resolution spectra. Being able to understand the chemistry of these cool stars is challengin due to their cool nature. The low surface temperature of these stars enable simple chemical compunds to form in their atmospheres, these compounds give rise to complex spectral lines and make the spectra hard to analyse. The question this  article aims to answer is if there exists a method for charaterising M-dwarf spectra that is both accurate, precise and fast enough to be able to work with the large datasets that large scale sky surveys like SDSS are outputting today. As said the article presents a data-driven method and their goal is to evaluate this method and the different ways i can be implemented. 
+The method used in this article is not new, the method was developed and published in 2015. The Cannon which is the method used here is a data-driven method that uses well characterised spectra to 'learn' how to characterise new spectra \citep{2015ApJ...808...16N}. This method has been used many times before, an example is a study from 2019 where high resolution spectra from the Echelle spectrometer at the Keck observatory were chraterised using The Cannon \citep{2019ApJ...876...68B}. Another example is a study from 2020 using The Cannon in much the same way as here but with fewer stars and fewer labels \citep{2020ApJ...892...31B}. 
 
-Having good understanding of the chemical makeup of M-dwarfs is important for many reasons. The chemicla composition of stars can be seen as the fossilrecords of the galaxy, by looking at the make up of stars we can deduce things about the chemical makeup of the gas they were born from. Knowing this is cruicial for the development of stellar and galactic evolution models. In a study from 2012 the validity of these models were questioned by studying the metalicity of 4141 M-dwarfs, the study found that the observations did not match the model predictions \cite{2012MNRAS.422.1489W}. This study and others like it could greatly benefit from the increased amount of good quality abundances for M-dwarfs.
+\pagebreak
 
-Another important reason good knowledge about M-dwars is important is that they make excellent candidates for exoplanet hosts. Their low mass and small sizes leads to strong signals using both radial velocity and transit exoplanet detection methods. M-dwarfs are particularly suited for finding earth sized planets in the habitable zone. Due to their low temperature and mass small terestial planets in the habitable zone will produce large signals using radial velocity method \cite{2018A&A...609A.117T}
+This study improves uppon the work done previously by increasing the size of the training data set, increasing the amount of labels and increasing the size of the labeled data set at the end. This is in part due to the increased size of the source dataset and the improved data quality of many observations. Some luck is also involved since the training data used is based on FGK-M binaries the fact that the SDSS dataset included 79 such binaries with high quality labeles enabled this study's improvement. The high quality spectra and labels of the FGK-M binaries also enabled the increase of the output lables from the trained modell.
 
-%\section{Novel aspects}
+\begin{figure}[H]
+  \begin{small}
+    \begin{center}
+      \includegraphics[width=0.9\textwidth]{Screenshot 2025-05-23 at 13-21-42 A Data-driven M Dwarf Model and Detailed Abundances for ​​​​​​∼17 000 M Dwarfs in SDSS-V - Behmard_2025_ApJ_982_13.pdf.png}
+    \end{center}
+    \caption{This figure shows one-to-one plots of the infered parameters(y-axis) and the reported lables(x-axis). The closer the point is to the dotted diagonal the more accurate the infered parameter. The points are coloured according to the $\chi^2$ of the flux model fit. $\chi^2$ is a measure of how good the model fit the data, lower value means better fit.  Figure from \citep{2025ApJ...982...13B}}
+    \label{fig:accuracy}
+  \end{small}
+\end{figure}
 
-%More data
-    %More training data - Binary stars
-    %More labeled data out - SDSS V and APOGEE
+The Cannon is found to be a adequate method to determine the parameters of large datasets of M-dwarf stars. It can be used on a wide range of M-dwarfs with reasonable accuracy and speed. There are some caveats to the model, it can not infere parameters outside the parameter space of the training set, nor can it easily be adapted to other datasources and sourcing training data is hard. 
 
-%More elements
+The first caveat being that the model can not infere parameters outside the parameter space of the training set. This means that one has to be reasonably sure that the star being characterised lays within the parameter space of the training set. The particular training set used spanns $-0.56 dex < [Fe/H] < 0.31 dex$ and the authors note that most M-dwarfs in the SDSS-V/MWM data set will lie within this span. 
 
+The second caveat being that the model can not be easily adapted to other datasources. Because of how The Cannon works it needs the data to have the same spectra resolution and all data needs to be normalised in the same way. Using data from spectrometers other than APOGEE means that it would have to be resampled to the resolution of APOGEE and normalized in the same way as the APOGEE data. The resampling is possible but the normalisation might not work if the instruments report their data differently. 
 
+Lastly, the fact that sourcing training data is difficult. Combined with the previous point meaning training data will need to be sourced from the same source as the data being charaterised. This limits the method somewhat but the FGK-M binary approach used in this study somewhat circumvents this. The FGK-M binary approach is also limited since FGK-M binaries are not to abundant.
 
-%\section{Results}
+In the future with newer larger datareleases from the likes of SDSS and others this method can be greatly improved with growing datasets. In conclusion the authors managed to find an appropriate method to characterise large sets of M-dwarfs that will also improve with the increased size and quality of future datasets.  
 
-%The FGK-M training set yelds better results than the D. Souto et al. 2022 training set
-
-%The model is acurate for a large range of M-dwarfs
-
-%\section{Conclusions}
-
-%Method works great with some caveats
-
-%Larger traning set would be good
-
-%Model is bad at extrapolation outside its training set
-
-\printbibliography
+\pagebreak
+\bibliography{referenser.bib}
 \end{document}
 

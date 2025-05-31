@@ -1,36 +1,583 @@
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
-
-\usepackage[swedish]{babel}
 \usepackage[pdftex]{graphicx}
 \usepackage{amsmath}
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{xcolor}
-\usepackage[
-backend=biber,
-style=apa
-]{biblatex}
+\usepackage{mathabx}
+\usepackage{tikz}
+\usepackage{listings}
 
-\addbibresource{referenser.bib}
+\definecolor{codegreen}{rgb}{0,0.6,0} 
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82} 
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+commentstyle=\color{codegreen},
+ keywordstyle=\color{magenta},
+numberstyle=\tiny\color{codegray}, 
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize, 
+breakatwhitespace=false, breaklines=true,
+captionpos=b, 
+keepspaces=true,  
+numbersep=5pt, 
+showspaces=false,
+showstringspaces=false, 
+showtabs=false, 
+tabsize=2 }
+
+\lstset{style=mystyle}
 
 \newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
 \newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
 \newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
 \newcommand{\placeholder}{{\huge\textbf{\textcolor{red}{Remember to put something good here!!!}}}}
 
-\textwidth 155mm \oddsidemargin -0mm
+\textwidth 160mm \oddsidemargin -0mm
 \parskip 5mm
 \parindent 0mm
 
-\title{Problemsolving 2}
+\title{Astrophysics 1 - Problem sheet}
+
 \author{Anton Lindbro}
+
 \date{\today}
 
 \begin{document}
 
 \maketitle
 
-\end{document}
+\begin{tikzpicture}[remember picture, overlay]
 
+  \node [anchor=north west, inner sep=30pt]  at (current page.north west)
+     {\includegraphics[height=4cm]{uu_logo.png}};
+\end{tikzpicture}
+
+\section*{Question 1}
+
+% 1 a)
+
+The light Gathering Power (LGP) of a telescope is proportional to the area of the primary mirror. Since we have approximately circular mirrors the LGP is proportional to the square of the radius. We can therefore calculate thr fraction of the LGP of the ELT and the human eye
+
+\begin{align}
+    \frac{\text{ELT}}{\text{Eye}} = \frac{39^2}{0.005^2} = 6.1 \cdot 10^7
+\end{align}
+
+% 1 b
+
+If we can just barely see a galaxy of magnitude $m_v = 28$ through our 4.2 meter telescope we can use the LGP fraction as above and the formula for magnitude difference to get the dimmest star the ELT can see. 
+
+\begin{align}
+    \frac{39^2}{4.2^2} = 86.2\\
+    \Delta m_v = 2.5 log_{10}(86.2) = 4.84\\
+    m_{v\text{ELT}} = 28 + 4.84 = 32.84
+\end{align}
+
+% 1 c
+
+To calculate this we need to do some trigonometry. To simplify everything since we are talking about such small angles we are going to use the small angle approximation $\tan \theta \approx \theta$ with this we can write $\theta = \frac{D}{r}$ where D is the size of the feature we are trying to resolve and r is our distance away from that feature. Converting this to arcminutes from radians, putting $\theta = 1$ and solving for r we get 
+
+\begin{align}
+    r = \frac{10 \cdot 180 \cdot 60}{\pi} = 34 \text{km}
+\end{align}
+
+Since the ISS is in orbit around 415 km above the earth humans on the ISS can not make out the great wall of china.
+
+% 2
+\section*{Question 2}
+
+In order to show this general correlation we need some defentions first. We define an angle $\Delta$ this is the angle we observe a star moving across the sky during a time t. We then define the proper motion of the star as $\mu = \frac{\Delta}{t}$. If we assume small angles we can calculate the distance traveled by the star as $D = r\Delta$ with r as the distance to the star being observed. This means we can calculate the transverse speed of the star as $v_t = \frac{D}{t} = \mu r$ from this we need some unit transformations to get this expression in nice units. If we convert to the units we want we get
+
+\begin{align}
+    v_t = \frac{\pi \cdot pc\text{(in meters)}}{180\cdot3600\cdot\text{seconds in a year}\cdot1000} \mu r = 4.740 \mu r
+\end{align}
+
+With this we can calculate the distance to this star as $\frac{36}{0.55\cdot 4.74} = 14 \text{pc}$
+
+% 3
+\section*{Question 3}
+ 
+Assuming the comet has a Keplarian orbit the sun will be in one of the foci of the elliptical orbit the closest approach can be calculated as $r_{min} = a(1-e) = 2.5279$AU. The comets closest approach to the earth would be when it is at its closest to the sun and the earth is on the line formed by the comet and the sun and since th earth is 1 AU from the sun the closest distance between the comet and earth would be 1.5279 AU. 
+
+% 4
+\section*{Question 4}
+
+We need the masses of the two stars in this binary. We have the period T, the angular semi-major axis and the trigonometric parallax, we also have the ratio of the distances between the stars and the common center of gravity. We know that the ratio between the distances is the same as the ratio between the masses with that now we only need the sum of the masses to be able to calculate the individual masses. This sum we can get from keplers third law which in this case will look like the following.
+
+\begin{align}
+    T^2 = \frac{4\pi^2a^3}{(M_A+M_B)G}
+\end{align}
+
+We can solve this for the sum of the masses
+
+\begin{align}
+    (M_A+M_B) = \frac{4\pi^2a^3}{T^2G}
+\end{align}
+
+Now we need a or the semi major axis of the pair. We know the parallax and therefore the distance and we know the angular semi-major axis. If we convert the parallax $p_{rad} = 8.727 \cdot 10^{-7}$ and angular semi-major $\alpha_{rad} = 3.151 \cdot 10^{-5}$ axis to radians we can calculate the semi-major axis in AU.
+
+\begin{align}
+    a = \frac{\alpha_{rad}}{p_{rad}} =  36.12
+\end{align}
+
+When working in AU and solar masses $\frac{4\pi^2}{G} = 1$
+
+\begin{align}
+    (M_A+M_B) = \frac{a^3}{T^2} = 6.64 M_{\Sun} \\ 
+\end{align}
+
+From their total mass we can use the fraction of their distances since that fraction is equal to the fraction of the masses to compute the indvidual masses. 
+
+\begin{align}
+    M_B = \frac{6.64}{1.69} = 3.93 M_{\Sun}
+    M_A = 6.64 - 3.93 = 2.71 M_{\Sun}
+\end{align}
+
+% 5
+\section*{Question 5}
+
+We can use the equilibrium of forces to derive the orbital velocity of a star assuming circular orbit.
+
+\begin{align}
+    F_c = F_G \\
+    \frac{mv^2}{r} = \frac{GMm}{r^2} \Rightarrow v^2 = \frac{GM}{r}
+\end{align}
+
+Where M is the mass we are solving for, r is the distance from the center of mass which in this case can be assumed to be the center of the galaxy. 
+
+\begin{align}
+    d = 225 \text{Mly} \\ 
+    r = \frac{1.1 \pi}{180 \cdot 3600} \cdot d = 1.2 kly \\
+    M = \frac{v^2r}{G} = 1 \cdot 10^9 M
+\end{align}
+
+% 6
+\section*{Question 6}
+
+In order to determine the effective temperature of a planet we need to determine the energy hitting it, that can be expressed as
+
+\begin{align}
+    L_{in} = \frac{L_{\Sun}}{4\pi r^2} \pi R^2
+\end{align}
+
+Where r is the distance to the sun and R is the radius of the planet. Taking into account the albedo the amount of radiation absorbed by the planet is
+
+\begin{align}
+    L_{abs} = (1-A)L_{in}
+\end{align}
+
+If we assume the planet is in steady state and can be approximated as a black body this radiation should also be emitted and follow the luminosity relation of a black body $L = \sigma T^4 4 \pi R^2$ equating this with eq. 18 we can solve for the temperature
+
+\begin{align}
+    (1-A)\frac{L_{\Sun}}{4\pi r^2} \pi R^2 = \sigma T^4 4 \pi R^2 \\
+    T = \left [\frac{(1-A)L_{\Sun}}{16\pi r^2 \sigma} \right ]^{\frac{1}{4}}
+\end{align}
+
+The effective temperature tends to be lower than the true surface temperature due to the greenhouse effect. The atmosphere of the planets does not let the surfaces radiate freely and this results in increased surface temperatures. 
+
+\pagebreak
+
+\section*{Question 7}
+
+We can use the doppler shift of the light to determine the radial speed of the star, since it is moving right at us this will be its full speed. 
+
+\begin{align}
+    \frac{\Delta \lambda}{\lambda} c = v_r \\
+    \frac{432.240 - 432.341}{432.341} c = 70 \text{km}/\text{s}
+\end{align}
+
+Assuming the star is moving at constant speed and we have no extinction the apparent magnitude is only a function of the distance to the star.
+
+\begin{align}
+    m-M = 5 \log \frac{r}{10 \text{pc}} \\
+    r_1 = 10^{-\frac{2.3}{5}} = 3.47 \text{pc} \\
+    r_2 = 10^{-\frac{2.5}{5}} = 3.16 \text{pc} \\
+    t = \frac{0.31 \text{pc}}{70 \text{km/s}} = 4 260 \text{years}
+\end{align}
+
+% 8
+\section*{Question 8}
+
+We can use the distance modulus to find the apparent magnitude
+
+\begin{align}
+    m - M = 5 \log \frac{r}{10 \text{pc}} + A_v
+\end{align}
+
+The extinction coefficient $A_v$ can be calculated $A_v = -2.5log(0.5)$ because this gives us the change in magnitude for a reduction in luminosity of half. 
+
+\begin{align}
+    m = 5 \log \frac{r}{10 \text{pc}} - 2.5log(0.5) = \log \frac{613496}{10} - 0.753 = 24.7
+\end{align}
+
+Assuming the extinction happens inside the galaxy and therefore is distance independent we can again use the distance modulus with the extinction coefficient to get the distance
+
+\begin{align}
+    6.0 = 5 \log \frac{r}{10 \text{pc}} - 2.5log(0.5) \\
+    r = 10 ^{(6+2.5\log(0.5))/5 + 1} = 112 \text{pc}
+\end{align}
+
+This implies that the stars we can see are either fairly close, very bright or not stars at all. If we can be sure what we see is a star we can be sure it is in our solar neighborhood but we might also be seeing distant galaxies or other objects that are much brighter than stars and can therefore be seen across larger distances. 
+
+% 9
+\section*{Question 9}
+
+In order to show this we first need to find the total gravitational potential energy of the sun, this quantity depends on the dencity $\rho$ and the radius $R$, we assume constant dencity and constant luminosity over the life time of the sun. We start from the integral given in the question text
+
+
+\begin{align}
+    U_g = \int - \frac{GM(r)}{r} dm
+\end{align}
+
+Here $M(r)$ is the mass contained within the radius r and $dm$ is the mass element. For a spherical star $dm = 4\pi \rho r^2 dr$, with constant dencity $M(r) = \frac{4\pi r^3}{3} \rho$ this will be integrated from 0 to R.
+
+\begin{align}
+    U_g = - \frac{16 \pi^2 G}{3} \rho^2 \int_{0}^{R} r^4 dr =  - \frac{16 \pi^2 G}{3} \rho^2  \frac{R^5}{5}
+\end{align}
+
+We know that the total mass of the star $M = \frac{4\pi R^3}{3} \rho$ so eq.32 can be re written
+
+\begin{align}
+    U_g = -\frac{3GM^2}{5R}
+\end{align}
+
+We need the total mechanical energy so we use the virial theorem to get the kinetic part
+
+\begin{align}
+    2<K> + <U> = 0 \Rightarrow <K> = -\frac{1}{2}<U> \\
+    K + U = \frac{1}{2} U = -\frac{3GM^2}{5 \cdot 2R}
+\end{align}
+
+If we assume that in the begning the sun had infinite radius and therefore zero energy the amount of energy stated above would have to be radiated away to get where we are today if we assume constant luminosity the time this would take would be
+
+\begin{align}
+    \tau_{mechanical} = \frac{3}{5} \frac{GM^2}{2RL}
+\end{align}
+
+From the well known proportionality $L \propto M^{3.5}$ we can derive a proportionality between the lifetime $\tau$ adn the mass of a star. We know that $L = \frac{Mfc^2}{\tau}$, we also know that that expression should be proportional to $M^{3.5}$ that gives $\tau \propto M^{-2.5}$
+
+The lifetime of a star can be calculated as
+
+\begin{align}
+    t = t_{\Sun} \left ( \frac{M_{\Sun}}{M} \right )^{2.5}
+\end{align}
+
+If we want a lifetime of 10Myr we need $\left ( \frac{M_{\Sun}}{M} \right )^{2.5} = 10^{-3}$ that gives the mass $M = 10^{\frac{3}{2.5} + \log (M_{\Sun})} = 16M_{\Sun}$
+
+\section*{Question 10}
+
+To find the fraction between the different state of atomic hydrogen we can use the Saha equation
+
+\begin{align}
+    \frac{N_2}{N_1} = \frac{8e^{3.4/kT}}{2e^{13.6/kT}} = 1.08 \cdot 10^{-8}
+\end{align}
+
+We again use the Saha equation but this time this variant instead
+
+\begin{align}
+    \frac{N_{II}}{N_{I}} = \frac{kT}{P_e} \left ( \frac{2\pi m_e k T}{h^2}  \right )^{3/2} e^{-13.6/kT} = 1.31 \cdot 10^{-4}
+\end{align}
+
+Since almost all the calcium is in the lower level of the K line it is very easy to excite these and get the de-excitations that result in the K line. While for hydrogen we have very little n = 2 so there aren't as many possibilities for $H_\alpha$ emission to occur. 
+
+\pagebreak
+
+\section*{Question 11}
+
+The binding energy can be calculated using the mass difference between the nucleon and its constituent parts.
+
+\begin{align}
+    &N = 34 \text{ Number of neutrons}\\
+    &P = 28 \text{ Number of protons}\\
+    &m_{nucleons} = m_n N + m_p P \\
+    &m_{nucleus} = m_{nickle62} - m_e P \\
+    &\Delta m = m_{nucleons} - m_{nucleus} \\
+    &\text{binding energy} = \Delta m c^2 \\
+    &\text{binding energy per nucleon} = \frac{\text{binding energy}}{N+P} = 8.795 \text{ Mev per nucleon}
+\end{align}
+
+\section*{Question 12}
+
+We can find the adiabatic temperature gradient from the formula
+
+\begin{align}
+    \frac{dT}{dr} = \left ( 1 - \frac{1}{\gamma} \right ) \frac{T}{P} \frac{dP}{dr}
+\end{align}
+
+Since we have all the information needed we can compute it as follows.
+
+\begin{align}
+    \frac{dT}{dr} = \left ( 1 - \frac{5}{7} \right ) \frac{T}{101 000N/m^2 \cdot e^{-z/7.3km}} (- 101 000 N/m^2 \frac{1}{7.3km} e^{-z/7.3km})
+\end{align}
+
+This is a differential equation ... if we plug in $T_0$ we get the gradient $\frac{dT}{dr} = -11.7 K/km$
+
+Since the actual temperature gradient is higher than the adiabatic gradient the air is undergoing convection. 
+
+\section*{Question 13}
+
+Since we have fully ionized atoms each atom will contribute p+1 particles to the number density because of the p electrons and the 1 nucleus. From this it is clear that the formula in the question is correct.
+
+We first need to derive z
+
+\begin{align}
+    Z = \frac{\sum_p N_p 2 (p+1)m_H}{M}
+\end{align}
+
+From this we can derive $\mu$, looking at the expression for N and the mass fraction expression we realise the following.
+
+\begin{align}
+    N = \frac{M}{m_H} \left ( 2X + \frac{3}{4} Y + \frac{Z}{2}\right )
+\end{align}
+
+We then plug this into the expression for $\mu$
+
+\begin{align}
+    \mu = \frac{1}{\left ( 2X + \frac{3}{4} Y + \frac{Z}{2}\right )}
+\end{align}
+
+The mean molecular weight increases meaning the Jeans mass decreases making it possible for a helium core of smaller mass to collapse, heat up and begin fusion. This in turn makes the star bigger because of increased radiative pressure, this leads to increased luminosity and that means the star eventually leaves the main sequence. 
+
+\section*{Question 14}
+
+If we assume a spherical homogeneous cloud of gas we can use the expression for the gravitational potential from question 9
+
+\begin{align}
+    U = -\frac{3GM^2}{5R}
+\end{align}
+
+If we also assume homogeneous temperature we can use the ... to get the kinectic energy
+
+\begin{align}
+    K = \frac{3}{2} N k T
+\end{align}
+
+To be outside virial equlibrium we need $2K < |U|$, that gives us this in equality
+
+\begin{align}
+    3 N k T < \frac{3GM^2}{5R}
+\end{align}
+
+If we equate this we will find a lower bounday for Virial equilibrium. In order to solve this we plug in $N = M/(\mu m_H)$ and we replace all our M with $M_J$ because putting an equals forces the mass to be equal to the Jeans mass. 
+
+\begin{align}
+    3 \frac{kT}{\mu m_H} = \frac{3GM_J}{5R}
+\end{align}
+
+Since we have assumed spherical homogeneous cloud we can get $R = \left ( \frac{3M}{4\pi \rho } \right ) ^{1/3}$
+
+\begin{align}
+    3 \frac{kT}{\mu m_H} = \frac{3GM_J}{5} \left ( \frac{4\pi \rho }{3M} \right ) ^{1/3}
+\end{align}
+
+Taking the third power of everything and moving some stuff around we get
+
+\begin{align}
+    \left ( 3 \frac{kT}{\mu m_H} \right )^3 =  \frac{3^2 G^3 M_J^2}{5^3}4 \pi \rho
+\end{align}
+
+Moving more stuff around and finaly taking a square root
+
+\begin{align}
+    M_j = \left (\frac{3}{4\pi} \right )^{1/2} \left (\frac{5k}{Gm_H} \right )^{3/2} \left (\frac{T^3}{\mu^3 \rho_0}\right )^{1/2}
+\end{align}
+
+Finding the density as the number density times the mean molecular weight and using the formula with the values given for the two different clouds we get
+
+\begin{align}
+    \text{Molecular cloud} \approx 2 M_{\Sun}\\
+    \text{Atomic cloud} \approx 500 M_{\Sun}
+\end{align}
+
+Since the Jeans mass is much lower in the molecular cloud it is much more likely stars will form there. (calculation done using python see appendix for code) 
+
+\pagebreak
+
+\section*{Question 15}
+
+In question 5 we derived a formula for the orbital speed at distance r from the center given mass inside that radius.
+
+\begin{align}
+    v^2 = \frac{GM}{r}
+\end{align}
+
+Since we have the density as a function of the radius we can calculate the mass as a function of the radius.
+
+\begin{align}
+    M(r) = \int \rho(r) dV \\
+    \rho(r) = \frac{C}{r^{3.5}} \\
+    dV = 4\pi r^2 dr \\
+    M(r) = \int_{r_0}^r  4\pi r'^2 \frac{C}{r'^{3.5}} dr = 4\pi C \int_{r_0}^r  \frac{r'^2}{r'^{3.5}} dr' = 4\pi C \left ( \frac{2}{\sqrt{r_0}} - \frac{2}{\sqrt{r}}\right )
+\end{align}
+
+If we define $C_1 = \frac{2}{\sqrt{r_0}}$ and put the $M(r)$ function into eq.62 we get
+
+\begin{align}
+    v^2 = 4\pi GC \frac{\left (C_1 - \frac{2}{\sqrt{r}}\right )}{r}
+\end{align}
+
+In order to get a flat rotation curve we need $v^2 = constant \Rightarrow \frac{M(r)}{r} = constant$ from this we can derive the density profile.
+
+\begin{align}
+    \frac{M(r)}{r} = constant \Rightarrow M(r) \propto r  \Rightarrow \\
+    \Rightarrow \frac{dM}{dr} \propto 1 \Rightarrow 4\pi r^2 \rho(r) \propto 1 \Rightarrow \\
+    \Rightarrow \rho(r) \propto \frac{1}{r^2}
+\end{align}
+
+So the matter density profile that would create a flat rotation curve is proportional to the inverse square root of the radius. 
+
+\section*{Question 16}
+
+Using the Schwarzschild radius we can find the critical density to form a black hole.
+
+\begin{align}
+    R = \frac{2GM}{c^2} \\
+    R = \left ( \frac{3M}{4\pi \rho }\right ) \text{(assuming spherical homogeneous mass)} \\
+    \frac{2GM}{c^2} = \left ( \frac{3M}{4\pi \rho }\right ) \\
+    \rho = \frac{3c^6}{32 \pi M^2 G^3}
+\end{align}
+
+From this we can solve for the mass 
+
+\begin{align}
+    M = \sqrt{\frac{3c^6}{32 \pi \rho G^3}}
+\end{align}
+
+If we insert the density of air we get $M = 3.78 \cdot 10^9 M_{\Sun}$ this gives us an event horizon $R = 74$ AU. The planets inside this would be all Neptune which is the furthest planet has semi major axis of 30 AU. 
+
+\section*{Question 17}
+
+The Friedmann equations looks as follows
+
+\begin{align}
+    \left ( \frac{\dot{a}}{a}\right ) + \frac{kc^2}{a^2} = \frac{8 \pi G}{3} \rho + \frac{\Lambda c^2}{3} \\
+    \frac{\ddot{a}}{a} = -\frac{4\pi G}{3c^2}(\rho c^2 + 3p) + \frac{\Lambda c^2}{3}
+\end{align}
+
+We want to find variables $\rho_{eff}$ and $p_{eff}$ that include the cosmological constant. We can start by using the first Friedmann equation to find $\rho_{eff}$.
+
+\begin{align}
+    \left ( \frac{\dot{a}}{a}\right ) + \frac{kc^2}{a^2} = \frac{8 \pi G}{3} \rho + \frac{\Lambda c^2}{3} = \frac{8 \pi G}{3}\left ( \rho + \frac{\Lambda c^2}{8 \pi G}\right ) \Rightarrow \rho_{eff} =  \rho + \frac{\Lambda c^2}{8 \pi G}
+\end{align}
+
+If we plug this $\rho_{eff}$ into the second Friedmann equation and also substitute $p_{eff} = p + p_\Lambda$ we get an equation we can solve for $p_\Lambda$
+
+\begin{align}
+    \frac{\ddot{a}}{a} = -\frac{4\pi G}{3c^2} \left [ \left ( \rho + \frac{\Lambda c^2}{8 \pi G}\right )c^2 + 3(p+p_\Lambda)\right ] = -\frac{4\pi G}{3c^2}(\rho c^2 + 3p) - \frac{4\pi G}{3c^2} \left (\frac{\Lambda c^2}{8 \pi G}c^2 + 3p_\Lambda \right )
+\end{align}
+
+If we compare eq.79 to the second Friedmann equation we can see that 
+
+\begin{align}
+    - \frac{4\pi G}{3c^2} \left (\frac{\Lambda c^2}{8 \pi G}c^2 + 3p_\Lambda \right ) = \frac{\Lambda c^2}{3} \Rightarrow 3p_\Lambda = - \frac{\Lambda c^4}{4\pi G} - \frac{\Lambda c^4}{8\pi G} \\
+    p_\Lambda = - \frac{\Lambda c^4}{8 \pi G} 
+\end{align}
+
+Given that $p_\Lambda = \rho_\Lambda w c^2$ we can determine wall
+
+\begin{align}
+    -\frac{\Lambda c^4}{8 \pi G} = w c^2 \frac{\Lambda c^2}{8 \pi G} \Rightarrow w = -1
+\end{align}
+
+To find the critical density we use the following relationship
+
+\begin{align}
+    H_0^2 = \frac{8 \pi G}{3} \rho_{crit} \Rightarrow \rho_{crit} = \frac{3H_0^2}{8\pi G}
+\end{align}
+
+Because $H_0 = \frac{\dot{a}}{a}$ and the above equation assumes $k=0$ which means the universe is flat. 
+
+Finding the values of w in the equation of state that gives rise to stuff accelerating the expansion of the universe involves the second Friedmann equation.
+
+\begin{align}
+    \frac{\ddot{a}}{a} = -\frac{4\pi G}{3c^2}(\rho c^2 + 3p) \\
+    \frac{\ddot{a}}{a} > 0 \Rightarrow \text{Expansion is accelerating} \Rightarrow (\rho c^2 + 3p) < 0 \\ 
+    (\rho c^2 + 3p) = (\rho c^2 + 3w \rho c^2) < 0 \Rightarrow 1 + 3w < 0 \Rightarrow w < -\frac{1}{3}
+\end{align}
+
+\section*{Question 18}
+
+Since the mass-energy density of matter is proportional to the scale factor to the third power and since the ratio of the scale factor now and back when the light was emmited is the redshift plus one the mass density of matter was $(1+6.1)^3 = 358$ times larger when the quasars light was emmited. The same applies for radiation but insted of the third it goes as the scale factor to the fourth power giving $(1+6.1)^4 = 2540$. The dark energy is a bit different its mass-energy density is constant and has been constant in the universe forever so it is 0 times larger. 
+
+\section*{Question 19}
+
+Here we use the same relationship between redshift and scale factor ratios as in question 18. Distance when the light was emmited $= 450 / (6.34+1) = 61.3$ Mpc. For the mass energy density we do the same, so the mass energy density back when the galaxy emmited its light $= 2.4 \cdot 10^{-27} \cdot (6.34+1)^3 = 9.49 \cdot 10^{-25}$.
+
+For the CMB we know that the temperature is proportional to the wavelength and that the wavelength is proportional to the scale factor so the temperature should also be propotional to the scale factor so the temperature of the CMB was $2.725 \cdot (6.34+1) = 20$ K.
+
+We can find the mass-energy density of the radiation back then using the temperature of the CMB.
+
+\begin{align}
+    \rho = \frac{4 \sigma T^4}{c} = 756 \text{ MeV} \text{ m}^{-3}
+\end{align}
+ 
+\pagebreak
+
+\section*{Question 20}
+
+In order to calculate the Hubble parameter from the information given we need to find the distance to the supernova using the distance modulus and then find the velocity using the redshift given. We then divide these two values to get the Hubble parameter.
+
+\begin{align}
+    m-M = 5 \log_{10} \left ( \frac{r}{10} \right ) + A_v \\
+    r = 10 \cdot 10^{\frac{m-M-A_v}{5}} \\
+    r = 10 \cdot 10^{\frac{17.5+19.3-0.54}{5}} = 178.6 \text{ Mpc}
+\end{align}
+
+The extinction comes from both our galaxy and the galaxy of origin $A_v = 0.23+0.31 = 0.54$. Now we need the velocity which we can get from the redshift.
+
+\begin{align}
+    v = c \left ( \frac{\lambda}{\lambda_0} - 1 \right ) = 11 601 \text{ km}\text{ s}^{-1}
+\end{align}
+
+Now we can divide the distance v with the velocity r to get $H_0$.
+
+\begin{align}
+    H_0 = \frac{v}{r} = 64.9 \text{ km}\text{ s}^{-1}\text{ Mpc}^{-1}
+\end{align}
+
+If we ignore extinction we get a different distance
+
+\begin{align}
+    r = 10 \cdot 10^{\frac{17.5+19.3}{5}} = 229 \text{ Mpc} \\
+    H_0 = \frac{11601}{229} = 50.6 \text{ km}\text{ s}^{-1}\text{ Mpc}^{-1}
+\end{align}
+
+Modern measurements of the Hubble constant $H_0$ do not agree, measurements using the CMB gives a value of approximately 67 and measurements using other methods gives approximately 74. So the value taking into account the extinction is closer to both of the modern measurements. 
+
+\pagebreak
+
+\appendix
+
+
+\section{Code}
+
+Question 14:
+\begin{lstlisting}[language=python]
+    G = 6.674e-11
+    mh = 1.00794
+    u = 1.6605390e-27
+    k =1.3806488e-23
+    msun = 1.988475e30
+
+    Tgmc = 100
+    ngmc = 1e14
+    mugmc = mh*2*u
+    rhogmc = ngmc * mugmc
+
+    Th = 30
+    nh = 8e8
+    muh = mh*u
+    rhoh = nh * muh
+
+    jeans = ((3/(4*np.pi))**(1/2)) * (((5*k)/(G*mh))**(3/2))
+    jeans = jeans/msun
+
+    gmc = jeans*np.sqrt((Tgmc**3)/((mugmc**3)*rhogmc))
+    h = jeans*np.sqrt((Th**3)/((muh**3)*rhoh))
+\end{lstlisting}
+
+\end{document}
